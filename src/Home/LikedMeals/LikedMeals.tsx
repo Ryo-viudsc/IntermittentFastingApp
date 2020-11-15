@@ -6,7 +6,7 @@ import {
   TransitioningView,
 } from "react-native-reanimated";
 
-import { Box,  useTheme } from "../../components";
+import { Box, useTheme } from "../../components";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Header, SearchBar } from 'react-native-elements';
 
@@ -144,9 +144,8 @@ const defaultCards = [
           <Transitioning.View ref={list} transition={transition}>
               <Box>
                   {refreshing ? <ActivityIndicator /> : null}
-                  <FlatList 
-                    
-                //keyExtractor={(item, index) => index}
+           <FlatList 
+                  //keyExtractor={(item, index) => index}
                     renderItem={({ item }) => 
                     <View style={{overflow:"hidden"}}>
                     <TouchableOpacity style={styles.listItem} 
@@ -162,7 +161,6 @@ const defaultCards = [
                         <View style={{
                               position: "absolute", 
                               top: 0, 
-                              left: 0,
                               right: 0, 
                               bottom: 0, 
                               justifyContent: 'center', 
@@ -186,9 +184,9 @@ const defaultCards = [
                         onRefresh={onRefresh}
                       />
                     }
-                  />
-            </Box>
-          </Transitioning.View>
+           />
+              </Box>
+              </Transitioning.View>
       </Box>
     </Box>
   );

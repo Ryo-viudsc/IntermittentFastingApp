@@ -6,7 +6,8 @@ import ActionSheet from "react-native-actions-sheet";
 import { ScrollView } from 'react-native-gesture-handler';
 import Icons from "./Swipe/components/Icons";
 import PreModalContent from "./PreModalContent";
-
+import ButtonGroup from "react-native-elements";
+import RadioButton from "./RadioButton";
 
 
 
@@ -21,7 +22,6 @@ const { width } = Dimensions.get("window");
 const HEIGHT = width * 1.6;
 
 
-
 interface ContentProps {
   color: string;
   finishedHandler : (s:string) => void; 
@@ -30,7 +30,6 @@ interface ContentProps {
   backgroundPic: ImageRequireSource;
   navigation : any;
 }
-
 
 
 
@@ -66,7 +65,7 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
     }
 
 
-
+    const buttons = [10, 12, 14, 16, 18];
     
   return (
   
@@ -154,8 +153,8 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
                     marginVertical: 20 }}>
           Timer Setting
         </Text>
-          <View>
-             
+           <View>
+              <RadioButton />
           </View>  
            <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
