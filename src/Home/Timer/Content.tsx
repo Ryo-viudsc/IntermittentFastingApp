@@ -214,6 +214,17 @@ export default ({
         </Text>
         
         <Time /> 
+ 
+ 
+{/* TODO for today
+  1, make the selector 
+  2, using setState, pass the time props to set the current time 
+  3, showing the start time and end time after that 
+  4, for Text components of start and end, use the ternary expression to determine if the time appears or not
+  5, Start working on the spooncular API and maybe dig into axios 
+   
+ https://github.com/sramezani/radio-buttons-react-native#readme*/}
+
         </ActionSheet>
 
     </View>
@@ -222,3 +233,18 @@ export default ({
  
   );
 };
+
+
+// const [currentTime, setCurrentTime] = useState('');
+
+// useEffect(() => {
+//   var date = new Date().getDate(); //Current Date
+//   var month = new Date().getMonth() + 1; //Current Month
+//   var year = new Date().getFullYear(); //Current Year
+//   var hours = new Date().getHours(); //Current Hours
+//   var min = new Date().getMinutes(); //Current Minutes
+//   var sec = new Date().getSeconds(); //Current Seconds
+//   setCurrentTime(
+//        hours + ':' + min
+//   );
+// }, []);

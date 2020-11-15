@@ -5,9 +5,7 @@ import { HomeNavigationProps } from '../../components/Navigation';
 import Slides from './Slides';
 import { Box } from '../../components';
 
-
 const { width, height } = Dimensions.get("window");
-
 
 const Ongoing = ({navigation, route}) => {
     
@@ -15,7 +13,6 @@ const Ongoing = ({navigation, route}) => {
     //when using react navigation, 
     //don't forget to use route.param
     //typescript props doesn't work as expected 
-
    
     return (
             <View style={styles.backgroundVideo}>
@@ -37,7 +34,6 @@ const Ongoing = ({navigation, route}) => {
                         justifyContent:"flex-end",
                         borderWidth:4,
                         borderColor:"green",
-                     // marginHorizontal: width * 0.1,
                         overflow:"scroll",
                         flex:1,
                         height:height,
@@ -47,15 +43,10 @@ const Ongoing = ({navigation, route}) => {
                     }}>
                                       
                          <Slides title={title} subtitle={subtitle} slides={slides} />  
-                        
                     </View>
              </View>
              );
 };
-
-
-
-
 
 const styles = StyleSheet.create({
     backgroundVideo: {

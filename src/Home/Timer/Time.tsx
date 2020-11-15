@@ -25,8 +25,6 @@ const Time = () => {
         return (
           <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
-              
-           
                 <Text style={styles.textStyle}>
                   {currentTime}
                 </Text>

@@ -73,7 +73,7 @@ return (
         style={{flex:1}}
         data={state.topic}
         renderItem={({ item }) =>
-               <View style={{overflow:"hidden"}}>
+               <View style={{ overflow:"hidden"}}>
                <TouchableOpacity style={styles.listItem} 
                                 onPress={() => {navigation.navigate("Ongoing", 
                                                     {   
@@ -105,7 +105,7 @@ return (
           keyExtractor={item => item.title}
         />
   </View>
-);
+   );
  };
 
 
@@ -126,7 +126,9 @@ return (
       borderRadius: 10,
       overflow:"hidden",
       shadowColor: "#000",
-      backgroundColor: 'rgba(0,0,0,0.55)'
+      backgroundColor: 'rgba(0,0,0,0.55)',
+      borderColor:"black", 
+      borderWidth: 2.5,
     },
     image:{
         overflow:"hidden",
