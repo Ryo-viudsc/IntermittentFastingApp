@@ -15,7 +15,8 @@ interface CountDownTimerProps {
 
 const CountDownTimer = ({duration, finishedHandler}: CountDownTimerProps) => {
 
-const children =(remainingTime : number | undefined) => {
+    const children =(remainingTime : number | undefined) => {
+       
         const hours = remainingTime ? Math.floor(remainingTime/ 3600) : null; 
         const minutes = remainingTime ?  Math.floor((remainingTime % 3600)/ 60) : null;
         const seconds = remainingTime ? remainingTime % 60 : null; 

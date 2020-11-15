@@ -39,6 +39,7 @@
     "infinite-react-carousel": "^1.2.11",
     "moment": "^2.27.0",
     "particles-bg": "^2.5.0",
+    "radio-buttons-react-native": "^1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "^0.63.3",

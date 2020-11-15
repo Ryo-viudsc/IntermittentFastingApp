@@ -1,12 +1,14 @@
-import React, { createRef, useState } from "react";
-import { ImageBackground, Image, StyleSheet, Text, Modal, View, Dimensions,TouchableHighlight, ImageRequireSource  } from "react-native";
+import React, { createRef, useEffect, useState } from "react";
+import { ImageBackground, Image, StyleSheet, Text, Modal, View, Dimensions,TouchableHighlight, ImageRequireSource, SafeAreaView, Animated  } from "react-native";
 import CountDownTimer from "./CountDownTimer";
 import { Box, Button } from "../../components";
 import ActionSheet from "react-native-actions-sheet";
 import { ScrollView } from 'react-native-gesture-handler';
 import Icons from "./Swipe/components/Icons";
 import PreModalContent from "./PreModalContent";
-import Time from "./Time";
+
+
+
 
 /*
   To do for the home screen
@@ -17,6 +19,167 @@ import Time from "./Time";
 
 const { width } = Dimensions.get("window");
 const HEIGHT = width * 1.6;
+
+
+
+interface ContentProps {
+  color: string;
+  finishedHandler : (s:string) => void; 
+  source: number;
+  hours: number; 
+  backgroundPic: ImageRequireSource;
+  navigation : any;
+}
+
+
+
+
+export default ({ backgroundPic, source, hours, finishedHandler, navigation }: ContentProps) => {
+    
+    const [modalVisible, setModalVisible] = useState(false);
+    const actionSheetRef : any = createRef();
+    const [currentHours, setCurrentHours] = useState<number>(0);
+    const [endTime, setEndTime] = useState('');
+
+    // useEffect(()=>{
+
+    //       var hours = new Date().getHours(); //Current Hours
+    //       var minutes = new Date().getMinutes(); //Current Minutes
+
+    //       const HOURS = hours? ( hours > 9 ? "" + hours : "0" + hours) : "00";
+    //       const MINUTES = minutes?  ( minutes > 9 ? "" + minutes : "0" + minutes) : "00";
+    //       const END_HOURS = (hours + currentHours) % 24 ? ( hours > 9 ? "" + hours : "0" + hours) : "00";
+
+    //       setCurrentTime(
+    //          `${HOURS}` + ':' + `${MINUTES}`
+    //       );
+          
+    //       setEndTime(
+    //         `${END_HOURS}` + ':' + `${MINUTES}`
+    //       );
+
+    //  },[]);
+   
+  
+    const changeHours = (hours:number) => {
+        return (setCurrentHours(hours));
+    }
+
+
+
+    
+  return (
+  
+    <Box flex={1} flexDirection="column" style={{ backgroundColor:"#FFFFFF"
+  }}> 
+    <View
+      style={{
+        ...StyleSheet.absoluteFillObject,
+        padding: HEIGHT * 0.02,
+        alignItems: "center",
+        justifyContent: "center",
+        borderWidth: 1,
+        borderColor: "red"
+      }}>  
+        <Box flex={1} style={{paddingTop: HEIGHT * 0.1, borderWidth: 1,
+        borderColor: "red"}}> 
+        <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
+            Snap the right tag to see your current fasting state! 
+        </Text>
+        <PreModalContent slotHours={hours}/> 
+       </Box> 
+        <Box flex={2} alignItems="center" 
+        style={{borderWidth: 1,
+                borderColor: "red",
+                width: width
+                }}>
+          <CountDownTimer 
+                  animatedColor="white" 
+                  duration={1000} 
+                  finishedHandler={finishedHandler}
+          />
+        </Box>
+        <Box flex={1} 
+             >
+           <View  style={{ 
+             borderWidth: 1,
+             borderColor: "red",
+             width: width,
+             justifyContent: "center",
+             alignItems:"center"}}>   
+          <Button onPress={() => {actionSheetRef.current?.setModalVisible();}} label="Choose Time Slot?" variant="homeButton" />
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+              > 
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <TouchableHighlight
+                      style={{ ...styles.closeButton, backgroundColor: "white"}}
+                      onPress={() => {true}}> 
+                      <Icons       
+                              name="x" 
+                              size={66} 
+                              color="primary"
+                              backgroundColor="white"
+                        />  
+                    </TouchableHighlight> 
+                  </View>
+                </View>
+              </Modal>
+        <Button onPress={() => {navigation.navigate("Learn")}} label="Learn More!" variant="default" />
+        </View> 
+        </Box> 
+         <ActionSheet 
+            containerStyle={{width: width*0.85,
+                            borderTopLeftRadius: 90, 
+                            borderBottomRightRadius: 90,
+                            marginBottom: HEIGHT* 0.2,
+                            borderBottomLeftRadius: 30,
+                            borderTopRightRadius: 30,
+                            alignItems:"center",
+                            justifyContent: "center",
+                          }}
+            ref={actionSheetRef} 
+            bounciness={90}
+            headerAlwaysVisible
+            footerAlwaysVisible
+            bounceOnOpen
+            springOffset={90}
+        > 
+        <Text style={{textAlign:"center", 
+                   fontFamily:"Alata",
+                    fontSize: 30,
+                    marginVertical: 20 }}>
+          Timer Setting
+        </Text>
+          <View>
+             
+          </View>  
+           <SafeAreaView style={{flex: 1}}>
+            <View style={styles.container}>
+                <Animated.Text style={styles.textStyle}>
+                  Start {currentHours}
+                </Animated.Text>
+                <Animated.Text style={styles.textStyle}>
+                   End  
+                </Animated.Text>
+            </View>
+          </SafeAreaView>
+         {/*   */}
+         <Button variant="primary" label="Start Fasting" onPress={()=>{}}  />
+
+   </ActionSheet>
+
+    </View>
+
+    </Box> 
+ 
+  );
+};
+
+
 
 const styles = StyleSheet.create({
   title1: {
@@ -99,152 +262,12 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center"
   },
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    padding: 10,
+    flexDirection: "row"
+  },
 });
 
-
-
-interface ContentProps {
-  color: string;
-  finishedHandler : (s:string) => void; 
-  source: number;
-  hours: number; 
-  backgroundPic: ImageRequireSource;
-  navigation : any;
-}
-
-export default ({
-  
-  backgroundPic,
-  source,  hours, finishedHandler, navigation }: ContentProps) => {
-    
-    //set timer and current time 
-    const [modalVisible, setModalVisible] = useState(false);
-    const actionSheetRef : any = createRef();
-
-    
-  return (
-  
-    <Box flex={1} flexDirection="column" style={{ backgroundColor:"#FFFFFF"
-  }}> 
-    {/* <ImageBackground source={backgroundPic} style={styles.image} > */}
-    <View
-      style={{
-        ...StyleSheet.absoluteFillObject,
-        padding: HEIGHT * 0.02,
-        alignItems: "center",
-        justifyContent: "center",
-        borderWidth: 1,
-        borderColor: "red"
-      }}
-    >  
-     
-        <Box flex={1} style={{paddingTop: HEIGHT * 0.1, borderWidth: 1,
-        borderColor: "red"}}> 
-        <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
-            Snap the right tag to see your current fasting state! 
-        </Text>
-        <PreModalContent slotHours={hours}/> 
-       </Box> 
-        <Box flex={2} alignItems="center" 
-        style={{borderWidth: 1,
-                borderColor: "red",
-                width: width
-                }}>
-          <CountDownTimer 
-                  animatedColor="white" 
-                  duration={1000} 
-                  finishedHandler={finishedHandler}
-          />
-          </Box>
-        <Box flex={1} 
-             >
-           <View  style={{ 
-             borderWidth: 1,
-             borderColor: "red",
-             width: width,
-             justifyContent: "center",
-             alignItems:"center"}}>   
-          <Button onPress={() => {actionSheetRef.current?.setModalVisible();}} label="Choose Time Slot?" variant="homeButton" />
-              <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-              > 
-                <View style={styles.centeredView}>
-                  <View style={styles.modalView}>
-                    <TouchableHighlight
-                      style={{ ...styles.closeButton, backgroundColor: "white"}}
-                      onPress={() => {
-                       true
-                      }}
-                    > 
-                      <Icons       
-                              name="x" 
-                              size={66} 
-                              color="primary"
-                              backgroundColor="white"
-                        />  
-                        </TouchableHighlight> 
-                  </View>
-                </View>
-              </Modal>
-        <Button onPress={() => {navigation.navigate("Learn")}} label="Learn More!" variant="default" />
-        </View> 
-        </Box> 
-         <ActionSheet 
-            containerStyle={{width: width*0.85,
-                            borderTopLeftRadius: 90, 
-                            borderBottomRightRadius: 90,
-                            marginBottom: HEIGHT* 0.2,
-                            borderBottomLeftRadius: 30,
-                            borderTopRightRadius: 30
-                          }}
-            ref={actionSheetRef} 
-            bounciness={90}
-            headerAlwaysVisible
-            footerAlwaysVisible
-            bounceOnOpen
-            springOffset={90}
-        >
-        <Text style={{textAlign:"center", 
-                   fontFamily:"Alata",
-                    fontSize: 30,
-                    marginVertical: 20 }}>
-          Timer Setting
-        </Text>
-        
-        <Time /> 
- 
- 
-{/* TODO for today
-  1, make the selector 
-  2, using setState, pass the time props to set the current time 
-  3, showing the start time and end time after that 
-  4, for Text components of start and end, use the ternary expression to determine if the time appears or not
-  5, Start working on the spooncular API and maybe dig into axios 
-   
- https://github.com/sramezani/radio-buttons-react-native#readme*/}
-
-        </ActionSheet>
-
-    </View>
-    {/* </ImageBackground>    */}
-    </Box> 
- 
-  );
-};
-
-
-// const [currentTime, setCurrentTime] = useState('');
-
-// useEffect(() => {
-//   var date = new Date().getDate(); //Current Date
-//   var month = new Date().getMonth() + 1; //Current Month
-//   var year = new Date().getFullYear(); //Current Year
-//   var hours = new Date().getHours(); //Current Hours
-//   var min = new Date().getMinutes(); //Current Minutes
-//   var sec = new Date().getSeconds(); //Current Seconds
-//   setCurrentTime(
-//        hours + ':' + min
-//   );
-// }, []);

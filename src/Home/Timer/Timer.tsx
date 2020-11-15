@@ -22,9 +22,7 @@ const Timer = ({navigation} : HomeNavigationProps<"Timer">) => {
         </Box>
          <Box flex={2} alignItems="center"marginTop="m" marginBottom="m" borderColor="grey" borderWidth={1} >
             <Progress timeSlot={14} timeCurrent={undefined} timeConvert={ () => undefined} />
-            <Button  label="Gooo to Liquid" onPress={ () => 
-                  navigation.navigate("LikedMeals")
-                  } variant="gradient" ></Button>
+
         </Box> 
       
            
