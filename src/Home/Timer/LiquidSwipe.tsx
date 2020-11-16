@@ -21,7 +21,7 @@ import {
 } from "./WaveHelpers";
 import Content from "./Content";
 import Button from "./Button";
-import Finished from "./Status";
+
 import ElapsedTimer from "./ElapsedTimer";
 import { Header } from "react-native-elements";
 import ModalContent from "./Swipe/components/ModalContent";

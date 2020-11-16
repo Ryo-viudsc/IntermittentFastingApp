@@ -61,7 +61,7 @@ function TimeProp (duration: number, remainingTime:number | undefined) : number 
  //{Handler(0)}
 
 return (
-    <View style={{marginBottom:30, marginTop: 15, alignItems:"center"}}>
+    <View style={{ marginTop: 5, alignItems:"center"}}>
  
     <CountdownCircleTimer
       isPlaying
@@ -113,47 +113,13 @@ return (
       </Animated.Text>
     )} 
     </CountdownCircleTimer>
-     <View style={{ flexDirection:"row",
-                    justifyContent: "space-between"
-      }}>
-         <View style={{ paddingHorizontal: width* 0.04, 
-                        paddingVertical: height*0.01,
-                        marginHorizontal: width*0.13, 
-                        backgroundColor:"white",
-                        borderColor:"lightblue",
-                        borderWidth:1,
-                        borderTopRightRadius: 40,
-                        borderRadius: 10
-                       
-          }}>
-         <Animated.Text style={styles.timerText}>Start</Animated.Text>
-         <Animated.Text style={styles.timerText}> 334455</Animated.Text>
-         </View>
-
-        <View style={{ paddingHorizontal:width*0.04, 
-                       paddingVertical: height*0.01,
-                       marginHorizontal: width*0.13,
-                       backgroundColor:"white",
-                       borderColor:"lightblue",
-                       borderWidth:1,
-                       borderTopLeftRadius: 40,
-                       borderRadius: 10
-                       
-        }}> 
-        <Animated.Text style={styles.timerText}>End</Animated.Text>
-        <Animated.Text style={styles.timerText}> 432654 </Animated.Text>  
-        </View>
-     </View>
+    
     </View>
   )
  };
  
 
  const styles = StyleSheet.create({
-    timerText : {
-        fontFamily : "Alata",
-        fontSize: 14
-    }
 
 
 
