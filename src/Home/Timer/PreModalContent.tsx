@@ -82,11 +82,10 @@ export const tips = [
 ];
 
 
-
-
 const preModalContent = ({slotHours}) => {
   return(
-     <View style={{flexDirection:"row", 
+     <View style={{
+                   flexDirection:"row", 
                    justifyContent: "center", 
                    backgroundColor:"white",
                    paddingHorizontal: width * 0.1,
@@ -94,7 +93,7 @@ const preModalContent = ({slotHours}) => {
                    borderBottomRightRadius: 50,
                    borderBottomLeftRadius: 50,
                    borderRadius:20,
-                   borderWidth : 1,
+                   borderWidth : 5,
                    borderColor: "lightblue"
                   }}
      >

@@ -25,48 +25,35 @@ interface LikedMealsProps
    uri : any;
 }
 
-const defaultCards = [
-  {//right row
-    id: 9999,
-    color: "red",
-    title : "A",
-    aspectRatio: 1,
-    selected: false,
-    uri: require("../../images/Meals/test.jpg")
-  },
-]; 
-
  const LikedMeals = ({navigation}) => {
 
-  const [Cards, setCards] = useState(defaultCards);
   const [search, setSearch] = useState("");
+  
+  //this is used to save the filtered source 
+  const [filteredDataSource, setFilteredDataSource] = useState<LikedMealsProps[]>([]);
+
+  //this regular state is used as the master data source 
   const [state, setState] = useState<LikedMealsProps[]>([]);
   const [refreshing, setRefreshing] = useState(false); 
 
-  const updateState = (arr: LikedMealsProps[]) => {
-    setState(arr);
-  } 
-
-  const updateSearch = (text : string) => {
-      setSearch(text);
-  }
-
-  
 
   const Load = async () => {
      
-
     try{
       const value = await AsyncStorage.getItem("likedMeals");
       if(value !== null)
       {
         var promiseItem = value.replace(/\\/g, '');
         var js_temp = JSON.parse(promiseItem);
-        console.log("priniting and checking the duplicates");
-     
+       
+        
+        //set the master souce 
         setState(js_temp);
-      
-        console.log("printing end")
+        setFilteredDataSource(js_temp);
+        
+        console.log(js_temp);
+
+
       }else{
         console.log("Failed to load")
       }
@@ -75,6 +62,37 @@ const defaultCards = [
     }
   }
   
+
+
+ 
+  const searchFilterFunction = (text:any) => {
+    // Check if searched text is not blank
+
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSource
+      // Update FilteredDataSource
+      const newData = state.filter(function (item) {
+        const itemData = item.title
+          ? item.title.toUpperCase()
+          : ''.toUpperCase();
+        const textData = text.toUpperCase();
+
+        return itemData.indexOf(textData) > -1;
+
+      });
+
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSour
+      setFilteredDataSource(state);
+      setSearch(text);
+    }
+  };
+
+
   useEffect(()=>{
     async function update(){
       await Load();
@@ -111,14 +129,7 @@ const defaultCards = [
     <Header 
        // leftComponent={{ icon: 'menu', color: '#fff' }}
         centerComponent={{ text: 'Liked Meals', style: { fontFamily: "Catara" ,fontSize:25 ,color: "white" } }}
-      //  rightComponent={{ icon: 'home', color: '#fff' }}
-     
-        // linearGradientProps={{
-        //   colors: ['#96cb7f', '#89E2C7'],
-        //   start: [1, 0],
-        //   end: [0.1, 0],
-        // }}
-        
+    
         containerStyle={{
           backgroundColor: "#222222",
           justifyContent: 'space-around',
@@ -131,8 +142,8 @@ const defaultCards = [
             cancelIcon
             lightTheme
             searchIcon={{ size: 20 }}
-             onChangeText={(text) => updateSearch(text) }
-            //onClear={(text) => searchFilterFunction('')}
+            onChangeText={(text) => searchFilterFunction(text) }
+            onClear={() => searchFilterFunction('')}
             placeholder="Search here or pull to refresh"
             value={search}
             inputStyle={{fontSize:15}}
@@ -177,7 +188,7 @@ const defaultCards = [
                </TouchableOpacity>
                </View>    
            } //the end of flat list component
-                    data={state}
+                    data={filteredDataSource}
                     refreshControl={
                       <RefreshControl
                         //refresh control used for the Pull to Refresh

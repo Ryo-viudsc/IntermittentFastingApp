@@ -7,7 +7,7 @@ import Icons from "./Swipe/components/Icons";
 import PreModalContent from "./PreModalContent";
 import RadioButton from "./RadioButton";
 import { update } from "lodash";
-
+import CurrentTimeLable from "./CurrentTimeLable";
 
 
 /*
@@ -58,27 +58,27 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
     //pass the current time props to JUST show the two labels 
     //no call back functions inside of it 
    
-    const currentTimeSetter = ( ) => {
+    // const currentTimeSetter = ( ) => {
       
-      // setStartTime(start);
-      // setEndTime(end);
-      console.log("Debug for the current time setter");
-      return(
-            <View style={{ flexDirection:"row",
-                    justifyContent: "space-between"
-            }}>
-            <View style={styles.timerlabel}>
-            <Animated.Text style={styles.timerText}>Start</Animated.Text>
-            <Animated.Text style={styles.timerText}> {startTime}</Animated.Text>
-            </View>
+    //   // setStartTime(start);
+    //   // setEndTime(end);
+    //   console.log("Debug for the current time setter");
+    //   return(
+    //         <View style={{ flexDirection:"row",
+    //                 justifyContent: "space-between"
+    //         }}>
+    //         <View style={styles.timerlabel}>
+    //         <Animated.Text style={styles.timerText}>Start</Animated.Text>
+    //         <Animated.Text style={styles.timerText}> {startTime}</Animated.Text>
+    //         </View>
 
-            <View style={styles.timerlabel}> 
-            <Animated.Text style={styles.timerText}>End</Animated.Text>
-            <Animated.Text style={styles.timerText}>{} </Animated.Text>  
-            </View>
-            </View>
-        );
-    }
+    //         <View style={styles.timerlabel}> 
+    //         <Animated.Text style={styles.timerText}>End</Animated.Text>
+    //         <Animated.Text style={styles.timerText}>{} </Animated.Text>  
+    //         </View>
+    //         </View>
+    //     );
+    // }
 
 
 
@@ -128,37 +128,34 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
         padding: HEIGHT * 0.02,
         alignItems: "center",
         justifyContent: "center",
-        borderWidth: 1,
-        borderColor: "red"
+ 
       }}>  
-        <Box flex={1} style={{paddingTop: HEIGHT * 0.1, borderWidth: 1,
-        borderColor: "red"}}> 
+        <Box flex={1} style={{paddingTop: HEIGHT * 0.1}}> 
         <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
             Snap the right tag to see your current fasting state! 
         </Text>
         <PreModalContent slotHours={hours}/> 
        </Box> 
         <Box flex={2} alignItems="center" 
-        style={{borderWidth: 1,
-                borderColor: "red",
-                width: width
-                }}>
+        style={{width: width}}>
           <CountDownTimer 
                   animatedColor="white" 
                   duration={1000} 
                   finishedHandler={finishedHandler}
           />
-    
+         <CurrentTimeLable currentHours={currentHours} />
         </Box>
         <Box flex={1} >
            <View  style={{ 
-             borderWidth: 1,
-             borderColor: "red",
              width: width,
              justifyContent: "center",
              alignItems:"center"}}>   
-          <Button onPress={() => {actionSheetRef.current?.setModalVisible();}} label="Choose Time Slot?" variant="homeButton" />
-              <Modal
+          <Button onPress={() => {
+                                  actionSheetRef.current?.setModalVisible();}} 
+                  label="Choose Time Slot?" 
+                  variant="homeButton" />
+            
+              {/* <Modal
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
@@ -177,25 +174,22 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
                     </TouchableHighlight> 
                   </View>
                 </View>
-              </Modal>
+              </Modal> */}
         <Button onPress={() => {navigation.navigate("Learn")}} label="Learn More!" variant="default" />
         </View> 
         </Box> 
         <ActionSheet 
-            containerStyle={{width: width*0.85,
+            containerStyle={{
+                            width: width*0.85,
                             borderTopLeftRadius: 90, 
                             borderBottomRightRadius: 90,
                             marginBottom: HEIGHT* 0.6,
                             borderBottomLeftRadius: 30,
                             borderTopRightRadius: 30,
                             alignItems:"center",
-                            justifyContent: "center",
-                            borderColor:"black", 
-                            borderWidth:2,
-                            
+                            justifyContent: "center"
                           }}
             ref={actionSheetRef} 
-
             bounciness={70}
             footerAlwaysVisible
             headerAlwaysVisible
@@ -205,8 +199,8 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
         <Text style={{textAlign:"center", 
                    fontFamily:"Alata",
                     fontSize: 30,
-                   marginVertical: 20
-                     }}>
+                   marginVertical: 20,
+                  }}>
           Timer Setting
         </Text>
            <View style={{alignItems:"center"}}>
@@ -230,7 +224,8 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
             {CurrentTimeChecker()}
           </View>  
         <Text style={{fontFamily:"Alata"}}> tap the outside to set the timer </Text>
-    </ActionSheet>
+        {/* <Button label="close test" variant="primary" onPress={ actionSheetRef.current?.setModalVisible(false)} > </Button> */}
+        </ActionSheet>
     </View>
     </Box> 
   );

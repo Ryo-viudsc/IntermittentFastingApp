@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
       elevation: 9,
     }, 
 
-
     buttonText: {
       fontSize:17,
       fontFamily: "Alata",
@@ -86,9 +85,10 @@ const styles = StyleSheet.create({
 });
 
 interface ButtonProps {
+
     variant: "default" | "primary" | "homeButton";
     label?: string;
-    onPress: () => void;
+    onPress: () => void | any;
     children?: ReactNode;
   }
 
