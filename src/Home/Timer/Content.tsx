@@ -12,8 +12,9 @@ import CurrentTimeLable from "./CurrentTimeLable";
 
 /*
   To do for the home screen
-  1, remake the whole UI (especially the top-half)
-  2, fix the modal components 
+ 1, make the fake home screen to first land  
+ 2, only after users set the time, using ternary expression and s
+ 3, show the count down timer components with the time prpos passed in it 
 
 */
 
@@ -54,34 +55,16 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
 
 
 
-    //factorize the time label component and 
-    //pass the current time props to JUST show the two labels 
-    //no call back functions inside of it 
-   
-    // const currentTimeSetter = ( ) => {
-      
-    //   // setStartTime(start);
-    //   // setEndTime(end);
-    //   console.log("Debug for the current time setter");
-    //   return(
-    //         <View style={{ flexDirection:"row",
-    //                 justifyContent: "space-between"
-    //         }}>
-    //         <View style={styles.timerlabel}>
-    //         <Animated.Text style={styles.timerText}>Start</Animated.Text>
-    //         <Animated.Text style={styles.timerText}> {startTime}</Animated.Text>
-    //         </View>
+    
+    const CurrentTimeTracker = (currentHours: number):number => {
+      var currentSeconds = 60* 60 * currentHours; 
+      if(currentSeconds === 0){
+          return 100;
+      }else{
+        return currentSeconds;
+      }
 
-    //         <View style={styles.timerlabel}> 
-    //         <Animated.Text style={styles.timerText}>End</Animated.Text>
-    //         <Animated.Text style={styles.timerText}>{} </Animated.Text>  
-    //         </View>
-    //         </View>
-    //     );
-    // }
-
-
-
+  }  
     const CurrentTimeChecker = () => {
 
     
@@ -140,7 +123,7 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
         style={{width: width}}>
           <CountDownTimer 
                   animatedColor="white" 
-                  duration={1000} 
+                  duration={CurrentTimeTracker(currentHours)} 
                   finishedHandler={finishedHandler}
           />
          <CurrentTimeLable currentHours={currentHours} />
@@ -155,26 +138,7 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
                   label="Choose Time Slot?" 
                   variant="homeButton" />
             
-              {/* <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-              > 
-                <View style={styles.centeredView}>
-                  <View style={styles.modalView}>
-                    <TouchableHighlight
-                      style={{ ...styles.closeButton, backgroundColor: "white"}}
-                      onPress={() => {true}}> 
-                      <Icons       
-                          name="x" 
-                          size={66} 
-                          color="primary"
-                          backgroundColor="white"
-                        />  
-                    </TouchableHighlight> 
-                  </View>
-                </View>
-              </Modal> */}
+        
         <Button onPress={() => {navigation.navigate("Learn")}} label="Learn More!" variant="default" />
         </View> 
         </Box> 
@@ -224,7 +188,7 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
             {CurrentTimeChecker()}
           </View>  
         <Text style={{fontFamily:"Alata"}}> tap the outside to set the timer </Text>
-        {/* <Button label="close test" variant="primary" onPress={ actionSheetRef.current?.setModalVisible(false)} > </Button> */}
+        <Button label="close test" variant="primary" onPress={ actionSheetRef.current?.setModalVisible(false)} > </Button>
         </ActionSheet>
     </View>
     </Box> 

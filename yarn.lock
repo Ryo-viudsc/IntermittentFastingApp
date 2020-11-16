@@ -5807,6 +5807,11 @@ react-native-scripts@^2.0.1:
     cross-spawn "^5.0.1"
     minimist "^1.2.0"
 
+react-native-simple-dialogs@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-simple-dialogs/-/react-native-simple-dialogs-1.4.0.tgz#3379f093f4797b2a3609013eeaec41a29cd88220"
+  integrity sha512-EkVhiY9oDgumAIFA1qZUrvg068lRZa4fZoWYfTAAFZGmA495C4npdLmz6VMG3iRgWPwpp19JEzZLGaHYOURxBQ==
+
 react-native-simple-store@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-native-simple-store/-/react-native-simple-store-2.0.2.tgz#5ee6e07d1869f6a5dd32d092e9c522e6c28aa826"
