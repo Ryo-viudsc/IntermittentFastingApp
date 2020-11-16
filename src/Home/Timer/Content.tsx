@@ -38,8 +38,8 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
     
     const [modalVisible, setModalVisible] = useState(false);
     const [currentHours, setCurrentHours] = useState<number>(0);
-    const [startTime, setStartTime] = useState("00:00");
-    const [endTime, setEndTime ] = useState("00:00");
+    const [startTime, setStartTime] = useState<String>("00:00");
+    //const [endTime, setEndTime] = useState<String>("00:00");
    
     const [value, setValue] = useState("");
     const actionSheetRef : any = createRef();
@@ -54,7 +54,36 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
 
 
 
+    //factorize the time label component and 
+    //pass the current time props to JUST show the two labels 
+    //no call back functions inside of it 
+   
+    const currentTimeSetter = ( ) => {
+      
+      // setStartTime(start);
+      // setEndTime(end);
+      console.log("Debug for the current time setter");
+      return(
+            <View style={{ flexDirection:"row",
+                    justifyContent: "space-between"
+            }}>
+            <View style={styles.timerlabel}>
+            <Animated.Text style={styles.timerText}>Start</Animated.Text>
+            <Animated.Text style={styles.timerText}> {startTime}</Animated.Text>
+            </View>
+
+            <View style={styles.timerlabel}> 
+            <Animated.Text style={styles.timerText}>End</Animated.Text>
+            <Animated.Text style={styles.timerText}>{} </Animated.Text>  
+            </View>
+            </View>
+        );
+    }
+
+
+
     const CurrentTimeChecker = () => {
+
     
      var currenttime = new Date(); 
 
@@ -72,8 +101,9 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
 
     var AFTER_HOURS = SUMMED_HOURS ?  ( SUMMED_HOURS > 9 ? "" + SUMMED_HOURS : "0" + SUMMED_HOURS ) : "00";
 
-    setStartTime(`${HOURS_CONVERTED}` + ":" + `${MINS_CONVERTED}`);
-    setEndTime(`${AFTER_HOURS}` + ":" + `${AFTER_HOURS}`);  
+    // setStartTime(`${HOURS_CONVERTED}` + ":" + `${MINS_CONVERTED}`);
+    // setEndTime(`${AFTER_HOURS}` + ":" + `${AFTER_HOURS}`);  
+    
 
       return(<View style={{
             marginTop:HEIGHT*0.01, 
@@ -118,19 +148,7 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
                   duration={1000} 
                   finishedHandler={finishedHandler}
           />
-        <View style={{ flexDirection:"row",
-                       justifyContent: "space-between"
-         }}>
-         <View style={styles.timerlabel}>
-         <Animated.Text style={styles.timerText}>Start</Animated.Text>
-         <Animated.Text style={styles.timerText}> {startTime}</Animated.Text>
-         </View>
-
-        <View style={styles.timerlabel}> 
-        <Animated.Text style={styles.timerText}>End</Animated.Text>
-        <Animated.Text style={styles.timerText}>{endTime} </Animated.Text>  
-        </View>
-        </View>
+    
         </Box>
         <Box flex={1} >
            <View  style={{ 
