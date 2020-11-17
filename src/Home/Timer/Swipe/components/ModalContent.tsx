@@ -97,10 +97,8 @@ const ModalContent = ({hours}:ModalContentProps) => {
  
   const slotHours : number = converter(hours);
 
-
-  return (
+   return (
     <View style={styles.centeredView}>
-   
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
                 <Text style={styles.speechTitleStyle}>{tips[slotHours].stage}</Text>
@@ -116,12 +114,9 @@ const ModalContent = ({hours}:ModalContentProps) => {
                 <ScrollView alwaysBounceVertical={true}> 
                 <Text style={styles.speechStyle}>{tips[3].content}</Text>
                 </ScrollView>
- 
           </View>
         </View>
-  
-   
-    </View>
+   </View>
   );
 };
 
@@ -130,12 +125,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "#d3d3d3",
   },
   modalView: {
     margin: 20,
     justifyContent: "center",
-    backgroundColor: "black",
+    backgroundColor: "#d3d3d3",
     borderRadius: 20,
     padding: 35,
     alignItems: "center"
@@ -162,7 +157,7 @@ const styles = StyleSheet.create({
     marginBottom: -20
   },
   textStyle: {
-    color: "white",
+    color: "black",
     // fontWeight: "bold",
     textAlign: "left",
     fontFamily: "Alata", 
@@ -173,7 +168,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 11, 
     marginBottom:20,
-    color: "white",
+    color: "black",
     }, 
     preSpeechStyle: {
       fontFamily: "Alata", 
@@ -186,7 +181,7 @@ const styles = StyleSheet.create({
    speechStyle: {
     fontFamily: "Alata", 
     textAlign: "left",
-    color: "white",
+    color: "black",
     fontSize: 18, 
     marginBottom:10,
     marginTop:10

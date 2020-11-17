@@ -1,17 +1,18 @@
 import React, { createRef, useEffect, useState } from "react";
-import { ImageBackground, Image, StyleSheet, Text, Modal, View, Dimensions,TouchableHighlight, ImageRequireSource, SafeAreaView, Animated, FlatList, TouchableOpacity  } from "react-native";
+import { StyleSheet, Text, Modal, View, Dimensions,TouchableHighlight, ImageRequireSource, SafeAreaView, Animated, FlatList, TouchableOpacity  } from "react-native";
 import CountDownTimer from "./CountDownTimer";
 import { Box, Button } from "../../components";
 import ActionSheet from "react-native-actions-sheet";
-import Icons from "./Swipe/components/Icons";
 import PreModalContent from "./PreModalContent";
-import RadioButton from "./RadioButton";
-import { update } from "lodash";
+
 import CurrentTimeLable from "./CurrentTimeLable";
 
 
 /*
   To do for the home screen
+0, make time choosing screen 
+ time choose screen <-> liquid swipe <-> made-it screen 
+                    
  1, make the fake home screen to first land  
  2, only after users set the time, using ternary expression and s
  3, show the count down timer components with the time prpos passed in it 
@@ -29,22 +30,22 @@ interface ContentProps {
   hours: number; 
   backgroundPic: ImageRequireSource;
   navigation : any;
+
 }
 
 
 
 
 
-export default ({ backgroundPic, source, hours, finishedHandler, navigation }: ContentProps) => {
+export default ({  hours, finishedHandler, navigation }: ContentProps) => {
     
-    const [modalVisible, setModalVisible] = useState(false);
-    const [currentHours, setCurrentHours] = useState<number>(0);
+    // const [modalVisible, setModalVisible] = useState(false);
+    const [currentHours, setCurrentHours] = useState<number>(1);
     const [startTime, setStartTime] = useState<String>("00:00");
     //const [endTime, setEndTime] = useState<String>("00:00");
-   
     const [value, setValue] = useState("");
     const actionSheetRef : any = createRef();
-    
+
     const buttonList = [
       {key: '10 hours', hours: 10},
       {key: '12 hours', hours: 12},
@@ -54,12 +55,16 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
     ];
 
 
+    // useEffect(()=>{
 
+    //     console.log("homescreen useEffect is activated.")
+
+    // },[]); 
     
-    const CurrentTimeTracker = (currentHours: number):number => {
+    const CurrentTimeTracker = ( ):number => {
       var currentSeconds = 60* 60 * currentHours; 
       if(currentSeconds === 0){
-          return 100;
+          return 1000;
       }else{
         return currentSeconds;
       }
@@ -84,9 +89,7 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
 
     var AFTER_HOURS = SUMMED_HOURS ?  ( SUMMED_HOURS > 9 ? "" + SUMMED_HOURS : "0" + SUMMED_HOURS ) : "00";
 
-    // setStartTime(`${HOURS_CONVERTED}` + ":" + `${MINS_CONVERTED}`);
-    // setEndTime(`${AFTER_HOURS}` + ":" + `${AFTER_HOURS}`);  
-    
+
 
       return(<View style={{
             marginTop:HEIGHT*0.01, 
@@ -123,8 +126,10 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
         style={{width: width}}>
           <CountDownTimer 
                   animatedColor="white" 
-                  duration={CurrentTimeTracker(currentHours)} 
+                  duration={currentHours*60*60} 
+                  //CurrentTimeTracker(currentHours)
                   finishedHandler={finishedHandler}
+                  isPlaying={true}
           />
          <CurrentTimeLable currentHours={currentHours} />
         </Box>
@@ -140,6 +145,8 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
             
         
         <Button onPress={() => {navigation.navigate("Learn")}} label="Learn More!" variant="default" />
+        <Button onPress={() => {navigation.navigate("TimerSettingScreen")}} label="test!" variant="default" />
+
         </View> 
         </Box> 
         <ActionSheet 
@@ -176,7 +183,7 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
                     style={styles.radioCircle}
                     onPress={() => {
                           setValue(item.key);
-                          setCurrentHours(item.hours);            
+                          setCurrentHours(item.hours); 
                     }}>
                    {value === item.key && <View style={styles.selectedRb} />} 
                   </TouchableOpacity>
@@ -188,7 +195,7 @@ export default ({ backgroundPic, source, hours, finishedHandler, navigation }: C
             {CurrentTimeChecker()}
           </View>  
         <Text style={{fontFamily:"Alata"}}> tap the outside to set the timer </Text>
-        <Button label="close test" variant="primary" onPress={ actionSheetRef.current?.setModalVisible(false)} > </Button>
+        {/* <Button label="close test" variant="primary" onPress={ actionSheetRef.current?.setModalVisible(false)} > </Button> */}
         </ActionSheet>
     </View>
     </Box> 

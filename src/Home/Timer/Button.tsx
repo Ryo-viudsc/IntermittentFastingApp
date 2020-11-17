@@ -37,7 +37,7 @@ export default ({ progress, y }: ButtonProps) => {
         opacity,
       }}
     >
-      <Icon name="chevron-left" color="white" size={40} />
+      <Icon name="chevron-left" color="black" size={40} />
     </Animated.View>
   );
 };

@@ -98,6 +98,8 @@ export default ({navigation}) => {
     waveHorRadiusBack(progress),
     waveHorRadius(progress)
   );
+
+  
   const vertRadius = waveVertRadius(progress);
   const sWidth = sideWidth(progress);
 
@@ -116,9 +118,7 @@ export default ({navigation}) => {
   const Scheduler = () => {
        var hours = new Date().getHours(); //To get the Current Hours
        var min = new Date().getMinutes();
-       
-       console.log(hours);
-       console.log(min)
+      
 
       //  setTime(time);
   };
@@ -135,9 +135,9 @@ export default ({navigation}) => {
         centerComponent={{ text: 'IF TIMER', style: { fontFamily: "Catara" ,fontSize:25 ,color: "white" } }}
        // rightComponent={{ icon: 'home', color: '#fff' }}
         linearGradientProps={{
-          colors: ['red', 'blue'],
-          start: [1, 0],
-          end: [0.1, 0],
+           colors: ['red', 'blue'],
+           start: [1, 0],
+           end: [0.1, 0],
         }}
           containerStyle={{
           //backgroundColor: "#F26764",

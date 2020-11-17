@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 // eslint-disable-next-line react-native/split-platform-components
-import { Dimensions, MaskedViewIOS, StyleSheet } from "react-native";
+import { Dimensions, MaskedViewIOS, StyleSheet, View } from "react-native";
 import Animated from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 import MaskedView from "@react-native-community/masked-view";
@@ -183,8 +183,10 @@ export default ({
     </Svg>
   );
   return (
+   
     <MaskedView style={StyleSheet.absoluteFill} maskElement={maskElement}>
       {children}
     </MaskedView>
+  
   );
 };

@@ -7,10 +7,11 @@ import LiquidSwipe from "./Timer/LiquidSwipe";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeRoutes, LearnRoutes, MealRoutes } from "../components/Navigation";
+import { HomeRoutes, LearnRoutes, MealRoutes, LiquidSwipeRoutes } from "../components/Navigation";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 
+import TimerSettingScreen from "./Timer/TimerSettingScreen";
 import LikedMeals from "./LikedMeals";
 import Ongoing from "./Learn/Ongoing";
 import Meal from "./LikedMeals/Meals/Meal";
@@ -20,8 +21,22 @@ export { assets } from "./Drawer";
 const Tab = createBottomTabNavigator<HomeRoutes>();
 const Mealset = createStackNavigator<MealRoutes>();
 const Learns = createStackNavigator<LearnRoutes>();
+const Timer = createStackNavigator<LiquidSwipeRoutes>();
 
 
+const TimerStack = () => {
+  return(
+    <NavigationContainer independent={true}>
+    <Timer.Navigator
+      initialRouteName="LiquidSwipe"
+      headerMode="none"
+    >
+    <Timer.Screen name="TimerSettingScreen" component={TimerSettingScreen} />
+    <Timer.Screen name="LiquidSwipe" component={LiquidSwipe} />
+  </Timer.Navigator>
+  </NavigationContainer>
+  )
+}
 
 const LearnStack = () => {
    return(
@@ -74,13 +89,13 @@ export const HomeNavigator = () => (
         
          <Tab.Screen 
              name="LiquidSwipe" 
-             component={LiquidSwipe} 
-             options={{
-              tabBarLabel: 'Home',
-              tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="timer" color={color} size={size} />
-              ),
-            }}
+             component={TimerStack} 
+                options={{
+                  tabBarLabel: 'Home',
+                  tabBarIcon: ({ color, size }) => (
+                    <MaterialCommunityIcons name="timer" color={color} size={size} />
+                  ),
+                }}
              />
   
          <Tab.Screen 

@@ -44,18 +44,6 @@ const ElapsedTimer = ({
   source, Handler, status }: ContentProps) => {
   
 
-    const children =(elapsedTime : number | undefined) => {
-        const hours = elapsedTime ? Math.floor(elapsedTime/ 3600) : null; 
-        const minutes = elapsedTime ?  Math.floor((elapsedTime % 3600)/ 60) : null;
-        const seconds = elapsedTime ? elapsedTime % 60 : null; 
-        
-        const HOURS = hours? ( hours > 9 ? "" + hours : "0" + hours) : "00";
-        const MINUTES = minutes?  ( minutes > 9 ? "" + minutes : "0" + minutes) : "00";
-        const SECONDS = seconds? (seconds > 9 ? "" + seconds : "0" + seconds) : "00";
-
-        return `${HOURS}:${MINUTES}:${SECONDS}`;
-};
-
   return (
     
     <ImageBackground source={backgroundPic} style={styles.image} >
@@ -140,4 +128,12 @@ const ElapsedTimer = ({
  
   );
 };
+
+//todo
+//1, after completing the fasting,
+//make the button to 
+//A, go back to timersetting screen
+//B, WhatNow?-button to let users know 
+//that they've earned recipe  
+
 export default ElapsedTimer;
