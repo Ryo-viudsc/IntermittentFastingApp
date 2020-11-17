@@ -1,6 +1,4 @@
 import * as React from "react";
-
-import {Text} from "react-native";
 import Learn from "./Learn/Learn";
 import MealsIdeas from "./MealsIdeas";
 import LiquidSwipe from "./Timer/LiquidSwipe";
@@ -28,11 +26,16 @@ const TimerStack = () => {
   return(
     <NavigationContainer independent={true}>
     <Timer.Navigator
-      initialRouteName="LiquidSwipe"
+      initialRouteName="TimerSettingScreen"
       headerMode="none"
+     screenOptions={{
+      gestureEnabled: false,
+     }}
     >
-    <Timer.Screen name="TimerSettingScreen" component={TimerSettingScreen} />
-    <Timer.Screen name="LiquidSwipe" component={LiquidSwipe} />
+    <Timer.Screen  options={{gestureEnabled:false}} name="TimerSettingScreen" component={TimerSettingScreen} />
+    <Timer.Screen options={{gestureEnabled:false}} name="LiquidSwipe" component={LiquidSwipe} />
+    <Timer.Screen   options={{gestureEnabled:false}}name="Learn" component={Learn} />
+
   </Timer.Navigator>
   </NavigationContainer>
   )
@@ -75,6 +78,7 @@ export const HomeNavigator = () => (
         tabBarOptions={{
           activeTintColor: '#e91e63',
         }}
+      
     > 
        <Tab.Screen 
               name="Learn" 
@@ -91,6 +95,7 @@ export const HomeNavigator = () => (
              name="LiquidSwipe" 
              component={TimerStack} 
                 options={{
+                  
                   tabBarLabel: 'Home',
                   tabBarIcon: ({ color, size }) => (
                     <MaterialCommunityIcons name="timer" color={color} size={size} />

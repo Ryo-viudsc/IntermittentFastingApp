@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Dimensions, StyleSheet, View, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { BackHandler,Dimensions, StyleSheet, View, Text } from "react-native";
 import Animated, {
   Value,
   cond,
@@ -21,7 +21,7 @@ import {
 } from "./WaveHelpers";
 import Content from "./Content";
 import Button from "./Button";
-
+import {Button as NavButton}  from "../../components"
 import ElapsedTimer from "./ElapsedTimer";
 import { Header } from "react-native-elements";
 import ModalContent from "./Swipe/components/ModalContent";
@@ -52,10 +52,29 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-});
+  }});
 
-export default ({navigation}) => {
+
+
+
+
+const LiquidSwipe= ({navigation, route}) => {
+
+  const {currentHours} = route.params;
+  console.log(currentHours);
+ //current hours is the number of hours to be scheduled 
+ //which is different from the remaining time 
+  
+  useEffect(()=>{
+    console.log("useEffect for the liquidSwipe screen ")
+    setHours(currentHours);
+    //next to do 
+    //based on the prop above set the time 
+    //and the timer label 
+    //make sure to differenciate the current hours from remaining time 
+    
+  }, []);
+
   const y = new Value(initialWaveCenter);
   const translationX = new Value(0);
   const velocityX = new Value(0);
@@ -105,23 +124,14 @@ export default ({navigation}) => {
 
   const [ status, setStatus] = useState("notStarted");
   const [ hours, setHours] = useState<number>(0);
-  const [ time, setTime ] = useState<String>("00:00");
+  // const [ time, setTime ] = useState<String>("00:00");
   const finishedHandler = (s : string) => {
       setStatus(s);
   }
 
-  const Handler = (e : number) => { 
-        setHours(e);
-  };
 
   //set the start time and the end time based on the current time
-  const Scheduler = () => {
-       var hours = new Date().getHours(); //To get the Current Hours
-       var min = new Date().getMinutes();
-      
 
-      //  setTime(time);
-  };
 
   //to do
   //1, make the profile components 
@@ -151,10 +161,6 @@ export default ({navigation}) => {
        <>
           <ElapsedTimer
              backgroundPic={assets[5]}
-             source={assets[4]}
-             color="white"
-             Handler={Handler}
-             status={status}
           />
     </>
     :
@@ -163,6 +169,7 @@ export default ({navigation}) => {
         <PanGestureHandler {...gestureHandler}>
         <Animated.View style={StyleSheet.absoluteFill}>
         <Wave sideWidth={sWidth} {...{ centerY, horRadius, vertRadius }}>
+          {/* hours and hours for duration of timer is different* */}
           <Content
             finishedHandler={finishedHandler}
             source={assets[0]}
@@ -184,7 +191,7 @@ export default ({navigation}) => {
 };
 
 
-
+export default LiquidSwipe;
 
 
 

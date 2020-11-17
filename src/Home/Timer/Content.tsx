@@ -68,7 +68,6 @@ export default ({  hours, finishedHandler, navigation }: ContentProps) => {
       }else{
         return currentSeconds;
       }
-
   }  
     const CurrentTimeChecker = () => {
 
@@ -88,8 +87,6 @@ export default ({  hours, finishedHandler, navigation }: ContentProps) => {
      }
 
     var AFTER_HOURS = SUMMED_HOURS ?  ( SUMMED_HOURS > 9 ? "" + SUMMED_HOURS : "0" + SUMMED_HOURS ) : "00";
-
-
 
       return(<View style={{
             marginTop:HEIGHT*0.01, 
@@ -138,15 +135,15 @@ export default ({  hours, finishedHandler, navigation }: ContentProps) => {
              width: width,
              justifyContent: "center",
              alignItems:"center"}}>   
-          <Button onPress={() => {
-                                  actionSheetRef.current?.setModalVisible();}} 
+          {/* <Button onPress={() => {
+                  actionSheetRef.current?.setModalVisible();}} 
                   label="Choose Time Slot?" 
-                  variant="homeButton" />
-            
-        
-        <Button onPress={() => {navigation.navigate("Learn")}} label="Learn More!" variant="default" />
-        <Button onPress={() => {navigation.navigate("TimerSettingScreen")}} label="test!" variant="default" />
+                  variant="homeButton"
+          /> */}
 
+<Button onPress={() => navigation.navigate("Learn")} label="Learn More!" variant="default" />
+
+    
         </View> 
         </Box> 
         <ActionSheet 
@@ -194,8 +191,7 @@ export default ({  hours, finishedHandler, navigation }: ContentProps) => {
             {value !== null ?  <Text style={styles.radioText}> {value}</Text> : null }
             {CurrentTimeChecker()}
           </View>  
-        <Text style={{fontFamily:"Alata"}}> tap the outside to set the timer </Text>
-        {/* <Button label="close test" variant="primary" onPress={ actionSheetRef.current?.setModalVisible(false)} > </Button> */}
+         <Text style={{fontFamily:"Alata"}}> tap the outside to set the timer </Text>
         </ActionSheet>
     </View>
     </Box> 

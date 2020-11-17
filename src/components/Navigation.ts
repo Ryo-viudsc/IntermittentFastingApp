@@ -51,17 +51,21 @@ export type HomeRoutes = {
   Learn: undefined;
   MealsIdeas: undefined;
   LikedMeals: undefined;
+  // TimerSettingScreen: undefined;
 };
 
 export type LearnRoutes = {
+  
   Learn: undefined;
   Ongoing: undefined; 
+
 };
 
 export type LiquidSwipeRoutes = {
   LiquidSwipe : undefined;
   TimerSettingScreen: undefined;
-}
+  Learn: undefined;
+};
 
 export type MealRoutes = {
   Meal: undefined; 

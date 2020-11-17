@@ -28,20 +28,11 @@ const styles = StyleSheet.create({
 });
 
 interface ContentProps {
-  color: string;
   backgroundPic:ImageRequireSource;
-  source: number;
-  Handler: (e: number) => void;  
-  status: string;
 }
 
-
-
-
-
 const ElapsedTimer = ({
-  backgroundPic,
-  source, Handler, status }: ContentProps) => {
+  backgroundPic }: ContentProps) => {
   
 
   return (
