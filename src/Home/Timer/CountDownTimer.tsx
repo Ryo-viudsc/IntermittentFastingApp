@@ -11,10 +11,10 @@ interface CountDownTimerProps {
     duration: number;
     isPlaying: boolean;
     finishedHandler : (s: string) => void; 
-    remainingHoursHandler: (h: number) => void; 
+    
 }
 
-const CountDownTimer = ({remainingHoursHandler, duration,isPlaying, finishedHandler}: CountDownTimerProps) => {
+const CountDownTimer = ({ duration,isPlaying, finishedHandler}: CountDownTimerProps) => {
 
     const children =(remainingTime : number | undefined) => {
    
@@ -28,17 +28,9 @@ const CountDownTimer = ({remainingHoursHandler, duration,isPlaying, finishedHand
         const SECONDS = seconds? (seconds > 9 ? "" + seconds : "0" + seconds) : "00";
        
 
-
-
-
         
-        var remHour = remainingTime ? Math.floor(remainingTime/ 3600);
-        remainingHoursHandler(remHour);
-
-
-
-
-
+        
+      
         return `${HOURS}:${MINUTES}:${SECONDS}`;
 };
 
@@ -82,10 +74,8 @@ return (
       :<Animated.Text style={{
          fontSize: 40,
          fontFamily: "Alata",
-         
          }} >
-        {children(remainingTime)  &&          }
-        {/* maybe here with &&, you can add remaining seconds handler?? */}
+        {children(remainingTime)}
         {'\n'}
         <Animated.Text 
             style={{
@@ -93,16 +83,16 @@ return (
               fontFamily: "Alata", 
             }}
         >
-        {/* {elapsedTime(duration,remainingTime)}  */}
         </Animated.Text>
       </Animated.Text>
     )} 
     </CountdownCircleTimer>
-    
     </View>
   )
  };
  
+
+
  CountDownTimer.defaultProps = { isPlaying : false }; 
 
 

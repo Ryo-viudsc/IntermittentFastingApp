@@ -1,52 +1,52 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, { createRef, useEffect, useState, Children } from "react";
 import { StyleSheet, Text, Modal, View, Dimensions,TouchableHighlight, ImageRequireSource, SafeAreaView, Animated, FlatList, TouchableOpacity  } from "react-native";
-import CountDownTimer from "./CountDownTimer";
+// import CountDownTimer from "./CountDownTimer";
 import { Box, Button } from "../../components";
-import ActionSheet from "react-native-actions-sheet";
-import PreModalContent from "./PreModalContent";
+// import PreModalContent from "./PreModalContent";
+import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 
 import CurrentTimeLable from "./CurrentTimeLable";
 
-
-/*
-  To do for the home screen
-0, make time choosing screen 
- time choose screen <-> liquid swipe <-> made-it screen 
-                    
- 1, make the fake home screen to first land  
- 2, only after users set the time, using ternary expression and s
- 3, show the count down timer components with the time prpos passed in it 
-
-*/
-
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 const HEIGHT = width * 1.6;
 
 
-interface ContentProps {
-  color: string;
-  finishedHandler : (s:string) => void; 
-  source: number;
-  hours: number; 
-  backgroundPic: ImageRequireSource;
-  navigation : any;
-  remainingHours: (h:number)=>void;
+//hours is the scheduled hours 
 
+interface ContentProps {
+  finishedHandler : (s:string) => void; 
+  hours: number; 
+  seconds: number; 
+  navigation : any;
+  remainingHoursHandler: (h:number)=>void;
+  //this is gonna be set up after the currenthours logic is done 
 }
 
 
-
-
-
-export default ({  remainingHours, hours, finishedHandler, navigation }: ContentProps) => {
+export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) => {
     
     // const [modalVisible, setModalVisible] = useState(false);
     const [currentHours, setCurrentHours] = useState<number>(1);
-    const [value, setValue] = useState("");
-    const actionSheetRef : any = createRef();
-    
-   const [remTime, setRemTime] = useState();
+    const [currentSeconds, setCurrentSeconds] = useState<number>(1);
 
+    const [play, setPlay] = useState<boolean>(false);
+    
+  
+      useEffect(()=>{
+          //when rendered first, 
+          //start playing the timer 
+         // setCurrentHours(hours);
+          
+         
+
+          console.log("currentHours is " + hours);
+          console.log("sec is " + seconds);
+          setCurrentSeconds(seconds);
+          //function to convert hours into seconds
+          //to put it in the CountDownCircleTimer 
+           
+      },[]);
+        
    
     const buttonList = [
       {key: '10 hours', hours: 10},
@@ -57,15 +57,7 @@ export default ({  remainingHours, hours, finishedHandler, navigation }: Content
     ];
 
 
-    // useEffect(()=>{
 
-    //     console.log("homescreen useEffect is activated.")
-
-    // },[]); 
-    
-    const CurrentTimeTracker = ( ) => {
-      
-  }  
     const CurrentTimeChecker = () => {
 
     
@@ -97,6 +89,24 @@ export default ({  remainingHours, hours, finishedHandler, navigation }: Content
   }
   
 
+  const children =(remainingTime : number | undefined) => {
+   
+
+    const hours = remainingTime ? Math.floor(remainingTime/ 3600) : null; 
+    const minutes = remainingTime ?  Math.floor((remainingTime % 3600)/ 60) : null;
+    const seconds = remainingTime ? remainingTime % 60 : null; 
+    
+    const HOURS = hours? ( hours > 9 ? "" + hours : "0" + hours) : "00";
+    const MINUTES = minutes?  ( minutes > 9 ? "" + minutes : "0" + minutes) : "00";
+    const SECONDS = seconds? (seconds > 9 ? "" + seconds : "0" + seconds) : "00";
+   
+
+    return `${HOURS}:${MINUTES}:${SECONDS}`;
+};
+   
+
+
+
     
   return (
   
@@ -107,25 +117,66 @@ export default ({  remainingHours, hours, finishedHandler, navigation }: Content
         ...StyleSheet.absoluteFillObject,
         padding: HEIGHT * 0.02,
         alignItems: "center",
-        justifyContent: "center",
- 
+        justifyContent: "center"
       }}>  
         <Box flex={1} style={{paddingTop: HEIGHT * 0.1}}> 
         <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
             Snap the right tag to see your current fasting state! 
         </Text>
-        <PreModalContent slotHours={hours}/> 
+        {/* <PreModalContent slotHours={hours}/>  */}
         </Box> 
         <Box flex={2} alignItems="center" 
         style={{width: width}}>
-          <CountDownTimer 
-                  animatedColor="white" 
-                  duration={currentHours*60*60} 
-                  //CurrentTimeTracker(currentHours)
-                  finishedHandler={finishedHandler}
-                  remainingHours={remainingHours}
-                  isPlaying={true}
-          />
+        <View style={{ marginTop: 5, alignItems:"center"}}>
+            <CountdownCircleTimer
+                isPlaying={play}
+                duration={seconds}
+              colors={[
+                ["#add8e6", 0.05],
+                ["#0BB5FF", 0.1]
+                ]}
+              strokeWidth={30}
+              size={220} 
+              initialRemainingTime={seconds}
+              strokeLinecap="round"
+              trailColor =  "lightgrey" 
+              isLinearGradient={true}
+              onComplete={()=> { finishedHandler("finished");}}
+              >
+
+            {({ remainingTime } ) => (
+                  remainingTime === 0
+              ? 
+                <Animated.Text style={{
+                fontSize: 30,
+                fontFamily: "Alata",
+                alignItems: "center"
+                    }} > 
+                  You've Completed Fasting!! 
+                    <Animated.Text
+                      style={{fontSize:17, alignItems: "center"}}
+                    > 
+                    
+                      {"\n"} {"\n"} {"\n"}
+                    </Animated.Text>
+                  </Animated.Text> 
+              :<Animated.Text style={{
+                  fontSize: 40,
+                  fontFamily: "Alata",
+                  }} >
+                {children(remainingTime)}
+                {'\n'}
+                <Animated.Text 
+                    style={{
+                      fontSize: 12,
+                      fontFamily: "Alata", 
+                    }}
+                >
+                </Animated.Text>
+              </Animated.Text>
+            )} 
+            </CountdownCircleTimer>
+            </View>
          <CurrentTimeLable currentHours={currentHours} />
         </Box>
        <Box flex={1} >
@@ -133,66 +184,14 @@ export default ({  remainingHours, hours, finishedHandler, navigation }: Content
              width: width,
              justifyContent: "center",
              alignItems:"center"}}>   
-     
-
-<Button onPress={() => navigation.navigate("Learn")} label="Learn More!" variant="default" />
-
-    
+        <Button onPress={ ()=>{ setPlay(true) } } label="Start" variant="default" />
+        <Button onPress={() => navigation.navigate("Learn")} label="Learn More!" variant="default" />
         </View> 
-        </Box> 
-        <ActionSheet 
-            containerStyle={{
-                            width: width*0.85,
-                            borderTopLeftRadius: 90, 
-                            borderBottomRightRadius: 90,
-                            marginBottom: HEIGHT* 0.6,
-                            borderBottomLeftRadius: 30,
-                            borderTopRightRadius: 30,
-                            alignItems:"center",
-                            justifyContent: "center"
-                          }}
-            ref={actionSheetRef} 
-            bounciness={70}
-            footerAlwaysVisible
-            headerAlwaysVisible
-            bounceOnOpen
-            springOffset={40}
-        > 
-        <Text style={{textAlign:"center", 
-                   fontFamily:"Alata",
-                    fontSize: 30,
-                   marginVertical: 20,
-                  }}>
-          Timer Setting
-        </Text>
-           <View style={{alignItems:"center"}}>
-           <FlatList 
-                renderItem={({item }) => 
-                  <View style={{flexDirection:"row", marginBottom: HEIGHT * 0.03}}>
-                  <Text style={styles.radioText}>{item.key}</Text>
-                  <TouchableOpacity
-                    style={styles.radioCircle}
-                    onPress={() => {
-                          setValue(item.key);
-                          setCurrentHours(item.hours); 
-                    }}>
-                   {value === item.key && <View style={styles.selectedRb} />} 
-                  </TouchableOpacity>
-                  </View>
-                }
-                data={buttonList}
-            />
-            {value !== null ?  <Text style={styles.radioText}> {value}</Text> : null }
-            {CurrentTimeChecker()}
-          </View>  
-         <Text style={{fontFamily:"Alata"}}> tap the outside to set the timer </Text>
-        </ActionSheet>
+        </Box>   
     </View>
     </Box> 
   );
 };
-
-
 
 const styles = StyleSheet.create({
   title1: {
@@ -320,3 +319,55 @@ const styles = StyleSheet.create({
 
 });
 
+
+
+
+
+
+// <ActionSheet 
+// containerStyle={{
+//                 width: width*0.85,
+//                 borderTopLeftRadius: 90, 
+//                 borderBottomRightRadius: 90,
+//                 marginBottom: HEIGHT* 0.6,
+//                 borderBottomLeftRadius: 30,
+//                 borderTopRightRadius: 30,
+//                 alignItems:"center",
+//                 justifyContent: "center"
+//               }}
+// ref={actionSheetRef} 
+// bounciness={70}
+// footerAlwaysVisible
+// headerAlwaysVisible
+// bounceOnOpen
+// springOffset={40}
+// > 
+// <Text style={{textAlign:"center", 
+//        fontFamily:"Alata",
+//         fontSize: 30,
+//        marginVertical: 20,
+//       }}>
+// Timer Setting
+// </Text>
+// <View style={{alignItems:"center"}}>
+// <FlatList 
+//     renderItem={({item }) => 
+//       <View style={{flexDirection:"row", marginBottom: HEIGHT * 0.03}}>
+//       <Text style={styles.radioText}>{item.key}</Text>
+//       <TouchableOpacity
+//         style={styles.radioCircle}
+//         onPress={() => {
+//               setValue(item.key);
+//               setCurrentHours(item.hours); 
+//         }}>
+//        {value === item.key && <View style={styles.selectedRb} />} 
+//       </TouchableOpacity>
+//       </View>
+//     }
+//     data={buttonList}
+// />
+// {value !== null ?  <Text style={styles.radioText}> {value}</Text> : null }
+// {CurrentTimeChecker()}
+// </View>  
+// <Text style={{fontFamily:"Alata"}}> tap the outside to set the timer </Text>
+// </ActionSheet>

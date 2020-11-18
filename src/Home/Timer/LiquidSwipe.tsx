@@ -68,11 +68,7 @@ const LiquidSwipe= ({navigation, route}) => {
   useEffect(()=>{
     console.log("useEffect for the liquidSwipe screen ")
     setHours(currentHours);
-    //next to do 
-    //based on the prop above set the time 
-    //and the timer label 
-    //make sure to differenciate the current hours from remaining time 
-    
+  
   }, []);
 
   const y = new Value(initialWaveCenter);
@@ -135,14 +131,7 @@ const LiquidSwipe= ({navigation, route}) => {
      setRemainingHours(h);
   }
 
-  //set the start time and the end time based on the current time
-
-
-  //to do
-  //1, make the profile components 
-  //2, put the thumbnail on the top-right of the header
-  //3, insta-like story line to see who's on fasting right now 
-
+ 
   return (
    <>
      <Header 
@@ -170,18 +159,15 @@ const LiquidSwipe= ({navigation, route}) => {
     </>
     :
     <>          
-        <ModalContent  hours={remainingHours}/>   
+        {/* <ModalContent  hours={remainingHours}/>    */}
         <PanGestureHandler {...gestureHandler}>
         <Animated.View style={StyleSheet.absoluteFill}>
         <Wave sideWidth={sWidth} {...{ centerY, horRadius, vertRadius }}>
-          {/* hours and hours for duration of timer is different* */}
           <Content
             finishedHandler={finishedHandler}
             remainingHoursHandler={remainingHoursHandler}
-            source={assets[0]}
-            color="red"
             hours={currentHours}
-            backgroundPic={assets[2]}
+            seconds={currentHours*60*60}
             navigation={navigation}
           />
         </Wave>
