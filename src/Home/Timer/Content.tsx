@@ -30,6 +30,7 @@ interface ContentProps {
   hours: number; 
   backgroundPic: ImageRequireSource;
   navigation : any;
+  remainingHours: (h:number)=>void;
 
 }
 
@@ -37,15 +38,16 @@ interface ContentProps {
 
 
 
-export default ({  hours, finishedHandler, navigation }: ContentProps) => {
+export default ({  remainingHours, hours, finishedHandler, navigation }: ContentProps) => {
     
     // const [modalVisible, setModalVisible] = useState(false);
     const [currentHours, setCurrentHours] = useState<number>(1);
-    const [startTime, setStartTime] = useState<String>("00:00");
-    //const [endTime, setEndTime] = useState<String>("00:00");
     const [value, setValue] = useState("");
     const actionSheetRef : any = createRef();
+    
+   const [remTime, setRemTime] = useState();
 
+   
     const buttonList = [
       {key: '10 hours', hours: 10},
       {key: '12 hours', hours: 12},
@@ -61,13 +63,8 @@ export default ({  hours, finishedHandler, navigation }: ContentProps) => {
 
     // },[]); 
     
-    const CurrentTimeTracker = ( ):number => {
-      var currentSeconds = 60* 60 * currentHours; 
-      if(currentSeconds === 0){
-          return 1000;
-      }else{
-        return currentSeconds;
-      }
+    const CurrentTimeTracker = ( ) => {
+      
   }  
     const CurrentTimeChecker = () => {
 
@@ -118,7 +115,7 @@ export default ({  hours, finishedHandler, navigation }: ContentProps) => {
             Snap the right tag to see your current fasting state! 
         </Text>
         <PreModalContent slotHours={hours}/> 
-       </Box> 
+        </Box> 
         <Box flex={2} alignItems="center" 
         style={{width: width}}>
           <CountDownTimer 
@@ -126,20 +123,17 @@ export default ({  hours, finishedHandler, navigation }: ContentProps) => {
                   duration={currentHours*60*60} 
                   //CurrentTimeTracker(currentHours)
                   finishedHandler={finishedHandler}
+                  remainingHours={remainingHours}
                   isPlaying={true}
           />
          <CurrentTimeLable currentHours={currentHours} />
         </Box>
-        <Box flex={1} >
+       <Box flex={1} >
            <View  style={{ 
              width: width,
              justifyContent: "center",
              alignItems:"center"}}>   
-          {/* <Button onPress={() => {
-                  actionSheetRef.current?.setModalVisible();}} 
-                  label="Choose Time Slot?" 
-                  variant="homeButton"
-          /> */}
+     
 
 <Button onPress={() => navigation.navigate("Learn")} label="Learn More!" variant="default" />
 
@@ -316,7 +310,6 @@ const styles = StyleSheet.create({
     },
     timerlabel: {
       paddingHorizontal: width* 0.04, 
-      //paddingVertical: HEIGHT*0.01,
       marginHorizontal: width*0.13, 
       backgroundColor:"white",
       borderColor:"lightblue",

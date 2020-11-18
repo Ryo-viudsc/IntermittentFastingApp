@@ -11,16 +11,13 @@ interface CountDownTimerProps {
     duration: number;
     isPlaying: boolean;
     finishedHandler : (s: string) => void; 
+    remainingHoursHandler: (h: number) => void; 
 }
 
-const CountDownTimer = ({duration,isPlaying, finishedHandler}: CountDownTimerProps) => {
+const CountDownTimer = ({remainingHoursHandler, duration,isPlaying, finishedHandler}: CountDownTimerProps) => {
 
     const children =(remainingTime : number | undefined) => {
-       
-        // if(remainingTime === undefined)
-        // {
-        //     return "00:00:00";
-        // }
+   
 
         const hours = remainingTime ? Math.floor(remainingTime/ 3600) : null; 
         const minutes = remainingTime ?  Math.floor((remainingTime % 3600)/ 60) : null;
@@ -29,41 +26,23 @@ const CountDownTimer = ({duration,isPlaying, finishedHandler}: CountDownTimerPro
         const HOURS = hours? ( hours > 9 ? "" + hours : "0" + hours) : "00";
         const MINUTES = minutes?  ( minutes > 9 ? "" + minutes : "0" + minutes) : "00";
         const SECONDS = seconds? (seconds > 9 ? "" + seconds : "0" + seconds) : "00";
+       
+
+
+
+
+        
+        var remHour = remainingTime ? Math.floor(remainingTime/ 3600);
+        remainingHoursHandler(remHour);
+
+
+
+
 
         return `${HOURS}:${MINUTES}:${SECONDS}`;
 };
 
 
-// const elapsedTime = (  duration: number | undefined, remainingTime:number | undefined) => {
-//          if(duration != null  && remainingTime != null) {
-//              const elapsedTime = duration - remainingTime; 
-
-//              const hours = elapsedTime ? Math.floor(elapsedTime/ 3600) : null; 
-//              const minutes = elapsedTime ?  Math.floor((elapsedTime % 3600)/ 60) : null;
-//              const seconds = elapsedTime ? elapsedTime % 60 : null; 
-             
-//              const HOURS = hours? ( hours > 9 ? "" + hours : "0" + hours) : "00";
-//              const MINUTES = minutes?  ( minutes > 9 ? "" + minutes : "0" + minutes) : "00";
-//              const SECONDS = seconds? (seconds > 9 ? "" + seconds : "0" + seconds) : "00";
-     
-//              return `You've fasted for ${HOURS}:${MINUTES}:${SECONDS} `;
-//         } else {
-//             return null; 
-//         }
-// };
-
-// function TimeProp (duration: number, remainingTime:number | undefined) : number {
-//   if(duration != null  && remainingTime != null) {
-//     const elapsedTime = duration - remainingTime; 
-//      const  HOURS = elapsedTime ? Math.floor(elapsedTime/ 3600) : -1; 
-//     return HOURS;
-//   }else {
-//     return -1; 
-//   }
-// };
-
- // {finishedHandler}
- //{Handler(0)}
 
 return (
     <View style={{ marginTop: 5, alignItems:"center"}}>
@@ -105,7 +84,8 @@ return (
          fontFamily: "Alata",
          
          }} >
-        {children(remainingTime)}
+        {children(remainingTime)  &&          }
+        {/* maybe here with &&, you can add remaining seconds handler?? */}
         {'\n'}
         <Animated.Text 
             style={{

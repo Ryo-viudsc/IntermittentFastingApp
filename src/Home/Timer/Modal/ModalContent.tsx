@@ -18,7 +18,7 @@ import { AntDesign } from '@expo/vector-icons';
 const { width } = Dimensions.get("window");
 
 interface ModalContentProps {
-  hours : number; 
+  hours: number;
 };
 
 

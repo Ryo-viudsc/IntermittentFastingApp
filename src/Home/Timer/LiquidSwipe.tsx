@@ -124,11 +124,16 @@ const LiquidSwipe= ({navigation, route}) => {
 
   const [ status, setStatus] = useState("notStarted");
   const [ hours, setHours] = useState<number>(0);
+  const [remainingHours, setRemainingHours] = useState<number>(0);
+
   // const [ time, setTime ] = useState<String>("00:00");
   const finishedHandler = (s : string) => {
       setStatus(s);
   }
 
+  const remainingHoursHandler = (h:number) => {
+     setRemainingHours(h);
+  }
 
   //set the start time and the end time based on the current time
 
@@ -165,16 +170,17 @@ const LiquidSwipe= ({navigation, route}) => {
     </>
     :
     <>          
-        <ModalContent  hours={hours}/>   
+        <ModalContent  hours={remainingHours}/>   
         <PanGestureHandler {...gestureHandler}>
         <Animated.View style={StyleSheet.absoluteFill}>
         <Wave sideWidth={sWidth} {...{ centerY, horRadius, vertRadius }}>
           {/* hours and hours for duration of timer is different* */}
           <Content
             finishedHandler={finishedHandler}
+            remainingHoursHandler={remainingHoursHandler}
             source={assets[0]}
             color="red"
-            hours={hours}
+            hours={currentHours}
             backgroundPic={assets[2]}
             navigation={navigation}
           />

@@ -52,7 +52,6 @@ const TimerSettingScreen = ({navigation}) => {
       ];
 
   return (
-
     <Box flex={1}>
        <View style={{
               marginRight:width*0.1,
@@ -78,7 +77,6 @@ const TimerSettingScreen = ({navigation}) => {
               borderTopRightRadius: 30,
               justifyContent: "center",
               flexDirection: "column"
-             
           }}>
            <Text style={{
                   textAlign:"center", 
