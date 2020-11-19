@@ -146,7 +146,7 @@ const LiquidSwipe= ({navigation, route}) => {
           containerStyle={{
           //backgroundColor: "#F26764",
           justifyContent: 'space-around',
-          height: height* 0.12
+          height: height* 0.08
           }}
     />
 
@@ -154,6 +154,7 @@ const LiquidSwipe= ({navigation, route}) => {
    { status === "finished" ?  
        <>
           <ElapsedTimer
+             navigation={navigation}
              backgroundPic={assets[5]}
           />
     </>

@@ -226,12 +226,13 @@ export default class Cards extends React.Component {
       else if (i == this.state.currentIndex) {
         return (
           <Animated.View
+            speed={60}
             useNativeDriver={true}
             {...this.PanResponder.panHandlers}
             key={item.id} 
             style={[ this.rotateAndTranslate, 
              {
-               alignItems: 'center',
+              alignItems: 'center',
               height: SCREEN_HEIGHT * 0.68, 
               width: SCREEN_WIDTH, 
               position: 'absolute',
@@ -256,7 +257,8 @@ export default class Cards extends React.Component {
       else {
         return (
           <Animated.View
-            useNativeDriver={true}
+             speed={60}
+             useNativeDriver={true}
             key={item.id} style={[{
               opacity: this.nextCardOpacity,
               transform: [{ scale: this.nextCardScale }],

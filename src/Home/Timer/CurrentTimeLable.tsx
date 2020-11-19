@@ -60,7 +60,7 @@ const CurrentTimeLable = ({currentHours}:CurrentTimeLableProps) => {
  const styles = StyleSheet.create({
   timerText : {
       fontFamily : "Alata",
-      fontSize: 14
+      fontSize: 15
     },
     timerlabel1: {
       paddingHorizontal: width* 0.04, 

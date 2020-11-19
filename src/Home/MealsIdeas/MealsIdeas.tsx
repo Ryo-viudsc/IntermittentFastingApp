@@ -52,7 +52,7 @@ const MealsIdeas = ({navigation} : HomeNavigationProps<"MealsIdeas"> ) => {
          backgroundColor: "white",
         paddingHorizontal: width* 0.09,
         justifyContent: 'space-around',
-        height: height* 0.12
+        height: height* 0.1
         }}
       />
     {/* <Box flex={0.8} 

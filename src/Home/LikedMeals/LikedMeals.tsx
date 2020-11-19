@@ -129,8 +129,8 @@ interface LikedMealsProps
         containerStyle={{
           backgroundColor: "#222222",
           justifyContent: 'space-around',
-          height: height* 0.12
-          }}
+          height: height* 0.08
+        }}
     /> 
      
          <SearchBar 
