@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
+import { useEffect } from "react";
+import { TouchableOpacity } from "react-native";
 import {
   Alert,
   Modal,
   StyleSheet,
   Text,
-  TouchableHighlight,
   View,
   Image,
   Dimensions
 } from "react-native";
 import  { ScrollView } from "react-native-gesture-handler"; 
 import { Button, Box } from "../../components"
+import ActionSheet from "react-native-actions-sheet";
+import BorderTap from "../../components/BorderlessTap";
 
 
 const { width, height } = Dimensions.get("window");
@@ -59,7 +62,7 @@ export const tips = [
   }, 
   {
       stage: "4th Stage", 
-      duration : "12 - 18 hours",
+      duration : "12 - 16 hours",
       picture: {
         src: require('../../images/stage4.png'),
           width: width * 0.3,
@@ -70,7 +73,7 @@ export const tips = [
   }, 
   {
       stage: "5th Stage", 
-      duration : "18 - 28 hours",
+      duration : "16 - 28 hours",
       picture: {
         src: require('../../images/stage5.png'),
         width: width * 0.3,
@@ -83,8 +86,39 @@ export const tips = [
 
 
 const preModalContent = ({slotHours}) => {
+
+  const [slot, setSlot] = useState<number>(1);
+  const actionSheetRef : any = createRef();
+
+
+  useEffect(()=>{
+     
+    //convert hours into one of 5 ranges 0-4,4-8,8-12,12-16....
+    const converter = (slotHours : number) : number => {
+            if(slotHours <= 4 && 0 <= slotHours) {
+              return 0;    
+        }else if( 4 < slotHours &&  slotHours <= 8){
+              return 1;
+        }else if( 8 < slotHours && slotHours <= 12){
+              return 2; 
+        }else if( 12 < slotHours && slotHours <= 18){
+              return 3; 
+        }else{
+            return 4; 
+        }     
+     }
+  
+     setSlot(converter(slotHours));
+
+  }, [slotHours])
+
+
   return(
-     <View style={{
+     <>
+     <TouchableOpacity
+                   onPress={()=>{actionSheetRef.current?.setModalVisible();}}
+
+                   style={{
                    flexDirection:"row", 
                    justifyContent: "center", 
                    backgroundColor:"white",
@@ -94,33 +128,76 @@ const preModalContent = ({slotHours}) => {
                    borderBottomLeftRadius: 50,
                    borderRadius:20,
                    borderWidth : 5,
-                   borderColor: "lightblue"
-                  }}
-     >
+                   borderColor: "lightblue",
+                   shadowColor: "#000",
+                  shadowOffset: {
+                    width: 4,
+                    height: 4,
+                  },
+                  shadowOpacity: 0.32,
+                  shadowRadius: 5.46,
+                  elevation: 12,
+                  }}>
      <Box justifyContent="flex-end" >
      <Image  
           style={{
-              width: tips[slotHours].picture.width / 1.8,
-              height: tips[slotHours].picture.width / 1.8,
+              width: tips[slot].picture.width / 1.8,
+              height: tips[slot].picture.width / 1.8,
               marginRight:4
             }} 
-              source={tips[slotHours].picture.src} 
+              source={tips[slot].picture.src} 
       />
      </Box> 
       <Box justifyContent="space-between" flexDirection="row">
           <Box>
-            <Text style={styles.textStyle}>{tips[slotHours].stage}</Text>
-            <Text style={styles.preSpeechStyle}> {tips[slotHours].title}</Text> 
+            <Text style={styles.textStyle}>{tips[slot].stage}</Text>
+            <Text style={styles.preSpeechStyle}> {tips[slot].title}</Text> 
           </Box>
           <Box>
           <Text>{'    '}</Text>
           </Box>
-         
       </Box> 
-      <Box>
-            
-     </Box>
-    </View>
+      <Box>        
+      </Box>
+    </TouchableOpacity>
+    <ActionSheet 
+           containerStyle={{width: width*0.85,
+                            borderTopLeftRadius: 90, 
+                            borderBottomRightRadius: 90,
+                            marginBottom: height* 0.8,
+                            borderBottomLeftRadius: 60,
+                            borderTopRightRadius: 60
+                            
+
+                         }}
+       ref={actionSheetRef} 
+       bounciness={60}
+       headerAlwaysVisible
+       footerAlwaysVisible
+       bounceOnOpen
+       springOffset={90}
+      >
+          <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+                <Text style={styles.speechTitleStyle}>{tips[slotHours].stage}</Text>
+                <Image 
+                    style={{
+                      width: tips[slotHours].picture.width,
+                      height: tips[slotHours].picture.width,
+                      justifyContent: "center",
+                    }} 
+                    source={tips[slotHours].picture.src}
+                />
+                <Text style={styles.speechStyle}>{tips[slotHours].duration}</Text>
+                <ScrollView alwaysBounceVertical={true}> 
+                <Text style={styles.speechStyle}>{tips[3].content}</Text>
+                </ScrollView>
+          </View>
+        </View>
+
+
+      </ActionSheet>
+    </>
   );
 }
 

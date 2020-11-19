@@ -7,36 +7,43 @@ import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 
 import CurrentTimeLable from "./CurrentTimeLable";
 import Modal from 'react-native-modal';
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 const HEIGHT = width * 1.6;
 
 //hours is the scheduled hours 
-interface ContentProps {
+  interface ContentProps {
 
-  finishedHandler : (s:string) => void; 
-  hours: number; 
-  seconds: number; 
-  navigation : any;
-  remainingHoursHandler: (h:number)=>void;
-  
-}
-{/*
-  1, redesign the home screen
-  
-  2, currenthours ---->>>> modal components accordingly
+    finishedHandler : (s:string) => void; 
+    hours: number; 
+    seconds: number; 
+    navigation : any;
+    remainingHoursHandler: (h:number)=>void;
+    
+  }
+      {/*
+        1, redesign the home screen
+        
+        2, currenthours ---->>>> modal components accordingly
 
-*/}
+      */}
 
 
 export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) => {
     
-    const [currentHours, setCurrentHours] = useState<number>(1);
-    const [currentSeconds, setCurrentSeconds] = useState<number>(1);
+    //keeps track of the elapsed hours 
+    const [ElapsedHours, setElapsedHours] = useState<number>(1);
+    
+    //keeps track of the remaining seconds 
+    const [ElapsedSeconds, setElapsedSeconds] = useState<number>(1);
+    
     const [toggleButton, setToggleButton] = useState<boolean>(true);
+    
     const [play, setPlay] = useState<boolean>(false);
+    
     const [isModalVisible, setModalVisible] = useState(false);
-    const [elapsedHours, setElapsedHours] = useState<number>(0); 
+    // const [elapsedHours, setElapsedHours] = useState<number>(1); 
 
 
 
@@ -52,52 +59,56 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
     };
     
     useEffect(()=>{
-        setCurrentHours(hours);
-        setCurrentSeconds(seconds);
-        //function to convert hours into seconds
-        //to put it in the CountDownCircleTimer 
-          
+        // setCurrentHours(hours);
+       // setElapsedSecond(seconds);
     },[]);
         
    
-      const CurrentTimeChecker = () => {
+     const elaspedLabel = (remainingTime : number | undefined) => {
 
-      
-      var currenttime = new Date(); 
+        //keep track of the time every seconds
+        useEffect(()=>{
 
-      var HOURS= currenttime.getHours();
-      var MINS = currenttime.getMinutes();
+        }, []);
+        
+        //just use the countup library 
 
-      var HOURS_CONVERTED  = HOURS ? ( HOURS > 9 ? "" + HOURS : "0" + HOURS  ) : "00";
-      var MINS_CONVERTED = MINS ?  ( MINS > 9 ? "" + MINS : "0" + MINS  ) : "00";
+        //reminder 
+        //remainingTime is in seconds 
+        
+        // const hoursToSeconds = hours * 60 * 60;
+       
+        // const ELPS_HOURS = remainingTime ? ( hours - remainingTime%3600 ) : null; 
+        // const ELPS_MINS = remainingTime ?  ((hoursToSeconds%3600) - Math.floor((remainingTime % 3600)/ 60)) : null;
+        // const ELPS_SECS = remainingTime ? ((hoursToSeconds%60) - remainingTime % 60) : null; 
+        
+        //countdowntimer = formula
 
-      var SUMMED_HOURS = HOURS + currentHours;
-      if(SUMMED_HOURS > 24)
-      {
-        SUMMED_HOURS = SUMMED_HOURS % 24;
-      }
 
-      var AFTER_HOURS = SUMMED_HOURS ?  ( SUMMED_HOURS > 9 ? "" + SUMMED_HOURS : "0" + SUMMED_HOURS ) : "00";
+        // const HOURS = ELPS_HOURS? ( ELPS_HOURS > 9 ? "" + ELPS_HOURS : "0" + ELPS_HOURS) : "00";
+        // const MINS = ELPS_MINS?  ( ELPS_MINS > 9 ? "" + ELPS_MINS : "0" + ELPS_MINS) : "00";
+        // const SECS = ELPS_SECS? (ELPS_SECS > 9 ? "" + ELPS_SECS : "0" + ELPS_SECS) : "00";
+        
+          return true;
 
-        return(<View style={{
-              marginTop:HEIGHT*0.01, 
-              marginHorizontal:width*0.1,
-              flexDirection:"row",
-              }}>
-              <Text style={styles.radioText}> start  {HOURS_CONVERTED} : {MINS_CONVERTED} </Text>
-              <Text style={styles.radioText}> end   {AFTER_HOURS} : {MINS_CONVERTED} </Text>
-            </View>
-            );
-    }
-    
+       // return `${ELPS_HOURS}:${ELPS_MINS}:${ELPS_SECS}`;
+     } 
 
           
-      const children =(remainingTime : number | undefined, setCurrentSeconds : any) => {
+      const children =(remainingTime : number | undefined, setElapsedSecond : any, setElapsedHours : any) => {
         
-
         useEffect(()=>{
-            setCurrentSeconds(remainingTime);
-            console.log(remainingTime);
+          
+             setElapsedSecond(remainingTime);
+             
+             //convertedHours === "remainingHours"
+             var remainingHours = remainingTime ? Math.floor(remainingTime/ 3600) : 1;
+             
+             //elapsedHours = scheduled hours (e.g.16hours) - remainingHours (e.g.10hours) = 6 hours have passed  
+             var elapsedHours = hours ? ( hours - remainingHours) : 1;
+          
+             setElapsedHours(elapsedHours);
+              
         },[remainingTime]);
 
 
@@ -110,18 +121,9 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
         const MINUTES = minutes?  ( minutes > 9 ? "" + minutes : "0" + minutes) : "00";
         const SECONDS = seconds? (seconds > 9 ? "" + seconds : "0" + seconds) : "00";
 
-
-
         return `${HOURS}:${MINUTES}:${SECONDS} \n `;
     };
       
-    const elapsedTimeLabel = (remainingTime : number | undefined) => {
-
-
-    }; 
-
-
-
     
   return (
   
@@ -129,31 +131,39 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
     <View
       style={{
         ...StyleSheet.absoluteFillObject,
-        paddingTop: HEIGHT * 0.02,
+       
         alignItems: "center",
         justifyContent: "center"
       }}>  
-        <Box flex={0.7} style={{paddingTop: HEIGHT * 0.1}}> 
-        <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
-            Snap the right tag to see your current fasting state! 
-        </Text>
-        {/* <PreModalContent slotHours={elapsedHours()}/> */}
-        </Box> 
-        <Box flex={3.0} alignItems="center" 
-        style={{width: width,
-                borderWidth:1,
-                borderColor:"red",
-                backgroundColor:"white",
-                borderBottomLeftRadius:60,
-                borderTopLeftRadius: 80,
-                
-        }}>
-        <View style={{ 
+        <Box flex={4.4} 
+                    style={{
+                    width: width,
+                    backgroundColor:"white",
+                    borderBottomLeftRadius: 80,
+                    borderBottomRightRadius: 80,
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 4,
+                      height: 8,
+                    },
+                    shadowOpacity: 0.32,
+                    shadowRadius: 5.46,
+                    elevation: 12,
+                   }}> 
+         <View style={{ 
                 marginTop: 5, 
                 alignItems:"center",
-              
+                justifyContent: "center",
+
                 }}>
+        <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
+           Tap here to see your current fasting status 
+        </Text>
+        <View style={{marginVertical: height*0.03}}>
+        <PreModalContent slotHours={ElapsedHours}/>
+        </View>
             <CountdownCircleTimer
+                
                 isPlaying={play}
                 duration={seconds}
                 colors={[
@@ -161,75 +171,59 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
                 ["#0BB5FF", 0.1]
                 ]}
                 strokeWidth={30}
-                size={220} 
+                size={240} 
                 initialRemainingTime={seconds}
                 strokeLinecap="round"
                 trailColor =  "lightgrey" 
                 isLinearGradient={true}
                 onComplete={()=> { finishedHandler("finished");}}
-              
               >
            
             {({ remainingTime } ) => (
-                  remainingTime === 0
-              ? 
-                <Animated.Text style={{
-                fontSize: 30,
-                fontFamily: "Alata",
-                alignItems: "center"
-                    }} > 
-                  You've Completed Fasting!! 
-                    <Animated.Text
-                      style={{fontSize:17, alignItems: "center"}}
-                    > 
-                      {"\n"} {"\n"} {"\n"}
-                    </Animated.Text>
-                  </Animated.Text> 
-              :<Animated.Text style={{
-                  fontSize: 40,
+            <Animated.Text style={{
+                  fontSize: 44,
                   fontFamily: "Alata",
+                  textAlign: "center"
                 }} >
-                {children(remainingTime, setCurrentSeconds)}
-
-                {'\n'}
+                {children(remainingTime, setElapsedSeconds, setElapsedHours)}
                 <Animated.Text 
                     style={{
-                      fontSize: 12,
+                      fontSize: 11,
                       fontFamily: "Alata", 
                     }}
                 >
+                {elaspedLabel(remainingTime)}
                 </Animated.Text>
               </Animated.Text>
             )} 
             </CountdownCircleTimer>
             </View>
-            <View style={{marginTop: height*0.02}}>
+            <View style={{marginTop: height*0.03, alignItems:"center"}}>
             { toggleButton === true ? 
-                         <Button onPress={ ()=>{ setPlay(true); setToggleButton(false); }} label="Start" variant="primary" />
+                          <Button onPress={ ()=>{ setPlay(true); setToggleButton(false); }} label="Start" variant="primary" />
                         :<CurrentTimeLable currentHours={hours} />
             }
             </View>
         </Box>
-       <Box flex={1.3} style={{borderWidth: 1, borderColor: "black", backgroundColor:"transparent"}}>
+       <Box flex={1.6} style={{ backgroundColor:"transparent"}}>
            <View  style={{ 
              width: width,
              justifyContent: "space-evenly",
              alignItems:"center",
 
-             
              }}>   
              <View style={{marginVertical: height*0.02}}>
               <Button onPress={() => navigation.navigate("Learn")} label="Learn More!" variant="primary" />
              </View>
-             <View style={{marginVertical: height*0.02}}> 
-             <TouchableOpacity 
-                        style={styles.buttonStyle}
+             <View style={{ marginVertical: height*0.02,    }}> 
+             <TouchableWithoutFeedback
+                        style={styles.buttonStyle2}
                         onPress={()=>{ ModalTrigger();}}               
                      >
-                        <Text style={[styles.radioText, {color:"white"}]}>
+                        <Text style={[styles.radioText, {color:"black"}]}>
                               end fasting
                         </Text>
-             </TouchableOpacity>
+             </TouchableWithoutFeedback>
              </View> 
              <Modal isVisible={isModalVisible}>
             <View style={{
@@ -253,26 +247,28 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
              <View>
                  <View>
 
-                     <TouchableOpacity 
+                     <TouchableHighlight 
+                        underlayColor="#DDDDDD"
                         style={styles.buttonStyle}
                         onPress={()=>{ ModalTrigger();}}               
                      >
                         <Text style={[styles.radioText, {color:"white"}]}>
                           No, I'll continue
                         </Text>
-                     </TouchableOpacity>
+                     </TouchableHighlight>
 
                  </View>
                  <View>
                      
-                     <TouchableOpacity
+                     <TouchableHighlight
+                       underlayColor="#DDDDDD"
                         style={styles.buttonStyle2}
                         onPress={()=>{ ModalCloseAndNext(); }}  
                      >
                           <Text style={[styles.textStyle, {color:"black"}]}>
                             Yes, I end fasting now
                           </Text>
-                     </TouchableOpacity>
+                     </TouchableHighlight>
 
                 </View> 
                 </View>
@@ -434,15 +430,15 @@ const styles = StyleSheet.create({
       width: width * 0.6, 
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "lightgrey",
+      backgroundColor: "white",
       shadowColor: "#000",
       shadowOffset: {
-        width: 4,
+        width: 0,
         height: 4,
       },
       shadowOpacity: 0.32,
       shadowRadius: 5.46,
-      elevation: 12,
+      elevation: 9,
     }
 
 });

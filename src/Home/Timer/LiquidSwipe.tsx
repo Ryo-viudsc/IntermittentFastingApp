@@ -56,8 +56,6 @@ const styles = StyleSheet.create({
 
 
 
-
-
 const LiquidSwipe= ({navigation, route}) => {
 
   const {currentHours} = route.params;
@@ -161,9 +159,9 @@ const LiquidSwipe= ({navigation, route}) => {
     :
     <>          
         {/* <ModalContent  hours={remainingHours}/>    */}
-        <PanGestureHandler {...gestureHandler}>
+        {/* <PanGestureHandler {...gestureHandler}>
         <Animated.View style={StyleSheet.absoluteFill}>
-        <Wave sideWidth={sWidth} {...{ centerY, horRadius, vertRadius }}>
+        <Wave sideWidth={sWidth} {...{ centerY, horRadius, vertRadius }}> */}
           <Content
             finishedHandler={finishedHandler}
             remainingHoursHandler={remainingHoursHandler}
@@ -171,10 +169,10 @@ const LiquidSwipe= ({navigation, route}) => {
             seconds={currentHours*60*60}
             navigation={navigation}
           />
-        </Wave>
+        {/* </Wave>
         <Button y={centerY} {...{ progress }} />
        </Animated.View>
-      </PanGestureHandler>
+      </PanGestureHandler> */}
       </>
     }
       </View>

@@ -141,7 +141,6 @@ export default class Cards extends React.Component {
       console.log("First initialize the list " + this.recepieList);
 
     })();
-     // console.log(this.recepieList);
   }
 
 
