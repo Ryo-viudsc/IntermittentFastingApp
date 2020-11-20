@@ -171,7 +171,7 @@ const preModalContent = ({slotHours}) => {
 
                          }}
        ref={actionSheetRef} 
-       bounciness={60}
+       bounciness={90}
        headerAlwaysVisible
        footerAlwaysVisible
        bounceOnOpen

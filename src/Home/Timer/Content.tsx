@@ -8,6 +8,7 @@ import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import CurrentTimeLable from "./CurrentTimeLable";
 import Modal from 'react-native-modal';
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import Spoonacular from "../../API/Axios/Spoonacular";
 
 const { width, height } = Dimensions.get("window");
 const HEIGHT = width * 1.6;
@@ -76,22 +77,22 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
         //reminder 
         //remainingTime is in seconds 
         
-        // const hoursToSeconds = hours * 60 * 60;
-       
-        // const ELPS_HOURS = remainingTime ? ( hours - remainingTime%3600 ) : null; 
-        // const ELPS_MINS = remainingTime ?  ((hoursToSeconds%3600) - Math.floor((remainingTime % 3600)/ 60)) : null;
-        // const ELPS_SECS = remainingTime ? ((hoursToSeconds%60) - remainingTime % 60) : null; 
+        const scheduledSeconds = hours * 60* 60;
         
-        //countdowntimer = formula
-
-
-        // const HOURS = ELPS_HOURS? ( ELPS_HOURS > 9 ? "" + ELPS_HOURS : "0" + ELPS_HOURS) : "00";
-        // const MINS = ELPS_MINS?  ( ELPS_MINS > 9 ? "" + ELPS_MINS : "0" + ELPS_MINS) : "00";
-        // const SECS = ELPS_SECS? (ELPS_SECS > 9 ? "" + ELPS_SECS : "0" + ELPS_SECS) : "00";
+        var elapsedTotalSeconds = remainingTime ? ( scheduledSeconds - remainingTime ) : null;
+         
+        var HOURS = elapsedTotalSeconds ? (Math.floor(elapsedTotalSeconds / 3600)) : null; 
+        var MINS =  elapsedTotalSeconds ? (Math.floor((elapsedTotalSeconds%3600)/60)) : null; 
+        var SECS =  elapsedTotalSeconds ? ((elapsedTotalSeconds%3600)%60) : null; 
         
-          return true;
 
-       // return `${ELPS_HOURS}:${ELPS_MINS}:${ELPS_SECS}`;
+        var NEW_HOURS = HOURS? ( HOURS > 9 ? "" + HOURS : "0" + HOURS) : "00";
+        var NEW_MINS = MINS?  ( MINS > 9 ? "" + MINS : "0" + MINS) : "00";
+        var NEW_SECS = SECS? (SECS > 9 ? "" + SECS : "0" + SECS) : "00";
+        
+ 
+
+         return `${NEW_HOURS}:${NEW_MINS}:${NEW_SECS}`;
      } 
 
           
@@ -159,6 +160,7 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
         <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
            Tap here to see your current fasting status 
         </Text>
+        <Spoonacular />
         <View style={{marginVertical: height*0.03}}>
         <PreModalContent slotHours={ElapsedHours}/>
         </View>
@@ -188,11 +190,12 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
                 {children(remainingTime, setElapsedSeconds, setElapsedHours)}
                 <Animated.Text 
                     style={{
-                      fontSize: 11,
+                      fontSize: 15,
                       fontFamily: "Alata", 
                     }}
                 >
-                {elaspedLabel(remainingTime)}
+
+                  You've fasted for {elaspedLabel(remainingTime)}
                 </Animated.Text>
               </Animated.Text>
             )} 
@@ -263,7 +266,8 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
                      <TouchableHighlight
                        underlayColor="#DDDDDD"
                         style={styles.buttonStyle2}
-                        onPress={()=>{ ModalCloseAndNext(); }}  
+                        onPress={()=>{ setModalVisible(!isModalVisible);
+                          finishedHandler("finished"); }}  
                      >
                           <Text style={[styles.textStyle, {color:"black"}]}>
                             Yes, I end fasting now

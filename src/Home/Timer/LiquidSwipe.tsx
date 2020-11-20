@@ -169,6 +169,7 @@ const LiquidSwipe= ({navigation, route}) => {
             seconds={currentHours*60*60}
             navigation={navigation}
           />
+          
         {/* </Wave>
         <Button y={centerY} {...{ progress }} />
        </Animated.View>
