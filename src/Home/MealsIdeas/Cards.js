@@ -177,46 +177,34 @@ export default class Cards extends React.Component {
               return "error"; 
             }
           };
-        //https://api.spoonacular.com/recipes/complexSearch?apiKey=73cf9aebc64843fc83ff773bfdbddc88
+//
         //https://api.edamam.com/search
-
- //HERE GOES THE EXAMPLE
-        // var url = 'https://api.edamam.com/api/nutrition-details?app_id=' + app_id + '&app_key=' + app_key;
-
-        // var xhr = createCORSRequest('POST', url);
-        // if (!xhr) {
-        //   alert('CORS not supported');
-        //   return;
-        // }
-
-
-
 
         //first load the likedMeals id list from local storage
         _retrieveData();
      
-        // axios.get(``,
-        // {
-        //   params: {
-        //     query: "pasta",
-        //     number: 10
+        axios.get(``,
+        {
+          params: {
+            query: "pasta",
+            number: 10
          
-        //  }
-        // })
-        // .then((response) => {
-        //   if (response !== null) {
+          }
+        })
+        .then((response) => {
+          if (response !== null) {
    
-        //     console.log(response.data.results)
+            console.log(response.data.results)
 
-        //     this.setState((prevState)=>{
-        //         newRecipes: prevState.newRecipes = response.data.results 
-        //     });
+            this.setState((prevState)=>{
+                newRecipes: prevState.newRecipes = response.data.results 
+            });
 
 
-        //     console.log("here")
-        //     console.log(this.state.newRecipes)
-        //   }
-        // })
+            console.log("here")
+            console.log(this.state.newRecipes)
+          }
+        })
    }
 //.map(function(x){ return x.image.replace(/312x231/g,"636x393") });
   
