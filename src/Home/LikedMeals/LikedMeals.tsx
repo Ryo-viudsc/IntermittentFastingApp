@@ -45,8 +45,8 @@ interface LikedMealsProps
       {
         var promiseItem = value.replace(/\\/g, '');
         var js_temp = JSON.parse(promiseItem);
-       
-        //set the master souce 
+   
+        
         setState(js_temp);
         setFilteredDataSource(js_temp);
         console.log(js_temp);

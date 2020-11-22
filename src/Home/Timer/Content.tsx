@@ -8,7 +8,6 @@ import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import CurrentTimeLable from "./CurrentTimeLable";
 import Modal from 'react-native-modal';
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import Spoonacular from "../../API/Axios/Spoonacular";
 
 const { width, height } = Dimensions.get("window");
 const HEIGHT = width * 1.6;
@@ -23,13 +22,7 @@ const HEIGHT = width * 1.6;
     remainingHoursHandler: (h:number)=>void;
     
   }
-      {/*
-        1, redesign the home screen
-        
-        2, currenthours ---->>>> modal components accordingly
-
-      */}
-
+  
 
 export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) => {
     
@@ -71,11 +64,7 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
         useEffect(()=>{
 
         }, []);
-        
-        //just use the countup library 
-
-        //reminder 
-        //remainingTime is in seconds 
+      
         
         const scheduledSeconds = hours * 60* 60;
         
@@ -160,7 +149,8 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
         <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
            Tap here to see your current fasting status 
         </Text>
-        <Spoonacular />
+
+
         <View style={{marginVertical: height*0.03}}>
         <PreModalContent slotHours={ElapsedHours}/>
         </View>
@@ -228,8 +218,8 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
                         </Text>
              </TouchableWithoutFeedback>
              </View> 
-             <Modal isVisible={isModalVisible}>
-            <View style={{
+          <Modal isVisible={isModalVisible}>
+              <View style={{
                 flex: 1,
                 width: width*0.85,
                 marginVertical: HEIGHT* 0.5,
@@ -249,31 +239,25 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
              
              <View>
                  <View>
-
                      <TouchableHighlight 
                         underlayColor="#DDDDDD"
                         style={styles.buttonStyle}
-                        onPress={()=>{ ModalTrigger();}}               
-                     >
+                        onPress={()=>{ ModalTrigger();}}>
                         <Text style={[styles.radioText, {color:"white"}]}>
                           No, I'll continue
                         </Text>
                      </TouchableHighlight>
-
                  </View>
                  <View>
-                     
                      <TouchableHighlight
                        underlayColor="#DDDDDD"
                         style={styles.buttonStyle2}
                         onPress={()=>{ setModalVisible(!isModalVisible);
-                          finishedHandler("finished"); }}  
-                     >
+                          finishedHandler("finished"); }}>
                           <Text style={[styles.textStyle, {color:"black"}]}>
                             Yes, I end fasting now
                           </Text>
                      </TouchableHighlight>
-
                 </View> 
                 </View>
           </View>

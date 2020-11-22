@@ -1,33 +1,38 @@
 import React from 'react';
-import { View, Text, Image, ImageRequireSource, Dimensions, ImageBackground } from 'react-native';
+import { View, Text, Image, ImageRequireSource, Dimensions, ImageBackground, ImageBackgroundProps } from 'react-native';
 
 
 interface TitledCardProps {
     title? : string;
-    mealtype?: string; 
-    diet? : string;
-    cuisineType? : string; 
-    time? : number;
-    uri: ImageRequireSource;
-
+    remoteURL: ImageBackgroundProps;
 }
-
 
  const SCREEN_HEIGHT = Dimensions.get('window').height;
  const SCREEN_WIDTH = Dimensions.get('window').width;
+//.map(function(x){ return x.image.replace(/312x231/g,"636x393") });
 
-
-const TitledCard = ( {title, uri, diet, cuisineType, time } : TitledCardProps ) => {
+const TitledCard = ( {title, remoteURL } : TitledCardProps ) => {
 return (
     <View style={{borderColor: "black", borderWidth: 6,  overflow:"hidden", borderRadius: 30, borderTopLeftRadius:100, borderBottomRightRadius: 100, height:SCREEN_HEIGHT* 0.80, width: SCREEN_WIDTH*0.9}}>
-       <ImageBackground source={uri} 
-           style={{ position: 'relative', justifyContent: "center", alignItems: 'center',flex: 1, height:SCREEN_HEIGHT* 0.8, width: SCREEN_WIDTH*0.94 }}
+       <ImageBackground source={{uri:`${remoteURL}`}}
+           resizeMode="contain"
+           
+           style={{ position: 'relative', 
+                   justifyContent: "center", 
+                   alignItems: 'center',
+                   flex: 1,
+                    height:SCREEN_HEIGHT* 0.8, 
+                    width: SCREEN_WIDTH*0.94,
+                    
+                   }}
         >
+        
         <View style={{flex:4}}></View> 
         <View style={{ width: SCREEN_WIDTH*0.94, 
+                       zIndex: 10,
                        overflow:"hidden",
                        shadowColor: "#000",
-                       backgroundColor: 'rgba(0,0,0,0.55)'}}>
+                       backgroundColor: 'rgba(0,0,0,0.75)'}}>
         <Text
           style={{
             fontSize: 15,
@@ -38,11 +43,10 @@ return (
             marginVertical: 1,
             paddingVertical: 1,
           }}
-        >{cuisineType}
-        
+        >
         </Text>
         <Text style={{
-            fontSize: 38,
+            fontSize: 28,
             color:   "white",
             fontFamily: "Alata",
             fontWeight: "bold",
@@ -50,8 +54,7 @@ return (
             textAlign: "left",
         }}>
          {title} 
-    </Text> 
-    
+     </Text> 
       <Text
               style={{
                 fontSize: 20,
@@ -61,19 +64,7 @@ return (
                 textAlign: "left",
             }}
       >
-        {diet}
-     </Text>
-      <Text
-         style={{
-          fontSize: 15,
-          color:   "white",
-          fontFamily: "Alata",
-           marginHorizontal: 10,
-           paddingBottom: 60, 
-          
-          textAlign: "right",
-      }}
-      >{time} mins {'  '} {'\n'} </Text>
+      </Text>
       </View>
 
     </ImageBackground>

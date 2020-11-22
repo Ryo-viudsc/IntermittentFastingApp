@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, Image, Animated, PanResponder, useState } from 'react-native';
 import TitledCard from "./TitledCard";
+import axios from 'axios';
 
 import { AsyncStorage } from 'react-native';
+
 
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -12,19 +14,8 @@ var TEST_USER_ID = "Ryo Kihara";
 
 var MealKey = "likedMeals";
 
-const Users = [
-   { id: "1", color: "red",  title:"AAAA", diet:"test", cuisineType:"test", uri: require("../../images/Meals/test.jpg")},
-   { id: "2",  color: "blue", title:"BBBB", diet:"test", cuisineType:"test", uri: require("../../images/Meals/test.jpg")},
-   { id: "3",  color: "yellow", title:"CCCC", diet:"test", cuisineType:"test", uri: require('../../images/Meals/test.jpg') },
-   { id: "4",  color: "white", title:"DDDD", diet:"test", cuisineType:"test", uri: require('../../images/Meals/test.jpg') },
-   { id: "5",  color: "green", title:"EEEE", diet:"test", cuisineType:"test", uri: require('../../images/Meals/test.jpg') },
-   { id: "6",  color: "orange", title:"FFFF", diet:"test", cuisineType:"test", uri: require('../../images/Meals/test.jpg') },
-   { id: "7",  color: "red", title:"GGGG", diet:"test", cuisineType:"test", uri: require('../../images/Meals/test.jpg') },
-   { id: "8",  color: "grey", title:"HHHH", diet:"test", cuisineType:"test", uri: require('../../images/Meals/test.jpg') },
-];
-
-
-_storeData = async (key, list) => {
+   
+const _storeData = async (key, list) => {
   //transorm the js object into the json object 
   try {
     var temp = JSON.stringify(list);
@@ -35,26 +26,6 @@ _storeData = async (key, list) => {
 
 };
 
-//make sure that you have the parse fucntion right after retrieveData....
-_retrieveData = async () => {
-
-  try {
-    const value = await AsyncStorage.getItem(MealKey);
-    if (value !== null) {
-      // We have data!!
-      var promise_temp = value.replace(/\\/g, '');
-      var js_temp = JSON.parse(promise_temp);
-      return js_temp;
-    }
-  } catch (error) {
-     return "error"; 
-  }
-
-};
-
-
-
-
 
 export default class Cards extends React.Component {
    
@@ -63,13 +34,37 @@ export default class Cards extends React.Component {
 
     this.position = new Animated.ValueXY()
     this.state = {
-      currentIndex: 0
+      currentIndex: 0,
+      newRecipes : [
+        {
+          "id": 716427,
+          "image": "https://spoonacular.com/recipeImages/716427-636x393.jpg",
+          "imageType": "jpg",
+          "title": "Roasted Butterflied Chicken w. Onions & Carrots",
+        },
+        {
+          "id": 656752,
+          "image": "https://spoonacular.com/recipeImages/656752-636x393.jpg",
+          "imageType": "jpg",
+          "title": "Pork Chops with Garlic Cream",
+        },
+        {
+          "id": 649248,
+          "image": "https://spoonacular.com/recipeImages/649248-636x393.jpg",
+          "imageType": "jpg",
+          "title": "Lamb Tagine Stew",
+        }
+      ],
+      likedMeals : [
+
+
+      ]
     }
 
-    
+   
+
     //using useEffect or componentDidMount to load the initial list from 
     //local storage here
-    //this.recepieList = new Array();
 
     this.rotate = this.position.x.interpolate({
       inputRange: [-SCREEN_WIDTH /2 ,0, SCREEN_WIDTH /2],
@@ -105,21 +100,81 @@ export default class Cards extends React.Component {
     })
   }
 
+
+
+    //utility function to load the saved ID list from the local storage  
+    async _retrieveData (){
+      try {
+        const value = await AsyncStorage.getItem(MealKey);
+        if (value !== null) {
+          // We have data!!
+          var promise_temp = value.replace(/\\/g, '');
+          var js_temp = JSON.parse(promise_temp);
+          this.setState((prevState)=>{
+            likedMeals:  prevState.likedMeals = js_temp
+          })
+
+        }
+      } catch (error) {
+        return "error"; 
+      }
+    };
+
+
+
+   //initialize the list of new recipes 
+   //* axios automatically returns the stringified object 
+   async componentDidMount()
+   {
+     //defined the retrive function just for componentDidMount 
+          _retrieveData = async () => {
+            try {
+              const value = await AsyncStorage.getItem(MealKey);
+              if (value !== null) {
+                // We have data!!
+                var promise_temp = value.replace(/\\/g, '');
+                var js_temp = JSON.parse(promise_temp);
+                this.setState((prevState)=>{
+                  likedMeals:  prevState.likedMeals = js_temp
+                })
+
+              }
+            } catch (error) {
+              return "error"; 
+            }
+          };
+
+
+        //first load the likedMeals id list from local storage
+        _retrieveData();
+     
+        // axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+        // {
+        //   params: {
+        //     number: 10,
+        //     offset: 0,
+        //     diet: "Ketogenic",
+            
+        //   }
+        // })
+        // .then((response) => {
+        //   if (response !== null) {
+   
+        //     console.log(response.data.results)
+
+        //     this.setState((prevState)=>{
+        //         newRecipes: prevState.newRecipes = response.data.results 
+        //     });
+
+
+            // console.log("here")
+            // console.log(this.state.newRecipes)
+        //   }
+        // })
+   }
+//.map(function(x){ return x.image.replace(/312x231/g,"636x393") });
   
-  //initialize the list of liked recepies 
-  componentDidMount()
-  {
-    (async () => {
-      
-      //console.log(await _retrieveData())
-      // var temp = [];
-      // temp  = await _retrieveData();
-      // this.recepieList = temp => [...new Set(temp)];
-      //console.log(this.recepieList);
-    })();
-    console.log("debug for componentDidMount " + this.recepieList);
-     // console.log(this.recepieList);
-  }
+ 
 
   hasDuplicates(arr, val)
   {
@@ -134,19 +189,14 @@ export default class Cards extends React.Component {
   }
 
 
-  initializeCards(recepieList)
-  {
-    (async () => {
-      this.recepieList = new Array();
-      console.log("First initialize the list " + this.recepieList);
-
-    })();
-  }
-
-
 
   UNSAFE_componentWillMount() {
   
+
+
+   
+
+
     this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
       onPanResponderMove: (evt, gestureState) => {
@@ -161,31 +211,22 @@ export default class Cards extends React.Component {
           }).start(() => {
               this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
               this.position.setValue({ x: 0, y: 0 });
-              
-              //javascript object 
+        
               let obj = {
-                  id : Users[this.state.currentIndex-1].id,
-                  title: Users[this.state.currentIndex-1].title , 
-                  diet: Users[this.state.currentIndex-1].diet, 
-                  uri : Users[this.state.currentIndex-1].uri,
-            
+                  id : this.state.newRecipes[this.state.currentIndex-1].id,
+                  title: this.state.newRecipes[this.state.currentIndex-1].title , 
+                  image : this.state.newRecipes[this.state.currentIndex-1].image,
               }
+
               //check what is inside on console  
               console.log("swiped right");
-              
-            if(this.recepieList == undefined)
-            {
-               console.log("undefined detected, initialize the array");
-              //initializing the array list
-               this.initializeCards(this.recepieList);
-            }
-            
-            if(!this.hasDuplicates(this.recepieList, obj))
-            {
-              this.recepieList.push(obj);
-              _storeData(MealKey ,this.recepieList);
-            }
-          
+              console.log(obj);
+             
+              // if(!this.hasDuplicates(this.likedMeals, obj.id))
+              // {
+                  //save the entire array of ids in the local storage 
+                  _storeData(MealKey, this.likedMeals);
+              // }          
             })
           })
         } else if (gestureState.dx < -120) {
@@ -196,12 +237,6 @@ export default class Cards extends React.Component {
               this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
               this.position.setValue({ x: 0, y: 0 });
               console.log("swiped left");
-             
-              (async () => {
-                console.log(await _retrieveData())
-                this.recepieList = await _retrieveData();
-                console.log("end of the async");
-              })();
             })
           })
         }
@@ -216,9 +251,10 @@ export default class Cards extends React.Component {
     })
   }
 
-  
+
   renderUsers = () => {
-    return Users.map((item, i) => {
+    //TODO
+    return this.state.newRecipes.map((item, i) => {
       if (i < this.state.currentIndex) {
         return null
       }
@@ -234,8 +270,7 @@ export default class Cards extends React.Component {
               alignItems: 'center',
               height: SCREEN_HEIGHT * 0.68, 
               width: SCREEN_WIDTH, 
-              position: 'absolute',
-            
+              position: 'absolute'
               }]}>
             <Animated.View  useNativeDriver={true} style={{ opacity: this.likeOpacity, transform: [{ rotate: '-30deg' }], position: 'absolute', top: 50, left: 40, zIndex: 1000 }}>
               <Text style={{ fontFamily: 'Alata', borderRadius:25, borderWidth:10, borderColor: 'green', color: 'green', fontSize: 80, fontWeight: '800', padding: 10 }}> LIKE!</Text>
@@ -243,12 +278,10 @@ export default class Cards extends React.Component {
             <Animated.View   useNativeDriver={true}style={{ opacity: this.dislikeOpacity, transform: [{ rotate: '30deg' }], position: 'absolute', top: 50, right: 40, zIndex: 1000 }}>
               <Text style={{ fontFamily: 'Alata', borderRadius:20, borderWidth: 10, borderColor: 'red', color: 'red', fontSize:60, fontWeight: '800', padding: 10 }}> NOPE...</Text>
             </Animated.View>
+            {console.log("debut " +item.image)}
             <TitledCard  
-                          title="Tandry Chicken"
-                          uri={item.uri} 
-                          time={12}
-                          diet="High Protein"
-                          cuisineType="Mexican"
+                          title={item.title}
+                          remoteURL={item.image} 
             />
           </Animated.View>
         )
@@ -275,11 +308,9 @@ export default class Cards extends React.Component {
               <Text style={{ borderWidth: 1, borderColor: 'red', color: 'red', fontSize: 32, fontWeight: '800', padding: 10 }}>NOPE...</Text>
             </Animated.View>
             <TitledCard  
-                          title="Tandry Chicken"
-                          uri={item.uri} 
-                          time={12}
-                          diet="High Protein"
-                          cuisineType="Mexican"   
+                          title={item.title}
+                          remoteURL={item.image} 
+                           
              />
           </Animated.View>
         )
