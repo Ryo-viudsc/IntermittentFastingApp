@@ -55,11 +55,7 @@ const MealsIdeas = ({navigation} : HomeNavigationProps<"MealsIdeas"> ) => {
         height: height* 0.1
         }}
       />
-    {/* <Box flex={0.8} 
-         style={{borderWidth:1, borderColor:"red"}}
-    >
-      <Text style={styles.title}> Meals Idea </Text>
-    </Box>  */}
+  
       <Box flex={6} 
            paddingBottom="m"
            paddingTop="m"

@@ -53,8 +53,39 @@ export default class Cards extends React.Component {
           "image": "https://spoonacular.com/recipeImages/649248-636x393.jpg",
           "imageType": "jpg",
           "title": "Lamb Tagine Stew",
+        },
+       {
+          "id": 1095693,
+          "image": "https://spoonacular.com/recipeImages/1095693-312x231.jpg",
+          "imageType": "jpg",
+          "title": "Raspberry Arugula Side Salad ",
+        },
+        {
+          "id": 1095689,
+          "image": "https://spoonacular.com/recipeImages/1095689-312x231.jpg",
+          "imageType": "jpg",
+          "title": "Garlic Oregano Olive Tapenade ",
+        },
+        {
+          "id": 780001,
+          "image": "https://spoonacular.com/recipeImages/780001-312x231.jpg",
+          "imageType": "jpg",
+          "title": "Pesto Chicken Zoodles",
+        },
+        {
+          "id": 650377,
+          "image": "https://spoonacular.com/recipeImages/650377-312x231.jpg",
+          "imageType": "jpg",
+          "title": "Low Carb Brunch Burger",
+        },
+        {
+          "id": 639306,
+          "image": "https://spoonacular.com/recipeImages/639306-312x231.jpg",
+          "imageType": "jpg",
+          "title": "Simple Poached Egg Dinner",
         }
       ],
+
       likedMeals : [
 
 
@@ -113,7 +144,7 @@ export default class Cards extends React.Component {
           this.setState((prevState)=>{
             likedMeals:  prevState.likedMeals = js_temp
           })
-
+       
         }
       } catch (error) {
         return "error"; 
@@ -134,6 +165,9 @@ export default class Cards extends React.Component {
                 // We have data!!
                 var promise_temp = value.replace(/\\/g, '');
                 var js_temp = JSON.parse(promise_temp);
+                 
+                
+
                 this.setState((prevState)=>{
                   likedMeals:  prevState.likedMeals = js_temp
                 })
@@ -143,19 +177,31 @@ export default class Cards extends React.Component {
               return "error"; 
             }
           };
+        //https://api.spoonacular.com/recipes/complexSearch?apiKey=73cf9aebc64843fc83ff773bfdbddc88
+        //https://api.edamam.com/search
+
+ //HERE GOES THE EXAMPLE
+        // var url = 'https://api.edamam.com/api/nutrition-details?app_id=' + app_id + '&app_key=' + app_key;
+
+        // var xhr = createCORSRequest('POST', url);
+        // if (!xhr) {
+        //   alert('CORS not supported');
+        //   return;
+        // }
+
+
 
 
         //first load the likedMeals id list from local storage
         _retrieveData();
      
-        // axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+        // axios.get(``,
         // {
         //   params: {
-        //     number: 10,
-        //     offset: 0,
-        //     diet: "Ketogenic",
-            
-        //   }
+        //     query: "pasta",
+        //     number: 10
+         
+        //  }
         // })
         // .then((response) => {
         //   if (response !== null) {
@@ -167,8 +213,8 @@ export default class Cards extends React.Component {
         //     });
 
 
-            // console.log("here")
-            // console.log(this.state.newRecipes)
+        //     console.log("here")
+        //     console.log(this.state.newRecipes)
         //   }
         // })
    }
