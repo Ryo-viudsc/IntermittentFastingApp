@@ -131,7 +131,7 @@ const LiquidSwipe= ({navigation, route}) => {
 
  
   return (
-   <>
+   <View style={{flex:1}}>
      <Header 
        // leftComponent={{ icon: 'menu', color: 'white', size:30 }}
         centerComponent={{ text: 'IF TIMER', style: { fontFamily: "Catara" ,fontSize:25 ,color: "white" } }}
@@ -177,7 +177,7 @@ const LiquidSwipe= ({navigation, route}) => {
       </>
     }
       </View>
-  </>
+  </View>
  
   );
 };

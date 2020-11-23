@@ -9,6 +9,15 @@ import {
 import { Box,  useTheme } from "../../components";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Header, SearchBar } from 'react-native-elements';
+import axios, { AxiosResponse } from 'axios';
+
+
+
+//TODO 
+//1, use the local storage to grab the array of ids that an user has liked 
+//2, call the API with a link of bulksearch with the array that contains the list of ids 
+//3, sort the response with words like reuslt, recipes, etc 
+//4, pass those props accordingly 
 
 
 
@@ -17,39 +26,39 @@ const { width, height } = Dimensions.get("window");
 
 var MealKey = "likedMeals";
 
-interface LikedMealsProps
-{
-   id: number;
-   title: string;
-   diet: string;
-   uri : any;
-}
+// interface LikedMealsProps
+// {
+//    id: number;
+//    title: string;
+//    recipe: Array<string>;
+//    uri : any;
+// }
 
  const LikedMeals = ({navigation}) => {
 
   const [search, setSearch] = useState("");
   
   //this is used to save the filtered source 
-  const [filteredDataSource, setFilteredDataSource] = useState<LikedMealsProps[]>([]);
+  // const [filteredDataSource, setFilteredDataSource] = useState<LikedMealsProps[]>([]);
 
   //this regular state is used as the master data source 
-  const [state, setState] = useState<LikedMealsProps[]>([]);
+  const [state, setState] = useState([]);
   const [refreshing, setRefreshing] = useState(false); 
-
+  const [IdList, setIdList] = useState<String[]>([ "638166", "780001"]);
 
   const Load = async () => {
      
     try{
-      const value = await AsyncStorage.getItem("likedMeals");
+      const value = await AsyncStorage.getItem("idList");
       if(value !== null)
       {
         var promiseItem = value.replace(/\\/g, '');
         var js_temp = JSON.parse(promiseItem);
-   
+        console.log(js_temp);
         
         setState(js_temp);
-        setFilteredDataSource(js_temp);
-        console.log(js_temp);
+        // setFilteredDataSource(js_temp);
+
       }else{
         console.log("Failed to load")
       }
@@ -61,42 +70,70 @@ interface LikedMealsProps
 
 
  
-  const searchFilterFunction = (text:any) => {
-    // Check if searched text is not blank
+  // const searchFilterFunction = (text:any) => {
+  //   // Check if searched text is not blank
 
-    if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource
-      // Update FilteredDataSource
-      const newData = state.filter(function (item) {
-        const itemData = item.title
-          ? item.title.toUpperCase()
-          : ''.toUpperCase();
-        const textData = text.toUpperCase();
+  //   if (text) {
+  //     // Inserted text is not blank
+  //     // Filter the masterDataSource
+  //     // Update FilteredDataSource
+  //     const newData = state.filter(function (item) {
+  //       const itemData = item.title
+  //         ? item.title.toUpperCase()
+  //         : ''.toUpperCase();
+  //       const textData = text.toUpperCase();
 
-        return itemData.indexOf(textData) > -1;
+  //       return itemData.indexOf(textData) > -1;
 
-      });
+  //     });
 
-      setFilteredDataSource(newData);
-      setSearch(text);
-    } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSour
-      setFilteredDataSource(state);
-      setSearch(text);
-    }
-  };
+  //     setFilteredDataSource(newData);
+  //     setSearch(text);
+  //   } else {
+  //     // Inserted text is blank
+  //     // Update FilteredDataSource with masterDataSour
+  //     setFilteredDataSource(state);
+  //     setSearch(text);
+  //   }
+  // };
 
 
   useEffect(()=>{
+    //first load the list of id to make a new API call  
     async function update(){
       await Load();
-    }
-    update();
+    }  
+      
+      //since axios doesn't accept a raw array as its paramters 
+      //  var stringList = IdList.toString().replace("[", "").replace("]", ""); 
+
+      //  console.log(stringList);
+     
+      //   axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+      //   {
+      //     params: {
+      //         ids : stringList ,
+      //         includeNutrition : false
+      //     }
+      //   })
+      //   .then((response : AxiosResponse<any>) => {
+ 
+      //       setState(response.data);
+      //       
+      //   })
+      //   .catch((error : Error) =>{ console.log(error)})
+
+    
+
+  
+
+    //update is going to update the ldList 
+    // update();
   },[])
   
   
+
+
   const onRefresh = () => {
     async function update(){
       await Load();
@@ -138,8 +175,8 @@ interface LikedMealsProps
             cancelIcon
             lightTheme
             searchIcon={{ size: 20 }}
-            onChangeText={(text) => searchFilterFunction(text) }
-            onClear={() => searchFilterFunction('')}
+            // onChangeText={(text) => searchFilterFunction(text) }
+            // onClear={() => searchFilterFunction('')}
             placeholder="Search here or pull to refresh"
             value={search}
             inputStyle={{fontSize:15}}
@@ -159,7 +196,6 @@ interface LikedMealsProps
                         onPress={() => { navigation.navigate("Meal",
                           {
                             title: item.title,
-                            diet: item.diet,
                             uri: item.uri
                           }
                         )}} >
@@ -178,20 +214,20 @@ interface LikedMealsProps
                               backgroundColor: 'rgba(0,0,0,0.25)'
                               }}>
                         <Text style={{color:'white', fontFamily:"Alata", fontSize:30,textAlign: "left"}} >{item.title}</Text>
-                        <Text style={{color:'white', fontFamily:"Alata", fontSize:14, textAlign: "left", paddingHorizontal: width* 0.1}} >{item.diet}</Text>
+                        {/* <Text style={{color:'white', fontFamily:"Alata", fontSize:14, textAlign: "left", paddingHorizontal: width* 0.1}} >{item.dishTypes}</Text> */}
                         </View>
                  </ImageBackground>
                </TouchableOpacity>
                </View>    
            } //the end of flat list component
-                    data={filteredDataSource}
-                    refreshControl={
-                      <RefreshControl
-                        //refresh control used for the Pull to Refresh
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                      />
-                    }
+                    data={state}
+                    // refreshControl={
+                    //   <RefreshControl
+                    //     //refresh control used for the Pull to Refresh
+                    //     refreshing={refreshing}
+                    //     onRefresh={onRefresh}
+                    //   />
+                    // }
           />
             </Box>
           </Transitioning.View>

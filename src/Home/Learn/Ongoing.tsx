@@ -10,9 +10,7 @@ const { width, height } = Dimensions.get("window");
 const Ongoing = ({navigation, route}) => {
     
     const { title, pic, video, slides, subtitle } = route.params;
-    //when using react navigation, 
-    //don't forget to use route.param
-    //typescript props doesn't work as expected 
+
    
     return (
             <View style={styles.backgroundVideo}>
@@ -32,8 +30,6 @@ const Ongoing = ({navigation, route}) => {
                         flexDirection: "column",
                         alignSelf:"center",
                         justifyContent:"flex-end",
-                        borderWidth:4,
-                        borderColor:"green",
                         overflow:"scroll",
                         flex:1,
                         height:height,

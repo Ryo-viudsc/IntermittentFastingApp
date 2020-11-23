@@ -24,6 +24,9 @@ const HEIGHT = width * 1.6;
   }
   
 
+  //todo 
+  //adjust the components for small screens!
+
 export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) => {
     
     //keeps track of the elapsed hours 

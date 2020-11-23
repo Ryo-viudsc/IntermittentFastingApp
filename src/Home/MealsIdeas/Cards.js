@@ -12,19 +12,36 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 var TEST_USER_ID = "Ryo Kihara";
 
-var MealKey = "likedMeals";
+var MealKey = "idList";
 
    
-const _storeData = async (key, list) => {
+
+const _storeData = async ( list) => {
   //transorm the js object into the json object 
   try {
     var temp = JSON.stringify(list);
-    await AsyncStorage.setItem(key, temp);
+    console.log("saving this => " + temp);
+    await AsyncStorage.setItem("idList", temp);
   } catch (error) {
     console.log("Couldn't save it...");
   }
 
 };
+
+
+
+const hasDuplicates = (arr, val) => 
+{
+  for (var i = 0, size = arr.length; i < size; i++)
+  {
+    if(val == arr[i])
+    {
+      return true;
+    }
+  }
+  return false; 
+}
+
 
 
 export default class Cards extends React.Component {
@@ -37,65 +54,72 @@ export default class Cards extends React.Component {
       currentIndex: 0,
       newRecipes : [
         {
-          "id": 716427,
-          "image": "https://spoonacular.com/recipeImages/716427-636x393.jpg",
+            
+            "id": 780001,
+            "image": "https://spoonacular.com/recipeImages/780001-312x231.jpg",
+            "imageType": "jpg",
+            "nutrition":   {
+              "nutrients": [
+                  {
+                  "amount": 538.777,
+                  "title": "Calories",
+                  "unit": "kcal",
+                },
+                  {
+                  "amount": 35.6616,
+                  "title": "Protein",
+                  "unit": "g",
+                },
+                  {
+                  "amount": 41.1778,
+                  "title": "Fat",
+                  "unit": "g",
+                },
+                  {
+                  "amount": 7.65406,
+                  "title": "Carbohydrates",
+                  "unit": "g",
+                },
+              ],
+            },
+            "title": "Pesto Chicken Zoodles",
+          },
+          {
+          "id": 638166,
+          "image": "https://spoonacular.com/recipeImages/638166-312x231.jpg",
           "imageType": "jpg",
-          "title": "Roasted Butterflied Chicken w. Onions & Carrots",
-        },
-        {
-          "id": 656752,
-          "image": "https://spoonacular.com/recipeImages/656752-636x393.jpg",
-          "imageType": "jpg",
-          "title": "Pork Chops with Garlic Cream",
-        },
-        {
-          "id": 649248,
-          "image": "https://spoonacular.com/recipeImages/649248-636x393.jpg",
-          "imageType": "jpg",
-          "title": "Lamb Tagine Stew",
-        },
-       {
-          "id": 1095693,
-          "image": "https://spoonacular.com/recipeImages/1095693-312x231.jpg",
-          "imageType": "jpg",
-          "title": "Raspberry Arugula Side Salad ",
-        },
-        {
-          "id": 1095689,
-          "image": "https://spoonacular.com/recipeImages/1095689-312x231.jpg",
-          "imageType": "jpg",
-          "title": "Garlic Oregano Olive Tapenade ",
-        },
-        {
-          "id": 780001,
-          "image": "https://spoonacular.com/recipeImages/780001-312x231.jpg",
-          "imageType": "jpg",
-          "title": "Pesto Chicken Zoodles",
-        },
-        {
-          "id": 650377,
-          "image": "https://spoonacular.com/recipeImages/650377-312x231.jpg",
-          "imageType": "jpg",
-          "title": "Low Carb Brunch Burger",
-        },
-        {
-          "id": 639306,
-          "image": "https://spoonacular.com/recipeImages/639306-312x231.jpg",
-          "imageType": "jpg",
-          "title": "Simple Poached Egg Dinner",
+          "nutrition":    {
+            "nutrients":     [
+                {
+                "amount": 613.337,
+                "title": "Calories",
+                "unit": "kcal",
+              },
+                {
+                "amount": 44.6236,
+                "title": "Protein",
+                "unit": "g",
+              },
+                {
+                "amount": 42.475,
+                "title": "Fat",
+                "unit": "g",
+              },
+                {
+                "amount": 10.1029,
+                "title": "Carbohydrates",
+                "unit": "g",
+              },
+            ],
+          },
+          "title": "Chicken Liver Salad",
         }
       ],
-
       likedMeals : [
-
-
+        
       ]
     }
 
-   
-
-    //using useEffect or componentDidMount to load the initial list from 
-    //local storage here
 
     this.rotate = this.position.x.interpolate({
       inputRange: [-SCREEN_WIDTH /2 ,0, SCREEN_WIDTH /2],
@@ -132,19 +156,18 @@ export default class Cards extends React.Component {
   }
 
 
-
+    
+      
     //utility function to load the saved ID list from the local storage  
     async _retrieveData (){
       try {
         const value = await AsyncStorage.getItem(MealKey);
         if (value !== null) {
-          // We have data!!
           var promise_temp = value.replace(/\\/g, '');
           var js_temp = JSON.parse(promise_temp);
           this.setState((prevState)=>{
             likedMeals:  prevState.likedMeals = js_temp
           })
-       
         }
       } catch (error) {
         return "error"; 
@@ -157,81 +180,55 @@ export default class Cards extends React.Component {
    //* axios automatically returns the stringified object 
    async componentDidMount()
    {
-     //defined the retrive function just for componentDidMount 
+
+    //as the very first step,
+    //retrieve the likedMeals list that contains the list of ids 
           _retrieveData = async () => {
             try {
               const value = await AsyncStorage.getItem(MealKey);
               if (value !== null) {
-                // We have data!!
+
                 var promise_temp = value.replace(/\\/g, '');
                 var js_temp = JSON.parse(promise_temp);
                  
-                
-
                 this.setState((prevState)=>{
                   likedMeals:  prevState.likedMeals = js_temp
                 })
-
               }
             } catch (error) {
               return "error"; 
             }
-          };
-//
-        //https://api.edamam.com/search
+        };
 
         //first load the likedMeals id list from local storage
         _retrieveData();
      
-        axios.get(``,
-        {
-          params: {
-            query: "pasta",
-            number: 10
-         
-          }
-        })
-        .then((response) => {
-          if (response !== null) {
-   
-            console.log(response.data.results)
-
-            this.setState((prevState)=>{
-                newRecipes: prevState.newRecipes = response.data.results 
-            });
-
-
-            console.log("here")
-            console.log(this.state.newRecipes)
-          }
-        })
+        // axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+        // {
+        //   params: {
+        //     diet: "Ketogenic",
+        //     number: 2,
+        //     maxCarbs: 100,
+        //     maxFat: 100, 
+        //     maxProtein: 100,
+        //     maxCalories : 800
+        //   }
+        // })
+        // .then((response) => {
+        //   if (response !== null) {
+        //     console.log(response.data.results)
+        //     this.setState((prevState)=>{
+        //         newRecipes: prevState.newRecipes = response.data.results 
+        //     });
+        //     console.log("here")
+        //     console.log(this.state.newRecipes)
+        //   }
+        // })
    }
-//.map(function(x){ return x.image.replace(/312x231/g,"636x393") });
   
- 
-
-  hasDuplicates(arr, val)
-  {
-    for (i = 0, size = arr.length; i < size; i++)
-    {
-      if(val == arr[i])
-      {
-        return true;
-      }
-    }
-    return false; 
-  }
-
-
-
-  UNSAFE_componentWillMount() {
+    UNSAFE_componentWillMount() {
   
-
-
-   
-
-
-    this.PanResponder = PanResponder.create({
+      this.PanResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
       onPanResponderMove: (evt, gestureState) => {
         this.position.setValue({ x: gestureState.dx, y: gestureState.dy })
@@ -245,22 +242,25 @@ export default class Cards extends React.Component {
           }).start(() => {
               this.setState({ currentIndex: this.state.currentIndex + 1 }, () => {
               this.position.setValue({ x: 0, y: 0 });
-        
-              let obj = {
-                  id : this.state.newRecipes[this.state.currentIndex-1].id,
-                  title: this.state.newRecipes[this.state.currentIndex-1].title , 
-                  image : this.state.newRecipes[this.state.currentIndex-1].image,
+      
+              console.log("swiped right");
+              var temp = this.state.newRecipes[this.state.currentIndex-1].id
+          
+
+              //make sure there's no duplicate
+              if(hasDuplicates(this.state.likedMeals, temp)){
+                    console.log("has duplicates");
+  
+             }else{                
+                  this.state.likedMeals.push(temp);
+                  this.setState((prevState)=>{
+                    likedMeals : prevState.likedMeals = this.state.likedMeals
+                  });
+                  var newVal = this.state.likedMeals;
+                 _storeData(this.state.likedMeals);
+
               }
 
-              //check what is inside on console  
-              console.log("swiped right");
-              console.log(obj);
-             
-              // if(!this.hasDuplicates(this.likedMeals, obj.id))
-              // {
-                  //save the entire array of ids in the local storage 
-                  _storeData(MealKey, this.likedMeals);
-              // }          
             })
           })
         } else if (gestureState.dx < -120) {
@@ -287,13 +287,14 @@ export default class Cards extends React.Component {
 
 
   renderUsers = () => {
-    //TODO
+   
     return this.state.newRecipes.map((item, i) => {
       if (i < this.state.currentIndex) {
         return null
       }
       else if (i == this.state.currentIndex) {
         return (
+
           <Animated.View
             speed={60}
             useNativeDriver={true}
@@ -305,17 +306,21 @@ export default class Cards extends React.Component {
               height: SCREEN_HEIGHT * 0.68, 
               width: SCREEN_WIDTH, 
               position: 'absolute'
-              }]}>
+          }]}>
             <Animated.View  useNativeDriver={true} style={{ opacity: this.likeOpacity, transform: [{ rotate: '-30deg' }], position: 'absolute', top: 50, left: 40, zIndex: 1000 }}>
               <Text style={{ fontFamily: 'Alata', borderRadius:25, borderWidth:10, borderColor: 'green', color: 'green', fontSize: 80, fontWeight: '800', padding: 10 }}> LIKE!</Text>
             </Animated.View>
             <Animated.View   useNativeDriver={true}style={{ opacity: this.dislikeOpacity, transform: [{ rotate: '30deg' }], position: 'absolute', top: 50, right: 40, zIndex: 1000 }}>
               <Text style={{ fontFamily: 'Alata', borderRadius:20, borderWidth: 10, borderColor: 'red', color: 'red', fontSize:60, fontWeight: '800', padding: 10 }}> NOPE...</Text>
             </Animated.View>
-            {console.log("debut " +item.image)}
+         
             <TitledCard  
                           title={item.title}
-                          remoteURL={item.image} 
+                          remoteURL={item.image.replace(/312x231/g,"636x393")} 
+                          calories={ Math.trunc(item.nutrition.nutrients[0].amount)}
+                          protein={ Math.trunc(item.nutrition.nutrients[1].amount)}
+                          fat={Math.trunc(item.nutrition.nutrients[2].amount)}
+                          carbs={ Math.trunc(item.nutrition.nutrients[3].amount)}
             />
           </Animated.View>
         )
@@ -333,18 +338,19 @@ export default class Cards extends React.Component {
               position: 'absolute', 
               alignItems: 'center',
             }]}>
-
             <Animated.View useNativeDriver={true} style={{ opacity: 0, transform: [{ rotate: '-40deg' }], position: 'absolute', top: 50, left: 40, zIndex: 1000 }}>
               <Text style={{ borderWidth: 1, borderColor: 'green', color: 'green', fontSize: 32, fontWeight: '800', padding: 10 }}>LIKE!</Text>
             </Animated.View>
-
             <Animated.View  useNativeDriver={true} style={{ opacity: 0, transform: [{ rotate: '40deg' }], position: 'absolute', top: 50, right: 40, zIndex: 1000 }}>
               <Text style={{ borderWidth: 1, borderColor: 'red', color: 'red', fontSize: 32, fontWeight: '800', padding: 10 }}>NOPE...</Text>
             </Animated.View>
             <TitledCard  
                           title={item.title}
-                          remoteURL={item.image} 
-                           
+                          remoteURL={item.image.replace(/312x231/g,"636x393")} 
+                          calories={Math.trunc(item.nutrition.nutrients[0].amount)}
+                          protein={Math.trunc(item.nutrition.nutrients[1].amount)}
+                          fat={Math.trunc(item.nutrition.nutrients[2].amount)}
+                          carbs={Math.trunc(item.nutrition.nutrients[3].amount)}        
              />
           </Animated.View>
         )

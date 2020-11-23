@@ -27,8 +27,6 @@ const Slides = ({title, subtitle, slides } : SlidesProps) => {
 
     return(
         <View style={{
-            borderWidth:2, 
-            borderColor:"yellow", 
             height:height*0.9,
             alignContent:"center",
             alignItems:"stretch",
