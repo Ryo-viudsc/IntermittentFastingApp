@@ -13,7 +13,6 @@ import axios, { AxiosResponse } from 'axios';
 
 const { width, height } = Dimensions.get("window");
 
-
 var MealKey = "likedMeals";
 
 interface LikedMealsProps
@@ -22,6 +21,7 @@ interface LikedMealsProps
    title?: string;
    analyzedInstructions?: Array<string>;
    image?: any;
+   extendedIngredients? : Array<string>;
 }
 
  const LikedMeals = ({navigation}) => {
@@ -34,10 +34,9 @@ interface LikedMealsProps
   //this regular state is used as the master data source 
   const [state, setState] = useState<LikedMealsProps[]>([]);
   const [refreshing, setRefreshing] = useState(false); 
-  const [IdList, setIdList] = useState<number[]>([ 638166]);
+  const [IdList, setIdList] = useState<String[]>([ "638166"]);
 
   const Load = async () => {
-     
     try{
       const value = await AsyncStorage.getItem("idList");
       if(value !== null)
@@ -103,6 +102,7 @@ interface LikedMealsProps
           }
         })
         .then((response:AxiosResponse<any>) => {
+           
             setState(response.data);          
         })
         .catch((error : Error) =>{ console.log(error)})
@@ -177,11 +177,11 @@ interface LikedMealsProps
                           {
                              title: item.title,
                              uri: item.image,
-                             recipe: item.analyzedInstructions
+                             recipe: item.analyzedInstructions,
+                             ingredients : item.extendedIngredients
                           }
-          
                         )}} >
-                      {/* {console.log(item.analyzedInstructions)} */}
+                    
                     <ImageBackground source={{uri:`${item.image}`}} style={styles.image} >
                         <View style={{
                               position: "absolute", 
@@ -195,13 +195,14 @@ interface LikedMealsProps
                               shadowColor: "#000",
                               backgroundColor: 'rgba(0,0,0,0.25)'
                               }}>
-                        <Text style={{color:'white', fontFamily:"Alata", fontSize:23,textAlign: "center"}} >{item.title}</Text>
+                        <Text style={{fontWeight: "bold",color:'white', fontFamily:"Alata", fontSize:23,textAlign: "center"}} >{item.title}</Text>
                         {/* <Text style={{color:'white', fontFamily:"Alata", fontSize:14, textAlign: "left", paddingHorizontal: width* 0.1}} >{item.dishTypes}</Text> */}
                         </View>
                  </ImageBackground>
                </TouchableOpacity>
                </View>    
            } //the end of flat list component
+                    keyExtractor={(item) => item.toString()}
                     data={state}
                     // refreshControl={
                     //   <RefreshControl

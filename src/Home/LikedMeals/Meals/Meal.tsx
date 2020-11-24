@@ -14,20 +14,61 @@ const Meal = ({navigation, route}) => {
    
   const {uri, title, recipe} = route.params;
    
- 
   const [ingredientsList, setingredientsList] = useState<String[]>([]);
+  const [stepsList, setStepsList] = useState<String[]>([]);
+
 
 
   useEffect(()=>{
-    const {uri, title, recipe} = route.params;
+    const {uri, title, recipe, ingredients} = route.params;
 
-    setingredientsList(recipe.steps);
-    console.log(ingredientsList);
+    //define two functions here 
+    //0, pureStringfy()
+    //1, parseIngredients()
+    //2, parseSteps()
+    
+ 
+
+   console.log(ingredients); 
+    
+   
 
 
+
+
+
+
+    //  var tempArr  = [];
+    //  //first get the number of steps and 
+    //  //print like the following
+    //  console.log( "this is the number of steps ->" + recipe[0].steps.length + "<-");
+      
+    //   for(var i=0; i< recipe[0].steps.length; i++)
+    //   {
+    //      var Arr = recipe[0].steps[i].ingredients; 
+    //      tempArr = tempArr.concat(Arr);
+    //   }
+ 
+      
+      
+  
+ 
+
+ 
+
+    console.log(">>>>>>>>>>>><<<<<<<<<<<<<<")
+    // console.log(tempArr);
+    //console.log(title);
+   
+    //setingredientsList(recipe.steps);
   },[])
 
-
+//todo
+//1, get the size of array of each recipe[x]
+//2, define the temp array for both "steps" and "ingredients"
+//3,  map or parse the array to extract and pass each
+//and every props to steps and ingredients 
+//individually 
 
   return(
        <Box flex={1} >
@@ -41,7 +82,6 @@ const Meal = ({navigation, route}) => {
                            marginTop: height* 0.05
                           }}>{title}
               </Text>
-
              <View style={{
                           position: "absolute", 
                           top: 0, 
@@ -53,8 +93,7 @@ const Meal = ({navigation, route}) => {
                           overflow:"hidden",
                           shadowColor: "#000",
                           backgroundColor: 'rgba(0,0,0,0.05)',
-                          height: height * 0.4,
-                          
+                          height: height * 0.4
                           }}>
              
               </View> 
@@ -72,9 +111,7 @@ const Meal = ({navigation, route}) => {
                           }} />
              <Recipe  style={{overflow:"hidden",  position: "absolute"}}/>
             </Box>
-            <Box flex={0.7} style={{
-                                    borderRadius: 30,   
-                                    }}>
+            <Box flex={0.7} style={{borderRadius: 30}}>
                 <View style={{
                     alignItems:"center",
                     marginVertical: 10
