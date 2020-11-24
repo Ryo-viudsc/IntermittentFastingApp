@@ -21,7 +21,15 @@ interface TitledCardProps {
 const TitledCard = ( {title, remoteURL, calories, fat, protein, carbs } : TitledCardProps ) => {
 return (
     
-    <View style={{  flexDirection: "row-reverse",borderColor: "black", borderWidth: 5,  overflow:"hidden", borderRadius: 30, borderTopLeftRadius:100, borderBottomRightRadius: 100, height:SCREEN_HEIGHT* 0.80, width: SCREEN_WIDTH*0.9}}>
+    <View style={{   
+                    flexDirection: "row-reverse",  
+                    overflow:"hidden", 
+                    borderRadius: 30, 
+                    borderTopLeftRadius:100, 
+                    borderBottomRightRadius: 100, 
+                    height:SCREEN_HEIGHT* 0.80, 
+                    width: SCREEN_WIDTH*0.9
+                }}>
        <ImageBackground source={{uri:`${remoteURL}`}}
            resizeMode="cover"
            style={{ 

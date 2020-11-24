@@ -42,13 +42,10 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
     const [isModalVisible, setModalVisible] = useState(false);
     // const [elapsedHours, setElapsedHours] = useState<number>(1); 
 
-
-
     const ModalTrigger = () => {
         setModalVisible(!isModalVisible)
       
     };
-
 
     const ModalCloseAndNext = () => {
       setModalVisible(!isModalVisible);
@@ -120,7 +117,8 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
     
   return (
   
-    <Box flex={1} flexDirection="column" style={{ backgroundColor:"d3d3d3"}}> 
+    <Box flex={1} flexDirection="column" style={{ backgroundColor:"d3d3d3",  borderWidth: 2,
+    borderColor: "red" }}> 
     <View
       style={{
         ...StyleSheet.absoluteFillObject,
@@ -128,9 +126,15 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
         alignItems: "center",
         justifyContent: "center"
       }}>  
-        <Box flex={4.4} 
+        <Box flex={5.4} 
                     style={{
-                    width: width,
+
+                   //debug for UI
+                   borderWidth: 2,
+                   borderColor: "yellow", 
+                    justifyContent:"space-around",
+                    width: width*0.95,
+                    height : height * 0.6,
                     backgroundColor:"white",
                     borderBottomLeftRadius: 80,
                     borderBottomRightRadius: 80,
@@ -144,46 +148,41 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
                     elevation: 12,
                    }}> 
          <View style={{ 
-                marginTop: 5, 
                 alignItems:"center",
-                justifyContent: "center",
-
+                justifyContent: "center"
                 }}>
-        <Text style={{fontFamily:"Alata", fontSize:13, marginVertical: HEIGHT*0.01}}>
+        <Text style={{fontFamily:"Alata", fontSize:15, marginTop: HEIGHT*0.01}}>
            Tap here to see your current fasting status 
         </Text>
-
-
-        <View style={{marginVertical: height*0.03}}>
+        <View style={{marginVertical: height*0.01}}>
         <PreModalContent slotHours={ElapsedHours}/>
         </View>
             <CountdownCircleTimer
-                
                 isPlaying={play}
                 duration={seconds}
                 colors={[
                 ["#add8e6", 0.05],
                 ["#0BB5FF", 0.1]
                 ]}
-                strokeWidth={30}
-                size={240} 
+                strokeWidth={25}
+                size={width *0.5} 
                 initialRemainingTime={seconds}
                 strokeLinecap="round"
                 trailColor =  "lightgrey" 
                 isLinearGradient={true}
                 onComplete={()=> { finishedHandler("finished");}}
-              >
+            >
            
             {({ remainingTime } ) => (
             <Animated.Text style={{
-                  fontSize: 44,
+                  fontSize: 42,
                   fontFamily: "Alata",
                   textAlign: "center"
                 }} >
                 {children(remainingTime, setElapsedSeconds, setElapsedHours)}
                 <Animated.Text 
                     style={{
-                      fontSize: 15,
+                      fontSize: 18,
                       fontFamily: "Alata", 
                     }}
                 >
@@ -194,35 +193,43 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
             )} 
             </CountdownCircleTimer>
             </View>
-            <View style={{marginTop: height*0.03, alignItems:"center"}}>
+            <View style={{ alignItems:"center"}}>
             { toggleButton === true ? 
                           <Button onPress={ ()=>{ setPlay(true); setToggleButton(false); }} label="Start" variant="primary" />
-                        :<CurrentTimeLable currentHours={hours} />
+                        : <CurrentTimeLable currentHours={hours} />
             }
             </View>
         </Box>
-       <Box flex={1.6} style={{ backgroundColor:"transparent"}}>
+       <Box flex={2} style={{ 
+                              backgroundColor:"transparent",  
+                              borderWidth: 2,
+                              borderColor: "blue",
+                              }}>
            <View  style={{ 
-             width: width,
-             justifyContent: "space-evenly",
-             alignItems:"center",
-
+                width: width,
+                height: height*0.25,
+                justifyContent: "space-around",
+                alignItems:"center",
+                borderWidth: 2,
+                borderColor: "green",
              }}>   
-             <View style={{marginVertical: height*0.02}}>
-              <Button onPress={() => navigation.navigate("Learn")} label="Learn More!" variant="primary" />
+             <View style={{marginVertical: height*0.05}}>
+              <Button onPress={() => navigation.navigate("Learn", 
+                  //the navigator for Home components should include learn screen components too
+              )} label="Learn More!" variant="primary" />
              </View>
-             <View style={{ marginVertical: height*0.02,    }}> 
+             <View style={{ marginVertical: height*0.03}}> 
              <TouchableWithoutFeedback
                         style={styles.buttonStyle2}
                         onPress={()=>{ ModalTrigger();}}               
-                     >
+             >
                         <Text style={[styles.radioText, {color:"black"}]}>
                               end fasting
                         </Text>
              </TouchableWithoutFeedback>
              </View> 
           <Modal isVisible={isModalVisible}>
-              <View style={{
+          <View style={{
                 flex: 1,
                 width: width*0.85,
                 marginVertical: HEIGHT* 0.5,
@@ -241,7 +248,7 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
              }}> Are you sure you end fasting now?</Text>
              
              <View>
-                 <View>
+                 <View style={{ alignSelf:"center", height: height*0.1 }}>
                      <TouchableHighlight 
                         underlayColor="#DDDDDD"
                         style={styles.buttonStyle}
@@ -251,20 +258,22 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
                         </Text>
                      </TouchableHighlight>
                  </View>
-                 <View>
+                 <View style={{ alignSelf:"center", height:height*0.1}}>
                      <TouchableHighlight
-                       underlayColor="#DDDDDD"
+                       underlayColor="lightgrey"
                         style={styles.buttonStyle2}
-                        onPress={()=>{ setModalVisible(!isModalVisible);
-                          finishedHandler("finished"); }}>
+                        onPress={()=>{ 
+                                      // setModalVisible(!isModalVisible); <- might not need this
+                                       finishedHandler("finished"); 
+                                 }}>
                           <Text style={[styles.textStyle, {color:"black"}]}>
                             Yes, I end fasting now
                           </Text>
                      </TouchableHighlight>
                 </View> 
-                </View>
-          </View>
-        </Modal>
+              </View>
+           </View>
+         </Modal>
         </View> 
         </Box>   
        </View>
@@ -395,6 +404,7 @@ const styles = StyleSheet.create({
       borderRadius: 10
     }, 
     buttonStyle: {
+    
       borderRadius: 25,
       marginTop: 10,  
       marginBottom: 25,
@@ -411,7 +421,6 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.32,
       shadowRadius: 5.46,
       elevation: 12,
-
     },
     buttonStyle2: {
       borderRadius: 25,
@@ -433,55 +442,3 @@ const styles = StyleSheet.create({
     }
 
 });
-
-
-
-
-
-  //  <ActionSheet 
-  //           containerStyle={{
-  //                           width: width*0.85,
-  //                           borderTopLeftRadius: 90, 
-  //                           borderBottomRightRadius: 90,
-  //                           marginBottom: HEIGHT* 0.6,
-  //                           borderBottomLeftRadius: 30,
-  //                           borderTopRightRadius: 30,
-  //                           alignItems:"center",
-  //                           justifyContent: "center"
-  //                         }}
-  //           ref={actionSheetRef} 
-  //           bounciness={70}
-  //           footerAlwaysVisible
-  //           headerAlwaysVisible
-  //           bounceOnOpen
-  //           springOffset={40}
-  //           > 
-  //           <Text style={{textAlign:"center", 
-  //                 fontFamily:"Alata",
-  //                   fontSize: 30,
-  //                 marginVertical: 20,
-  //                 }}>
-  //           What Now?
-  //           </Text>
-  //           <View style={{alignItems:"center"}}>
-        
-  //           </View>  
-  //           <Text style={{fontFamily:"Alata", 
-  //                         textAlign:"center",
-  //                         fontSize:17,
-  //                         marginVertical: height* 0.02,
-  //                         marginHorizontal: width*0.12}}>
-  //                           Are you sure you end fasting now?  
-  //            </Text>
-  //            <Text  style={{
-  //                         fontFamily:"Alata", 
-  //                         textAlign:"center",
-  //                         fontSize:12,
-  //                         marginVertical: height* 0.02,
-  //                         marginHorizontal: width*0.12}}>
-  //              or tap the outside to close this tab
-  //             </Text>
-
-  //            <Button variant="primary" label="End fasting now" onPress={()=>{ console.log("end taaaa");finishedHandler("finished")}} ></Button>
-   
-  //           </ActionSheet>

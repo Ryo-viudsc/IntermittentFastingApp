@@ -142,8 +142,6 @@ const LiquidSwipe= ({navigation, route}) => {
            end: [0.1, 0],
         }}
           containerStyle={{
-          //backgroundColor: "#F26764",
-          justifyContent: 'space-around',
           height: height* 0.08
           }}
     />
@@ -177,8 +175,7 @@ const LiquidSwipe= ({navigation, route}) => {
       </>
     }
       </View>
-  </View>
- 
+    </View>
   );
 };
 

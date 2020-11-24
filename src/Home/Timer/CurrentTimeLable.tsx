@@ -72,7 +72,7 @@ const CurrentTimeLable = ({currentHours}:CurrentTimeLableProps) => {
   
       return(
             <View style={{ flexDirection:"row",
-                    justifyContent: "space-between"
+                           justifyContent: "space-between"
             }}>
             <View style={styles.timerlabel1}>
             <Animated.Text style={styles.timerText}>Start</Animated.Text>
@@ -91,11 +91,10 @@ const CurrentTimeLable = ({currentHours}:CurrentTimeLableProps) => {
  const styles = StyleSheet.create({
   timerText : {
       fontFamily : "Alata",
-      fontSize: 15
+      fontSize: 14
     },
     timerlabel1: {
       paddingHorizontal: width* 0.04, 
-      //paddingVertical: HEIGHT*0.01,
       marginHorizontal: width*0.13, 
       backgroundColor:"white",
       borderColor:"lightblue",
@@ -105,7 +104,6 @@ const CurrentTimeLable = ({currentHours}:CurrentTimeLableProps) => {
     },
     timerlabel2: {
       paddingHorizontal: width* 0.04, 
-      //paddingVertical: HEIGHT*0.01,
       marginHorizontal: width*0.13, 
       backgroundColor:"white",
       borderColor:"lightblue",

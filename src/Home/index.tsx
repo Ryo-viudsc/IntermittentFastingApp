@@ -35,6 +35,7 @@ const TimerStack = () => {
     <Timer.Screen  options={{gestureEnabled:false}} name="TimerSettingScreen" component={TimerSettingScreen} />
     <Timer.Screen options={{gestureEnabled:false}} name="LiquidSwipe" component={LiquidSwipe} />
     <Timer.Screen   options={{gestureEnabled:false}}name="Learn" component={Learn} />
+    <Timer.Screen   options={{gestureEnabled:false}}name="Ongoing" component={Ongoing} />
 
   </Timer.Navigator>
   </NavigationContainer>

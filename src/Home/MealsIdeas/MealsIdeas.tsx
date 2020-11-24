@@ -42,21 +42,16 @@ const MealsIdeas = ({navigation} : HomeNavigationProps<"MealsIdeas"> ) => {
       centerComponent={{ text: 'MEALS IDEA', style: { fontFamily: "Catara" ,fontSize:25 ,color: "black" } }}
      // rightComponent={{ icon: 'home', color: '#fff' }}
      
-      // linearGradientProps={{
-      //   colors: ['#96cb7f', '#89E2C7'],
-      //   start: [1, 0],
-      //   end: [0.1, 0],
-      // }}
-
        containerStyle={{
          backgroundColor: "white",
         paddingHorizontal: width* 0.09,
         justifyContent: 'space-around',
         height: height* 0.1
+       
         }}
       />
   
-      <Box flex={6} 
+      <Box flex={1} 
            paddingBottom="m"
            paddingTop="m"
            style={{backgroundColor:"white"}}

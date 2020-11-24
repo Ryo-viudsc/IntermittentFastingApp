@@ -1,5 +1,6 @@
 import { LinearGradient } from "expo";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Image, Text, ImageRequireSource, ImageBackground, StyleSheet, View, Dimensions } from "react-native";
 import Animated from "react-native-reanimated";
 import Footer from "../../../Authentication/components/components/Footer";
@@ -9,20 +10,35 @@ import Recipe from "./Recipe";
 const { width, height } = Dimensions.get("window");
 
 
-
-
 const Meal = ({navigation, route}) => {
    
-  const {uri, title, diet} = route.params;
+  const {uri, title, recipe} = route.params;
    
+ 
+  const [ingredientsList, setingredientsList] = useState<String[]>([]);
+
+
+  useEffect(()=>{
+    const {uri, title, recipe} = route.params;
+
+    setingredientsList(recipe.steps);
+    console.log(ingredientsList);
+
+
+  },[])
+
+
+
   return(
-             <Box flex={1} >
-             <Box flex={1.2} >
-             <ImageBackground  source={require("../../../images/Meals/Meal2.jpg")} style={styles.image} >
-             <Text style={{fontSize:50,
+       <Box flex={1} >
+             <Box flex={1.2} style={{borderColor:"red", borderWidth: 2}} >
+             <ImageBackground  source={{uri: `${uri}`}} 
+                               style={styles.image} >
+             <Text style={{
+                           fontSize:30,
                            color: "white",
-                           fontFamily: "Alata"
-            
+                           fontFamily: "Alata",
+                           marginTop: height* 0.05
                           }}>{title}
               </Text>
 
@@ -54,8 +70,7 @@ const Meal = ({navigation, route}) => {
                           borderTopRightRadius : 80,
                           backgroundColor:"transparent",
                           }} />
-             <Recipe style={{overflow:"hidden",  position: "absolute"}}/>
-            
+             <Recipe  style={{overflow:"hidden",  position: "absolute"}}/>
             </Box>
             <Box flex={0.7} style={{
                                     borderRadius: 30,   
@@ -73,7 +88,7 @@ const Meal = ({navigation, route}) => {
                      </View>
                 </View>
             </Box>
-         </Box>   
+       </Box>   
    
   );
 }
@@ -85,6 +100,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title:{
+        alignItems: 'center',
         color: "white",
         fontFamily: "Alata",
         fontSize: 30

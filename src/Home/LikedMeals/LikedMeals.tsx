@@ -11,28 +11,18 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Header, SearchBar } from 'react-native-elements';
 import axios, { AxiosResponse } from 'axios';
 
-
-
-//TODO 
-//1, use the local storage to grab the array of ids that an user has liked 
-//2, call the API with a link of bulksearch with the array that contains the list of ids 
-//3, sort the response with words like reuslt, recipes, etc 
-//4, pass those props accordingly 
-
-
-
 const { width, height } = Dimensions.get("window");
 
 
 var MealKey = "likedMeals";
 
-// interface LikedMealsProps
-// {
-//    id: number;
-//    title: string;
-//    recipe: Array<string>;
-//    uri : any;
-// }
+interface LikedMealsProps
+{
+   id: number;
+   title?: string;
+   analyzedInstructions?: Array<string>;
+   image?: any;
+}
 
  const LikedMeals = ({navigation}) => {
 
@@ -42,9 +32,9 @@ var MealKey = "likedMeals";
   // const [filteredDataSource, setFilteredDataSource] = useState<LikedMealsProps[]>([]);
 
   //this regular state is used as the master data source 
-  const [state, setState] = useState([]);
+  const [state, setState] = useState<LikedMealsProps[]>([]);
   const [refreshing, setRefreshing] = useState(false); 
-  const [IdList, setIdList] = useState<String[]>([ "638166", "780001"]);
+  const [IdList, setIdList] = useState<number[]>([ 638166]);
 
   const Load = async () => {
      
@@ -58,7 +48,6 @@ var MealKey = "likedMeals";
         
         setState(js_temp);
         // setFilteredDataSource(js_temp);
-
       }else{
         console.log("Failed to load")
       }
@@ -105,28 +94,20 @@ var MealKey = "likedMeals";
     }  
       
       //since axios doesn't accept a raw array as its paramters 
-      //  var stringList = IdList.toString().replace("[", "").replace("]", ""); 
-
-      //  console.log(stringList);
-     
-      //   axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
-      //   {
-      //     params: {
-      //         ids : stringList ,
-      //         includeNutrition : false
-      //     }
-      //   })
-      //   .then((response : AxiosResponse<any>) => {
- 
-      //       setState(response.data);
-      //       
-      //   })
-      //   .catch((error : Error) =>{ console.log(error)})
+        var stringList = IdList.toString().replace("[", "").replace("]", "");      
+        axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+        {
+          params: {
+              ids : stringList ,
+              includeNutrition : false
+          }
+        })
+        .then((response:AxiosResponse<any>) => {
+            setState(response.data);          
+        })
+        .catch((error : Error) =>{ console.log(error)})
 
     
-
-  
-
     //update is going to update the ldList 
     // update();
   },[])
@@ -189,18 +170,19 @@ var MealKey = "likedMeals";
               <Box>
                   {refreshing ? <ActivityIndicator /> : null}
                   <FlatList 
-                  //keyExtractor={(item, index) => index}
                     renderItem={({ item }) => 
                     <View style={{overflow:"hidden"}}>
                     <TouchableOpacity style={styles.listItem} 
                         onPress={() => { navigation.navigate("Meal",
                           {
-                            title: item.title,
-                            uri: item.uri
+                             title: item.title,
+                             uri: item.image,
+                             recipe: item.analyzedInstructions
                           }
+          
                         )}} >
-                          
-                    <ImageBackground source={item.uri} style={styles.image} >
+                      {/* {console.log(item.analyzedInstructions)} */}
+                    <ImageBackground source={{uri:`${item.image}`}} style={styles.image} >
                         <View style={{
                               position: "absolute", 
                               top: 0, 
@@ -213,7 +195,7 @@ var MealKey = "likedMeals";
                               shadowColor: "#000",
                               backgroundColor: 'rgba(0,0,0,0.25)'
                               }}>
-                        <Text style={{color:'white', fontFamily:"Alata", fontSize:30,textAlign: "left"}} >{item.title}</Text>
+                        <Text style={{color:'white', fontFamily:"Alata", fontSize:23,textAlign: "center"}} >{item.title}</Text>
                         {/* <Text style={{color:'white', fontFamily:"Alata", fontSize:14, textAlign: "left", paddingHorizontal: width* 0.1}} >{item.dishTypes}</Text> */}
                         </View>
                  </ImageBackground>
@@ -251,12 +233,17 @@ const styles = StyleSheet.create({
     flex:1,
     alignSelf:"center",
     flexDirection:"row",
-    borderRadius: 10,
+    borderRadius: 20,
     overflow:"hidden",
     shadowColor: "#000",
     backgroundColor: 'rgba(0,0,0,0.55)',
-    borderColor: "black",
-    borderWidth: 2
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 5.46,
+    elevation: 9,
   },
   image:{
       overflow:"hidden",

@@ -54,6 +54,7 @@ const TimerSettingScreen = ({navigation}) => {
   return (
     <Box flex={1}>
        <View style={{
+              flex: 1,
               marginRight:width*0.1,
               marginLeft: width*0.1,
               marginTop: height*0.1,
@@ -120,7 +121,6 @@ const TimerSettingScreen = ({navigation}) => {
                           <Button 
                                 label="Let's get started!" 
                                 onPress={()=>{ 
-                                  
                                      if(currentHours != 0){
                                           navigation.navigate("LiquidSwipe");
                                           navigation.dispatch(
@@ -129,7 +129,7 @@ const TimerSettingScreen = ({navigation}) => {
                                                 routes: [
                                                   { name: 'LiquidSwipe',
                                                     params : {currentHours:currentHours } 
-                                                }
+                                                  }
                                                 ]
                                             })
                                       );
@@ -142,7 +142,6 @@ const TimerSettingScreen = ({navigation}) => {
                           />
               {err === true ? <Text style={styles.starText}> {errMsg} </Text> : null}            
               </View>
-             
       </View>      
     </Box>
         );

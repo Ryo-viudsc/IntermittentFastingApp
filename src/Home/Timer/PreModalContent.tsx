@@ -32,8 +32,8 @@ export const tips = [
       duration : "0 - 4 hours",
       picture: {
           src: require('../../images/stage1.png'),
-          width: width * 0.3,
-          height: width * 0.3,
+          width: width * 0.2,
+          height: width * 0.2,
       },
       title: "High Blood Sugar",
       content: "Up to 4 hours after having a meal, your blood sugar remains high. \nThe body is flushed with insulin to remove this blood sugar and convert it into glycogen. This spike in insulin results in a sugar crash due to which people start feeling hungry after 4 hours of a meal. \nThe higher the glycaemic index of your meal the greater this crash will be. This is why high carb food keeps people hooked onto eating a lot.", 
@@ -43,8 +43,8 @@ export const tips = [
       duration : "4 - 8 hours",
       picture: {
           src: require('../../images/stage2.png'),
-          width: width * 0.3,
-          height: width * 0.3,
+          width: width * 0.2,
+          height: width * 0.2,
       },
       title: "Low Blood Sugar",
       content: "Blood sugar starts to drop and starts moving towards its normal levels. \n Your body is constantly trying to detoxify itself 24 hours a day. \nThe body uses a great deal of energy to detoxify, but it also uses a great deal of energy to digest food. \nWhen your body is not busy digesting food, it can focus its energy on eliminating toxins and healing.", 
@@ -54,8 +54,8 @@ export const tips = [
       duration : "8 - 12 hours",
       picture: {
         src: require('../../images/stage3.png'),
-          width: width * 0.3,
-          height: width * 0.3,
+          width: width * 0.2,
+          height: width * 0.2,
       },
       title: "Normal Blood Sugar",
       content: "The body primarily starts utilizing fats for energy. This state results in increased Ketone Bodies (or Keto Bodies) in your system. Research indicates that this state is also linked with overall decrease in inflammation in the body. Rejuvenation and healing processes start to kick in. You start to feel more alert and attentive.", 
@@ -65,8 +65,8 @@ export const tips = [
       duration : "12 - 16 hours",
       picture: {
         src: require('../../images/stage4.png'),
-          width: width * 0.3,
-          height: width * 0.3,
+          width: width * 0.2,
+          height: width * 0.2,
       },
       title: "Partial Ketosis",
       content: "This is the beginning of the Ketosis State. Ketosis is a metabolic state that allows your body to burn fat instead of sugars or glycogen. At this stage the body is fueled by both metabolic pathways – Ketosis and Glycolysis. \nFasting has been shown to support mitochondrial health and anything that supports mitochondrial health also improves brain health.", 
@@ -76,8 +76,8 @@ export const tips = [
       duration : "16 - 28 hours",
       picture: {
         src: require('../../images/stage5.png'),
-        width: width * 0.3,
-        height: width * 0.3,
+        width: width * 0.2,
+        height: width * 0.2,
       },
       title: "Ketosis and Fat Burning",
       content: "The body primarily starts utilizing fats for energy. This state results in increased Ketone Bodies (or Keto Bodies) in your system. Research indicates that this state is also linked with overall decrease in inflammation in the body. Rejuvenation and healing processes start to kick in. You start to feel more alert and attentive.", 
@@ -117,7 +117,6 @@ const preModalContent = ({slotHours}) => {
      <>
      <TouchableOpacity
                    onPress={()=>{actionSheetRef.current?.setModalVisible();}}
-
                    style={{
                    flexDirection:"row", 
                    justifyContent: "center", 
@@ -161,13 +160,14 @@ const preModalContent = ({slotHours}) => {
       </Box>
     </TouchableOpacity>
     <ActionSheet 
-           containerStyle={{width: width*0.85,
+           containerStyle={{
+                            width: width*0.85,
                             borderTopLeftRadius: 90, 
                             borderBottomRightRadius: 90,
                             marginBottom: height* 0.8,
                             borderBottomLeftRadius: 60,
-                            borderTopRightRadius: 60
-                            
+                            borderTopRightRadius: 60,
+                            height : height * 0.75
 
                          }}
        ref={actionSheetRef} 
@@ -189,7 +189,10 @@ const preModalContent = ({slotHours}) => {
                     source={tips[slotHours].picture.src}
                 />
                 <Text style={styles.speechStyle}>{tips[slotHours].duration}</Text>
-                <ScrollView alwaysBounceVertical={true}> 
+                <ScrollView 
+                     alwaysBounceVertical={true}
+                     fadingEdgeLength={50}
+                     > 
                 <Text style={styles.speechStyle}>{tips[3].content}</Text>
                 </ScrollView>
           </View>
