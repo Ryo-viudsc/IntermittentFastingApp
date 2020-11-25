@@ -12,6 +12,8 @@ import { Header, SearchBar } from 'react-native-elements';
 import axios, { AxiosResponse } from 'axios';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { TouchableHighlight } from "react-native-gesture-handler";
+import {GetBulkKey} from "../../API/Axios/Spoonacular";
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -29,15 +31,10 @@ interface LikedMealsProps
  const LikedMeals = ({navigation}) => {
 
   const [search, setSearch] = useState("");
-  
-  //this is used to save the filtered source 
-  
-
   //this regular state is used as the master data source 
   const [state, setState] = useState<LikedMealsProps[]>([]);
   //filteredDataSource is used with the master data source above 
   const [filteredDataSource, setFilteredDataSource] = useState<LikedMealsProps[]>([]);
-
   const [refreshing, setRefreshing] = useState(false); 
   const [IdList, setIdList] = useState<String[]>([]);
 
@@ -115,7 +112,8 @@ interface LikedMealsProps
       //since axios doesn't accept a raw array as its paramters 
         var stringList = IdList.toString().replace("[", "").replace("]", "");    
         console.log("updating the id list => " + stringList);  
-        axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+
+        axios.get(`${GetBulkKey}` ,
         {
           params: {
               ids : stringList ,
@@ -142,7 +140,7 @@ interface LikedMealsProps
       });
 
       var stringList = IdList.toString().replace("[", "").replace("]", "");      
-      axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+      axios.get(`${GetBulkKey}`,
       {
         params: {
             ids : stringList ,
@@ -248,7 +246,6 @@ interface LikedMealsProps
                               backgroundColor: 'rgba(0,0,0,0.25)'
                               }}>
                         <Text style={{fontWeight: "bold",color:'white', fontFamily:"Alata", fontSize:23,textAlign: "center"}} >{item.title}</Text>
-                        {/* <Text style={{color:'white', fontFamily:"Alata", fontSize:14, textAlign: "left", paddingHorizontal: width* 0.1}} >{item.dishTypes}</Text> */}
                         </View>
                  </ImageBackground>
                </TouchableOpacity>

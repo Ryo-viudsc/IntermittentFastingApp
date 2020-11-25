@@ -4,9 +4,9 @@
     "slug": "intermittentfastingapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/images/IFLogo.png",
+    "icon": "./src/images/IFlogo.png",
     "splash": {
-      "image": "./src/images/IFLogo.png",
+      "image": "./src/images/IFlogo.png",
       "resizeMode": "contain",
       "backgroundColor": "transparent"
     },

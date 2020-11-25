@@ -36,11 +36,8 @@ const MealsIdeas = ({navigation} : HomeNavigationProps<"MealsIdeas"> ) => {
 
   return (
     <>
-    <Header 
-    
-    //  leftComponent={<SearchFilter />}
+    <Header     
       centerComponent={{ text: 'MEALS IDEA', style: { fontFamily: "Catara" ,fontSize:25 ,color: "black" } }}
-     // rightComponent={{ icon: 'home', color: '#fff' }}
      
        containerStyle={{
          backgroundColor: "white",

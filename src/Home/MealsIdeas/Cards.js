@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Dimensions, Image, Animated, PanResponder, useState } from 'react-native';
 import TitledCard from "./TitledCard";
 import axios from 'axios';
-
+import { GetNewRecipesKey } from "../../API/Axios/Spoonacular";
 import { AsyncStorage } from 'react-native';
 
 
@@ -141,7 +141,7 @@ export default class Cards extends React.Component {
         //first load the likedMeals id list from local storage
         _retrieveData();
        
-        axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+        axios.get(`${GetNewRecipesKey}`,
         {
           params: {
             number: 20,
