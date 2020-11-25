@@ -36,8 +36,6 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <ul>
@@ -58,10 +56,8 @@ Using spoonacular API,
 <br/>
 
 
-
-
 ## Built with
- - Typescript / ReactJS / JavaScript - ES6 / Shell /
+ - TypeScript / ReactJS / JavaScript - ES6 / Shell /
  - ReactNative / Expo / Axios / ReactNative AsycnStorage 
  - VScode / Git / Gimp / Movavi 
  - Spoonacular API (for all the recipes' information)
@@ -80,13 +76,15 @@ Using spoonacular API,
   After downloading the app "Expo" from AppleStore, with the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to open the project for your mobile device.
   
 ***Attention***
-The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on the app.
-
+The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on the app. 
+You could type random passwords and a mail address that ends with mail formats. (e.g. abc@gmail.com)
 
 
 ## Acknowledgement 
 https://reactnative.dev/ <br/>
+https://reactnavigation.org/ <br/>
 https://docs.expo.io/<br/>
+https://medium.com/@sgroff04/configure-typescript-tslint-and-prettier-in-vs-code-for-react-native-development-7f31f0068d2<br/>
 https://www.healthline.com/nutrition/intermittent-fasting-guide<br/>
 https://lifeapps.io/fasting/the-5-stages-of-intermittent-fasting/<br/>
 https://www.dietdoctor.com/intermittent-fasting<br/>
