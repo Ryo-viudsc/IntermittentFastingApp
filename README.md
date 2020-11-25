@@ -2,15 +2,12 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 # IntermittentFastingApp
-A  cross-platform mobile app that helps people on intermittent fasting 
-
-
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a>
-    <img src="./src/images/IFLogo.png" alt="Logo" width="80" height="80">
+    <img src="./src/images/IFLogo.png" alt="Logo" width="400" height="400">
   </a>
 
   <h3 align="center">IF(intermittent fasting) Timer</h3>
