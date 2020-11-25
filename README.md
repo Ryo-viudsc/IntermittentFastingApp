@@ -48,35 +48,45 @@
 As the lockdown due to the pandemic continues, many people are facing the problem of weight gain. And I believe that one reason is simply 
 because it has been a sedentary time, without much movement, as well as from the stress of sitting at home all the time.
 So, I ended up finding intermittent fasting quite beneficial more than ever as it might be really helpful for a sedentary life style these days. 
-
+<br/>
 Main functionalities of this project are the following: 
-1, keeps a track of your fasting time and informs what's happenning in your body as the fasting continues 
+1, keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
 2, helps people on fasting or planning to fast to come up with a meal plan to break their fast.
+Using spoonacular API, 
 
 3(in development), you can see who is currently fasting right now in order to motivate each other during fasting. 
+<br/>
 
-<br>
+
 
 
 ## Built with
- - Typescript / ReactJS /JavaScript - ES6 / Shell
- - ReactNative/Expo 
- - VScode / Gimp / Movavi 
+ - Typescript / ReactJS / JavaScript - ES6 / Shell /
+ - ReactNative / Expo / Axios / ReactNative AsycnStorage 
+ - VScode / Git / Gimp / Movavi 
+ - Spoonacular API (for all the recipes' information)
+ 
 
 
-## Getting Started
+## Launch
 
-*Android Phone 
- *With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
- *<img src="QR CODE GOES HERE" alt="Logo" width="100" height="100">
+***Android Phone*** 
+<br/>
+  With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
+  <img src="QR CODE GOES HERE" alt="Logo" width="100" height="100">
 
-*IOS 
- *With the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to open the project for your mobile device.
+***IOS*** 
+<br/>
+  After downloading the app "Expo" from AppleStore, with the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to open the project for your mobile device.
+  
+***Attention***
+The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on the app.
 
 
-## Resources 
-https://reactnative.dev/
-https://docs.expo.io/
-https://www.healthline.com/nutrition/intermittent-fasting-guide
-https://lifeapps.io/fasting/the-5-stages-of-intermittent-fasting/
-https://www.dietdoctor.com/intermittent-fasting
+
+## Acknowledgement 
+https://reactnative.dev/ <br/>
+https://docs.expo.io/<br/>
+https://www.healthline.com/nutrition/intermittent-fasting-guide<br/>
+https://lifeapps.io/fasting/the-5-stages-of-intermittent-fasting/<br/>
+https://www.dietdoctor.com/intermittent-fasting<br/>
