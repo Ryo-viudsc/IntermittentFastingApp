@@ -7,25 +7,14 @@
 <br />
 <p align="center">
   <a>
-    <img src="./src/images/IFLogo.png" alt="Logo" width="400" height="400">
+    <img src="./src/images/IFLogo.png" alt="Logo" width="300" height="300">
   </a>
 
   <h3 align="center">IF(intermittent fasting) Timer</h3>
 
-  <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p>
-</p>
-
+ <p align="center">
+    <a href="https://expo.io/@kiharar/projects/intermittentfastingapp">View Demo</a>
+ </p>
 
 
 <!-- TABLE OF CONTENTS -->
