@@ -49,14 +49,14 @@ So, I ended up finding intermittent fasting quite beneficial more than ever as i
 <br/>
 Main functionalities of this project are the following: 
 <br/>
-***1,***  
+***1***  
 keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
 <br/>
-***2,***  
+***2***  
 helps people on fasting or planning to fast to come up with a meal plan to break their fast.
 Using spoonacular API, 
 <br/>
-***3,*** 
+***3*** 
 (in development), you can see who is currently fasting right now in order to motivate each other during fasting. 
 <br/>
 
