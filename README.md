@@ -3,13 +3,13 @@ A  cross-platform mobile app that helps people on intermittent fasting
 
 
 #Built with
-###Languages
+##Languages
  - Typescript / ReactJS /JavaScript - ES6 / Shell
-###Framework 
+##Framework 
  - ReactNative/Expo 
-###Editor
+##Editor
  - VScode / Gimp / Movavi 
-### Resources 
+## Resources 
 https://www.healthline.com/nutrition/intermittent-fasting-guide
 https://lifeapps.io/fasting/the-5-stages-of-intermittent-fasting/
 https://www.dietdoctor.com/intermittent-fasting
