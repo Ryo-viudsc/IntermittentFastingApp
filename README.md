@@ -52,15 +52,12 @@ Of course, no one template will serve all projects since your needs may be diffe
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
-### Built With
-
-# Tech/framework used
-
+# Built with
  - Typescript / ReactJS /JavaScript - ES6 / Shell
  - ReactNative/Expo 
  - VScode / Gimp / Movavi 
 
-<!-- GETTING STARTED -->
+
 ## Getting Started
 * Android Phone 
 With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
@@ -69,33 +66,7 @@ With an Android phone, you can scan this QR code with your Expo mobile app to lo
 With the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to 
 open the project for your mobile device.
 
-
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-
+"Authentification is omitted so you can type a random e-mail address and password when signning-in."
 
 <!-- USAGE EXAMPLES -->
 ## Usage
