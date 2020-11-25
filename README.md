@@ -12,7 +12,7 @@
  <p align="center">
     <a href="https://expo.io/@kiharar/projects/intermittentfastingapp">View Demo</a>
  </p>
-***
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
@@ -35,7 +35,7 @@
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
-***
+
 
 
 <!-- ABOUT THE PROJECT -->
@@ -67,7 +67,6 @@ IOS
   open the project for your mobile device.
 
 "Authentification is omitted so you can type a random e-mail address and password when signning-in."
-
 
 
 ## Resources 
