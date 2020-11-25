@@ -56,17 +56,13 @@ There are many great README templates available on GitHub, however, I didn't fin
 
 
 ## Getting Started
-<br><br><br><br>
-Android Phone 
-  With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
-<img src="QR CODE GOES HERE" alt="Logo" width="100" height="100">
-<br><br><br><br>
-IOS 
-<br>
-  With the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to 
-  open the project for your mobile device.
 
-"Authentification is omitted so you can type a random e-mail address and password when signning-in."
+*Android Phone 
+ *With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
+ *<img src="QR CODE GOES HERE" alt="Logo" width="100" height="100">
+
+*IOS 
+ *With the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to open the project for your mobile device.
 
 
 ## Resources 
