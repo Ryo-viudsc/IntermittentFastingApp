@@ -8,6 +8,6 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-src/API/*
+src/API/Axios/*
 # macOS
 .DS_Store
