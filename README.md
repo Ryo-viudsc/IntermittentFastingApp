@@ -44,8 +44,17 @@
       <img src="./src/images/ss1" width="auto" height="auto" />
       <img src="./src/images/ss1" width="auto" height="auto" />
 </ul>
-<br>
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+<br
+As the lockdown due to the pandemic continues, many people are facing the problem of weight gain. And I believe that one reason is simply 
+because it has been a sedentary time, without much movement, as well as from the stress of sitting at home all the time.
+So, I ended up finding intermittent fasting quite beneficial more than ever as it might be really helpful for a sedentary life style these days. 
+
+Main functionalities of this project are the following: 
+1, keeps a track of your fasting time and informs what's happenning in your body as the fasting continues 
+2, helps people on fasting or planning to fast to come up with a meal plan to break their fast.
+
+3(in development), you can see who is currently fasting right now in order to motivate each other during fasting. 
+
 <br>
 
 
