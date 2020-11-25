@@ -41,9 +41,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <ul>
-    <img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
-    <img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
-    <img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
+    <img src="./src/images/ss1" width="auto" height="auto" />
+      <img src="./src/images/ss1" width="auto" height="auto" />
+  
 </ul>
 There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
@@ -59,24 +59,22 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 
 
 ## Getting Started
-* Android Phone 
-With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
+Android Phone 
+<br>
+  With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
 <img src="QR CODE GOES HERE" alt="Logo" width="100" height="100">
-* IOS 
-With the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to 
-open the project for your mobile device.
+IOS 
+<br>
+  With the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to 
+  open the project for your mobile device.
 
 "Authentification is omitted so you can type a random e-mail address and password when signning-in."
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 
 ## Resources 
+https://reactnative.dev/
+https://docs.expo.io/
 https://www.healthline.com/nutrition/intermittent-fasting-guide
 https://lifeapps.io/fasting/the-5-stages-of-intermittent-fasting/
 https://www.dietdoctor.com/intermittent-fasting
