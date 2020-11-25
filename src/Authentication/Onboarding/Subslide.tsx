@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
        
     },
     subtitle: {
+        fontSize : 18,
         marginBottom: 12, 
         textAlign: "center", 
          fontFamily: "Alata"
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
     description:{
         fontFamily: "Alata",
         color: "#0C0D34",
+        fontSize : 13,
         textAlign: "center", 
         marginBottom: 20, 
     }

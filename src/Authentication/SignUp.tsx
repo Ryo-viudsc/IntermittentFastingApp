@@ -9,6 +9,9 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import Footer from "./components/components/Footer";
 
+
+
+
  const SignUpSchema = Yup.object().shape({
    password: Yup.string()
      .min(2, 'Too Short!')
@@ -66,7 +69,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<"SignUp">) => {
                     >
                     Create account
                 </Text>
-                <Image source={require("../images/welcome.png")} />
+                <Image  source={require("../images/welcome.png")} />
                 <Text
                     fontSize={15}
                     textAlign="center"
@@ -76,7 +79,7 @@ const SignUp = ({ navigation }: AuthNavigationProps<"SignUp">) => {
                   
                 </Text>
                 </Box>
-                        <Box marginTop="l">
+                        <Box marginTop="m">
                           <Box marginBottom="s" paddingBottom="s" >
                             <TextInput 
                                 icon="mail"

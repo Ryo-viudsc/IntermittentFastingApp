@@ -10,6 +10,8 @@ import { Box,  useTheme } from "../../components";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Header, SearchBar } from 'react-native-elements';
 import axios, { AxiosResponse } from 'axios';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
@@ -29,14 +31,17 @@ interface LikedMealsProps
   const [search, setSearch] = useState("");
   
   //this is used to save the filtered source 
-  // const [filteredDataSource, setFilteredDataSource] = useState<LikedMealsProps[]>([]);
+  
 
   //this regular state is used as the master data source 
   const [state, setState] = useState<LikedMealsProps[]>([]);
-  const [refreshing, setRefreshing] = useState(false); 
-  const [IdList, setIdList] = useState<String[]>([ "638166"]);
+  //filteredDataSource is used with the master data source above 
+  const [filteredDataSource, setFilteredDataSource] = useState<LikedMealsProps[]>([]);
 
-  const Load = async () => {
+  const [refreshing, setRefreshing] = useState(false); 
+  const [IdList, setIdList] = useState<String[]>([]);
+
+  const NewLoad = async () => {
     try{
       const value = await AsyncStorage.getItem("idList");
       if(value !== null)
@@ -44,56 +49,72 @@ interface LikedMealsProps
         var promiseItem = value.replace(/\\/g, '');
         var js_temp = JSON.parse(promiseItem);
         console.log(js_temp);
-        
+        setIdList(js_temp);
         setState(js_temp);
         // setFilteredDataSource(js_temp);
       }else{
-        console.log("Failed to load")
+        console.log("Nothing in liked meals list")
       }
     } catch{
       console.log("Failed to load for try");
     }
   }
-  
-
 
  
-  // const searchFilterFunction = (text:any) => {
-  //   // Check if searched text is not blank
+  const searchFilterFunction = (text:any) => {
+    // Check if searched text is not blank
 
-  //   if (text) {
-  //     // Inserted text is not blank
-  //     // Filter the masterDataSource
-  //     // Update FilteredDataSource
-  //     const newData = state.filter(function (item) {
-  //       const itemData = item.title
-  //         ? item.title.toUpperCase()
-  //         : ''.toUpperCase();
-  //       const textData = text.toUpperCase();
+    if (text) {
+      // Filter the masterDataSource
+      // Update FilteredDataSource
+      const newData = state.filter(function (item) {
+        const itemData = item.title
+          ? item.title.toUpperCase()
+          : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
 
-  //       return itemData.indexOf(textData) > -1;
-
-  //     });
-
-  //     setFilteredDataSource(newData);
-  //     setSearch(text);
-  //   } else {
-  //     // Inserted text is blank
-  //     // Update FilteredDataSource with masterDataSour
-  //     setFilteredDataSource(state);
-  //     setSearch(text);
-  //   }
-  // };
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSour
+      setFilteredDataSource(state);
+      setSearch(text);
+    }
+  };
 
 
   useEffect(()=>{
-    //first load the list of id to make a new API call  
-    async function update(){
-      await Load();
-    }  
+
+      const Load = async () => {
+        try{
+          const value = await AsyncStorage.getItem("idList");
+          if(value !== null)
+          {
+            var promiseItem = value.replace(/\\/g, '');
+            var js_temp = JSON.parse(promiseItem);
+            console.log(js_temp);
+            setIdList(js_temp);
+        
+            //setFilteredDataSource(js_temp);
+          }else{
+            console.log("Failed to load")
+          }
+        } catch{
+          console.log("Failed to load for try");
+        }
+      }
+  
+        //first load the list of id to make a new API call  
       
+      Load();
+    
+
       //since axios doesn't accept a raw array as its paramters 
-        var stringList = IdList.toString().replace("[", "").replace("]", "");      
+        var stringList = IdList.toString().replace("[", "").replace("]", "");    
+        console.log("updating the id list => " + stringList);  
         axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
         {
           params: {
@@ -102,27 +123,37 @@ interface LikedMealsProps
           }
         })
         .then((response:AxiosResponse<any>) => {
-           
-            setState(response.data);          
+            setState(response.data); 
+            setFilteredDataSource(response.data);             
         })
         .catch((error : Error) =>{ console.log(error)})
 
-    
-    //update is going to update the ldList 
-    // update();
   },[])
   
   
 
 
   const onRefresh = () => {
-    async function update(){
-      await Load();
-    }
-    update().then( ()=> {
-      setRefreshing(false);
-    }
-    );
+      async function update(){
+        await NewLoad();
+      }
+      update().then( ()=> {
+        setRefreshing(false);
+      });
+
+      var stringList = IdList.toString().replace("[", "").replace("]", "");      
+      axios.get(`https://api.spoonacular.com/recipes/informationBulk?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+      {
+        params: {
+            ids : stringList ,
+            includeNutrition : false
+        }
+      })
+      .then((response:AxiosResponse<any>) => {
+          setFilteredDataSource(response.data)
+          setState(response.data);          
+      })
+      .catch((error : Error) =>{ console.log(error)})
   }
 
 
@@ -141,8 +172,7 @@ interface LikedMealsProps
 
     <Box flex={2}  >
     <Header 
-       // leftComponent={{ icon: 'menu', color: '#fff' }}
-        centerComponent={{ text: 'Liked Meals', style: { fontFamily: "Catara" ,fontSize:25 ,color: "white" } }}
+        centerComponent={{ text: 'Liked Meals', style: { fontFamily: "Catara", fontSize:25, color: "white" } }}
     
         containerStyle={{
           backgroundColor: "#222222",
@@ -150,21 +180,43 @@ interface LikedMealsProps
           height: height* 0.08
         }}
     /> 
-     
+      <View style={{ 
+                     flexDirection: "row", 
+                     justifyContent:"center", 
+                     alignItems:"center"
+                    }}>
          <SearchBar 
             round
             cancelIcon
             lightTheme
             searchIcon={{ size: 20 }}
-            // onChangeText={(text) => searchFilterFunction(text) }
-            // onClear={() => searchFilterFunction('')}
+            onChangeText={(text) => searchFilterFunction(text) }
+            onClear={() => searchFilterFunction('')}
             placeholder="Search here or pull to refresh"
             value={search}
             inputStyle={{fontSize:15}}
-            containerStyle={{backgroundColor:"white"}}
+            containerStyle={{
+                              backgroundColor:"white",
+                              width:width*0.9,
+                              borderRadius :20
+                            }}
             inputContainerStyle={{backgroundColor:"lightgrey"}}
          />
-  
+        <TouchableHighlight
+            underlayColor="transparent" 
+            onPress={()=>{ 
+                  onRefresh();
+                  console.log("Icons was pressed");
+             }}
+             containerStyle={{
+                  backgroundColor:"transparent"
+             }}
+            style={{padding:0}}
+        
+        >
+        <MaterialCommunityIcons name="refresh" size={width*0.1} color="grey" />
+        </TouchableHighlight>
+       </View>
       <Box flex={4}>
           <Transitioning.View ref={list} transition={transition}>
               <Box>
@@ -202,15 +254,15 @@ interface LikedMealsProps
                </TouchableOpacity>
                </View>    
            } //the end of flat list component
-                    keyExtractor={(item) => item.toString()}
-                    data={state}
-                    // refreshControl={
-                    //   <RefreshControl
-                    //     //refresh control used for the Pull to Refresh
-                    //     refreshing={refreshing}
-                    //     onRefresh={onRefresh}
-                    //   />
-                    // }
+                    keyExtractor={(item, index) => String(index)}
+                    data={filteredDataSource}
+                    refreshControl={
+                      <RefreshControl
+                        //refresh control used for the Pull to Refresh
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                      />
+                    }
           />
             </Box>
           </Transitioning.View>

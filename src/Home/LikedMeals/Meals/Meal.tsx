@@ -9,77 +9,58 @@ import Recipe from "./Recipe";
 
 const { width, height } = Dimensions.get("window");
 
+// String is the JavaScript String type, which you could use to 
+//create new strings. 
+// string is the TypeScript string type, which you can use to type variables, 
+//parameters and return values.
+
 
 const Meal = ({navigation, route}) => {
    
-  const {uri, title, recipe} = route.params;
+  const {uri, title, recipe, ingredients} = route.params;
    
-  const [ingredientsList, setingredientsList] = useState<String[]>([]);
-  const [stepsList, setStepsList] = useState<String[]>([]);
+  const [ingredientsList, setIngredientsList] = useState<string[]>([]);
+  const [stepsList, setStepsList] = useState<string[]>([]);
 
-
-
+   
+ 
   useEffect(()=>{
+    
     const {uri, title, recipe, ingredients} = route.params;
 
-    //define two functions here 
-    //0, pureStringfy()
-    //1, parseIngredients()
-    //2, parseSteps()
+    //for the list of ingredients
+    var tempArrIngredients = [];  
+    var length_ingredients = ingredients.length; 
+    for(var t=0; t<length_ingredients; t++){
+          var new_ingredient = ingredients[t].original;
+          tempArrIngredients = tempArrIngredients.concat(new_ingredient);
+      }
+    //for the list of steps per recipe 
+    var tempArrSteps = [];
+    var length_steps = recipe[0].steps.length;
+    for(var i=0; i< length_steps; i++)
+    {
+      var new_steps = recipe[0].steps[i].step;
+      tempArrSteps = tempArrSteps.concat(new_steps);
+    }
     
- 
-
-   console.log(ingredients); 
-    
-   
-
-
-
-
-
-
-    //  var tempArr  = [];
-    //  //first get the number of steps and 
-    //  //print like the following
-    //  console.log( "this is the number of steps ->" + recipe[0].steps.length + "<-");
-      
-    //   for(var i=0; i< recipe[0].steps.length; i++)
-    //   {
-    //      var Arr = recipe[0].steps[i].ingredients; 
-    //      tempArr = tempArr.concat(Arr);
-    //   }
- 
-      
-      
+    setStepsList(tempArrSteps);
+    setIngredientsList(tempArrIngredients);
   
- 
-
- 
-
-    console.log(">>>>>>>>>>>><<<<<<<<<<<<<<")
-    // console.log(tempArr);
-    //console.log(title);
-   
-    //setingredientsList(recipe.steps);
   },[])
 
-//todo
-//1, get the size of array of each recipe[x]
-//2, define the temp array for both "steps" and "ingredients"
-//3,  map or parse the array to extract and pass each
-//and every props to steps and ingredients 
-//individually 
 
   return(
        <Box flex={1} >
-             <Box flex={1.2} style={{borderColor:"red", borderWidth: 2}} >
+             <Box flex={1.2} >
              <ImageBackground  source={{uri: `${uri}`}} 
                                style={styles.image} >
              <Text style={{
                            fontSize:30,
                            color: "white",
                            fontFamily: "Alata",
-                           marginTop: height* 0.05
+                           marginTop: height* 0.05,
+                           fontWeight:"bold"
                           }}>{title}
               </Text>
              <View style={{
@@ -103,13 +84,23 @@ const Meal = ({navigation, route}) => {
                                      borderTopLeftRadius: 80,
                                      borderTopRightRadius : 80,
                                      borderBottomLeftRadius: 80, 
-                                     backgroundColor: "white"}}>
-              {/*  here goes the list of ingredients and the modal components  */ }
+                                     borderBottomRightRadius: 80, 
+                                     backgroundColor: "white", 
+                                     shadowColor: "#000",
+                                     shadowOffset: {
+                                       width: 4,
+                                       height: 4,
+                                     },
+                                     shadowOpacity: 0.32,
+                                     shadowRadius: 5.46,
+                                     elevation: 12
+                                     }}>
+
             <View style={{borderTopLeftRadius: 80,
                           borderTopRightRadius : 80,
                           backgroundColor:"transparent",
                           }} />
-             <Recipe  style={{overflow:"hidden",  position: "absolute"}}/>
+             <Recipe stepsList={stepsList} ingredientsList={ingredientsList}/>
             </Box>
             <Box flex={0.7} style={{borderRadius: 30}}>
                 <View style={{

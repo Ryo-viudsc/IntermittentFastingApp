@@ -45,7 +45,6 @@ return (
                     width: SCREEN_WIDTH,
                    }}
         />
-        {console.log(remoteURL)}
               <LinearGradient 
                     start={[0.1,0.3]}
                     end={[0.1,0.4]}

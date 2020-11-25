@@ -47,7 +47,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   
 const slides = [
     { 
-        title: "CREATIVE" , subtitle: "What is intermittent fasting?", description:"First message ges here", color: "#E6A966", 
+       title: "CREATIVE" , 
+       subtitle: "What is intermittent fasting?", 
+       description:"Intermittent fasting is an eating pattern where you cycle between periods of eating and fasting.", 
+       color: "#E6A966", 
        picture: {
         src: require('../../images/creative.png'),
         width: 3903, 
@@ -55,7 +58,11 @@ const slides = [
       }
     },
     { 
-      title: "PRODUCTIVE",  subtitle: "Second Screen", description:"Second message goes here?", color: "#B3C0CB",
+      title: "PRODUCTIVE",  
+      subtitle: "Why intermittent fasting?", 
+      description:"Despite what you may think, intermittent fasting is actually fairly easy to do. " +
+                  "Many people report feeling better and having more energy during a fast.", 
+      color: "#B3C0CB",
       picture: {
         src: require('../../images/productive.png'),
         width: 3903, 
@@ -63,7 +70,11 @@ const slides = [
       }
     },
     { 
-      title: "ENERGETIC",  subtitle: "Third Screen", description:"Third message goes here?", color: "#9ccc9c",
+      title: "ENERGETIC",  
+      subtitle: "History of fasting", 
+      description: "In other instances, it was done for religious reasons." +     
+                   " Various religions, including Islam, Christianity and Buddhism, mandate some form of fasting.",
+      color: "#9ccc9c",
       picture: {
             src: require('../../images/energetic.png'),
             width: 3803, 
@@ -71,7 +82,12 @@ const slides = [
       }
     },
     { 
-      title: "CHEERFUL",  subtitle: "Forth Screen", description:"Fourth message goes here", color: "#FFDDDD",
+      title: "CHEERFUL",  
+      subtitle: "Let's get started", 
+      description:  "It can be hard in the beginning, " + 
+                    "while your body is getting used to not eating for extended periods of time." + 
+                    " you can drink water, coffee, tea and other non-caloric beverages.", 
+      color: "#FFDDDD",
       picture:{
             src:  require('../../images/cheerful.png'),
             width: 3903, 
@@ -80,9 +96,7 @@ const slides = [
     }, 
 ];
 
-
 export const assets = slides.map(slides => slides.picture.src); 
-
 
 const Onboarding = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
 

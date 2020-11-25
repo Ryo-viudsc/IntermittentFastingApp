@@ -117,8 +117,7 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
     
   return (
   
-    <Box flex={1} flexDirection="column" style={{ backgroundColor:"d3d3d3",  borderWidth: 2,
-    borderColor: "red" }}> 
+    <Box flex={1} flexDirection="column" style={{ backgroundColor:"d3d3d3" }}> 
     <View
       style={{
         ...StyleSheet.absoluteFillObject,
@@ -127,11 +126,7 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
         justifyContent: "center"
       }}>  
         <Box flex={5.4} 
-                    style={{
-
-                   //debug for UI
-                   borderWidth: 2,
-                   borderColor: "yellow", 
+                  style={{
                     justifyContent:"space-around",
                     width: width*0.95,
                     height : height * 0.6,
@@ -201,17 +196,13 @@ export default ({  seconds, hours, finishedHandler, navigation }: ContentProps) 
             </View>
         </Box>
        <Box flex={2} style={{ 
-                              backgroundColor:"transparent",  
-                              borderWidth: 2,
-                              borderColor: "blue",
+                              backgroundColor:"transparent"
                               }}>
            <View  style={{ 
                 width: width,
                 height: height*0.25,
                 justifyContent: "space-around",
-                alignItems:"center",
-                borderWidth: 2,
-                borderColor: "green",
+                alignItems:"center"
              }}>   
              <View style={{marginVertical: height*0.05}}>
               <Button onPress={() => navigation.navigate("Learn", 

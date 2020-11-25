@@ -39,11 +39,11 @@ const ForgotPassword = ({ navigation } : AuthNavigationProps<"ForgotPassword">) 
     return (
         <Container pattern={0} {...{ footer }} >
         <Box flex={1} marginTop="xl"  marginHorizontal="xl" >
-         <Box marginTop="s">
+         <Box style={{justifyContent:"center", alignItems: "center"}} marginTop="s">
          <Text variant="title1" textAlign="center" marginTop="m" marginBottom="l">
            Forgot password?
          </Text>
-         <Image source={require("../images/forgot.png")}/>
+         <Image  source={require("../images/forgot.png")}/>
    <Text variant="body" textAlign="center" marginBottom="l">
             Enter the email address associated with your account
         </Text>   

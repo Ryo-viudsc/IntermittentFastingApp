@@ -48,317 +48,10 @@ export default class Cards extends React.Component {
     this.position = new Animated.ValueXY()
     this.state = {
       currentIndex: 0,
-      newRecipes : [
-
-          {
-          "id": 1095689,
-          "image": "https://spoonacular.com/recipeImages/1095689-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 509.39,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 33.0718,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 39.0891,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 8.3546,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Garlic Oregano Olive Tapenade ",
-        },
-         
-          {
-          "id": 639306,
-          "image": "https://spoonacular.com/recipeImages/639306-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 518.942,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 24.242,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 42.8367,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 9.80968,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Simple Poached Egg Dinner",
-        },
-  
-          {
-          "id": 780000,
-          "image": "https://spoonacular.com/recipeImages/780000-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 537.7,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 33.6557,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 42.0508,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 11.0851,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Chicken Avocado Burger (Whole 30, PALEO, & Simple Fit Forty)",
-        },
-          {
-          "id": 648758,
-          "image": "https://spoonacular.com/recipeImages/648758-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 357.352,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 24.5071,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 26.4124,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 5.74292,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Kari Kepala Ikan Bersama Belimbing Buluh (Fish Head Curry)",
-        },
-          {
-          "id": 638166,
-          "image": "https://spoonacular.com/recipeImages/638166-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 613.337,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 44.6236,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 42.475,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 10.1029,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Chicken Liver Salad",
-        },
-          {
-          "id": 646512,
-          "image": "https://spoonacular.com/recipeImages/646512-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 393.007,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 26.8966,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 28.9447,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 7.17732,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Salmon Caesar Salad",
-        },
-          {
-          "id": 716427,
-          "image": "https://spoonacular.com/recipeImages/716427-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 674.982,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 42.6131,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 48.2548,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 16.7197,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Roasted Butterflied Chicken w. Onions & Carrots",
-        },
-          {
-          "id": 656752,
-          "image": "https://spoonacular.com/recipeImages/656752-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 735.117,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 51.9306,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 51.257,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 11.8614,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Pork Chops with Garlic Cream",
-        },
-          
-          {
-          "id": 780001,
-          "image": "https://spoonacular.com/recipeImages/780001-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 538.777,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 35.6616,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 41.1778,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 7.65406,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Pesto Chicken Zoodles",
-        },
-
-          {
-          "id": 643428,
-          "image": "https://spoonacular.com/recipeImages/643428-312x231.jpg",
-          "imageType": "jpg",
-          "nutrition":   {
-            "nutrients":  [
-                {
-                "amount": 308.579,
-                "title": "Calories",
-                "unit": "kcal",
-              },
-                {
-                "amount": 21.6072,
-                "title": "Protein",
-                "unit": "g",
-              },
-                {
-                "amount": 22.2024,
-                "title": "Fat",
-                "unit": "g",
-              },
-                {
-                "amount": 7.25895,
-                "title": "Carbohydrates",
-                "unit": "g",
-              },
-            ],
-          },
-          "title": "Fresh and Simple Swai Ceviche",
-        },
-      ],
-      likedMeals : [
-      ]
+      newRecipes : [],
+      likedMeals : []
     }
-
+     
 
     this.rotate = this.position.x.interpolate({
       inputRange: [-SCREEN_WIDTH /2 ,0, SCREEN_WIDTH /2],
@@ -394,7 +87,7 @@ export default class Cards extends React.Component {
     })
   }
 
-
+  
     //utility function to load the saved ID list from the local storage  
     async _retrieveData (){
       try {
@@ -422,7 +115,7 @@ export default class Cards extends React.Component {
     //retrieve the likedMeals list that contains the list of ids 
           _retrieveData = async () => {
             try {
-              const value = await AsyncStorage.getItem(MealKey);
+              const value = await AsyncStorage.clear(MealKey);
               if (value !== null) {
 
                 var promise_temp = value.replace(/\\/g, '');
@@ -437,30 +130,36 @@ export default class Cards extends React.Component {
             }
         };
 
+        //to prevent users from getting the exact same stack from every API call 
+        //this function makes a random number to determine different cuisine for every call
+        //so that users can get a different stack randomly everytime 
+        var randomIndex = Math.floor(Math.random() * 10); 
+        var cusineArray = ["American", "Italian", "Japanese", "Korean", "Mexican", "Chinese", "Vietnamese", "French", "Mediterranean"];
+        
+        var randomCuisine = cusineArray[randomIndex];
+        
         //first load the likedMeals id list from local storage
         _retrieveData();
-     
-        // axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
-        // {
-        //   params: {
-        //     diet: "Ketogenic",
-        //     number: 10,
-        //     maxCarbs: 100,
-        //     maxFat: 100, 
-        //     maxProtein: 100,
-        //     maxCalories : 800
-        //   }
-        // })
-        // .then((response) => {
-        //   if (response !== null) {
-        //     console.log(response.data.results)
-        //     this.setState((prevState)=>{
-        //         newRecipes: prevState.newRecipes = response.data.results 
-        //     });
-        //     console.log("here")
-        //     console.log(this.state.newRecipes)
-        //   }
-        // })
+       
+        axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=73cf9aebc64843fc83ff773bfdbddc88`,
+        {
+          params: {
+            number: 20,
+            cuisine : randomCuisine,
+            maxCarbs: 100,
+            maxFat: 100, 
+            maxProtein: 100,
+            maxCalories : 800
+          }
+        })
+        .then((response) => {
+          if (response !== null) {
+            this.setState({
+                newRecipes: response.data.results 
+            });
+            
+          }
+        })
    }
   
     UNSAFE_componentWillMount() {
@@ -482,12 +181,10 @@ export default class Cards extends React.Component {
       
               console.log("swiped right");
               var temp = this.state.newRecipes[this.state.currentIndex-1].id
-          
 
               //make sure there's no duplicate
-              if(hasDuplicates(this.state.likedMeals, temp)){
+             if(hasDuplicates(this.state.likedMeals, temp)){
                     console.log("has duplicates");
-  
              }else{                
                   this.state.likedMeals.push(temp);
                   this.setState((prevState)=>{
@@ -495,7 +192,6 @@ export default class Cards extends React.Component {
                   });
                   var newVal = this.state.likedMeals;
                  _storeData(this.state.likedMeals);
-
               }
 
             })
@@ -550,7 +246,7 @@ export default class Cards extends React.Component {
             <Animated.View   useNativeDriver={true}style={{ opacity: this.dislikeOpacity, transform: [{ rotate: '30deg' }], position: 'absolute', top: 50, right: 40, zIndex: 1000 }}>
               <Text style={{ fontFamily: 'Alata', borderRadius:20, borderWidth: 10, borderColor: 'red', color: 'red', fontSize:60, fontWeight: '800', padding: 10 }}> NOPE...</Text>
             </Animated.View>
-         
+        
             <TitledCard  
                           title={item.title}
                           remoteURL={item.image.replace(/312x231/g,"636x393")} 
@@ -599,6 +295,7 @@ export default class Cards extends React.Component {
   render() {
     return (
         <View style={{ flex: 1 }}>
+      
           {this.renderUsers()}
         </View>
     );

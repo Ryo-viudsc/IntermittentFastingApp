@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "portfolio_nucleus",
-    "slug": "portfolio_nucleus",
+    "name": "IntermittentFastingApp",
+    "slug": "intermittentfastingapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/images/IFLogo.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/images/IFLogo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "transparent"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,6 +22,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "",
+    "githubUrl": "https://github.com/Ryo-viudsc/IntermittentFastingApp"
   }
 }

@@ -10,7 +10,8 @@ import Ingredient from './Ingredient';
 const { width, height } = Dimensions.get("window");
 
 interface RecipeProps {
-   recipe ?: string[];
+  ingredientsList : string[];
+  stepsList : string[];
 }
 
 const recipe = [
@@ -123,13 +124,9 @@ const Ingredients = [
 
 
 
-const Recipe = ({navigation}:any) => {
+const Recipe = ( {ingredientsList,stepsList } : RecipeProps ,{navigation}:any) => {
 
   const actionSheetRef : any = createRef();
-
-
-
-
 
   return (
       <View style={{ paddingVertical: height* 0.05,backgroundColor:"transparent"}}>
@@ -149,10 +146,10 @@ const Recipe = ({navigation}:any) => {
               label="See Ingredients"/>
         </View>
           {
-              recipe.map((item, index) => (
+              stepsList.map((item, index) => (
                   <View key={index} style={index !== (recipe.length - 1) ? styles.separator : {}}>
                       <Text style={styles.step}>{`${index + 1}`}</Text>
-              <Text style={styles.text}>{item.step} {'\n'}</Text>
+              <Text style={styles.text}>{item} {'\n'}</Text>
                   </View>
               ))
            }
@@ -187,23 +184,15 @@ const Recipe = ({navigation}:any) => {
              contentContainerStyle={styles.container}
              automaticallyAdjustContentInsets={true}
              fadingEdgeLength={100}
+             
              >
-        {   Ingredients.map((item, index) => (
+        { ingredientsList.map((item, index) => (
                   <View key={index} style={index !== (Ingredients.length - 1) ? styles.separator : {}}>
-                       <View style={{flexDirection:"row", justifyContent:"space-evenly"}}>
-                       <Text style={styles.step}>{`${index + 1}`}</Text>
-                       <Text style={styles.text}>
-                         {"\n"}
-                         {item.name} 
-                         {"  "}{item["amount "].metric.value} g   {" "}
-                         {/* <Ingredient name={item.name} /> */}
-                         {"\n"}
-          
-                        </Text>
-                        </View>
+                       <View style={{flexDirection:"row"}}>
+        <Text style={styles.step}>{'\n'}{`${index + 1}`},  <Text style={styles.text}>{item} {'\n'} </Text></Text>
                   </View>
-              ))
-          }
+                  </View>
+        ))}
           </ScrollView>  
       </View>
     </ActionSheet> 
@@ -224,21 +213,26 @@ const styles = StyleSheet.create({
       borderTopRightRadius : 80,
       backgroundColor: "white",
       marginHorizontal: width * 0.05, 
+      
    },
   separator:{
       borderBottomWidth: 1,
       borderColor: "lightgrey",
-      
+      marginHorizontal: height* 0.01,
+   
   },
   step: {
     marginRight: width * 0.005,
     color: "darkgrey",
-    fontFamily:"Alata"
+    fontFamily:"Alata",
+    textAlign:"left",
+    fontSize:15,
   },
    text: {
     marginHorizontal: width* 0.005,
+    textAlign:"left",
     fontFamily:"Alata",
-    fontSize: 14,
+    fontSize: 15,
     color: "black"
    }
   

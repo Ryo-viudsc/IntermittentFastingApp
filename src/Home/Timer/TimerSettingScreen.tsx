@@ -68,8 +68,6 @@ const TimerSettingScreen = ({navigation}) => {
               shadowOpacity: 0.12,
               shadowRadius: 5.46,
               elevation: 19,
-              borderColor:"black",
-              borderWidth: 2,
               height: height*0.8,
               width: width*0.8,
               borderTopLeftRadius: 80,
