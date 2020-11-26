@@ -39,7 +39,7 @@
 <br/>
 As the lockdown due to the pandemic continues, many people are facing the problem of weight gain. And I believe that one reason is simply 
 because it has been a sedentary time, without much movement, as well as from the stress of sitting at home all the time.
-So, I ended up finding intermittent fasting quite beneficial more than ever as it might be really helpful for a sedentary life style these days. 
+So, I ended up finding intermittent fasting quite beneficial and decided to build this app for a sedentary life style these days. 
 
 <br/>
 <h2>Main functionalities of this project are the following: </h2>
