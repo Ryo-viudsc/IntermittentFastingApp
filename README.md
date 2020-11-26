@@ -106,7 +106,7 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
   
 ***:warning:Attention***
 The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on the app. 
-You could type a random passwords and a email address that ends with mail formats. (e.g. abc@gmail.com)
+You could type a random password and a email address that ends with mail formats. (e.g. abc@gmail.com)
 
 
 ## Acknowledgement
