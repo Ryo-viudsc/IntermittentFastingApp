@@ -38,11 +38,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<ul>
-      <img src="./src/images/ss1" width="auto" height="auto" />
-      <img src="./src/images/ss1" width="auto" height="auto" />
-</ul>
-<br
+<br/>
 As the lockdown due to the pandemic continues, many people are facing the problem of weight gain. And I believe that one reason is simply 
 because it has been a sedentary time, without much movement, as well as from the stress of sitting at home all the time.
 So, I ended up finding intermittent fasting quite beneficial more than ever as it might be really helpful for a sedentary life style these days. 
@@ -52,7 +48,9 @@ So, I ended up finding intermittent fasting quite beneficial more than ever as i
 
 <h5>1,  keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
 </h5>
-
+<a>
+<img src="./src/images/README.PIC/gif1.gif" width="300" height="300" >
+</a>
 <h5>2,  helps people on fasting or planning to fast to come up with a meal plan to break their fast.
 Using spoonacular API, this app covers more than 5000 recipes, including every single ingredients and nutrients for each meal. 
 </h5>
