@@ -105,7 +105,7 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
   1, After downloading the app "Expo" from AppleStore, with the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number.
 <br/>
   2, On Expo app, go to Profile and "Sign in your acccount." 
-  Type "iftimer.test@gmail.com" for email and "iftimer"(please make sure that they're all small-letters, the first letter can be auto-capitalized sometimes)
+  Type "iftimer.test@gmail.com" for email and "iftimer" for password (please make sure that they're all small-letters, the first letter can be auto-capitalized sometimes)
 <br/>
   3, You should be able to load the project from the link while you are logging-in on Expo app.
 
