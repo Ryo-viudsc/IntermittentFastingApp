@@ -78,7 +78,7 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
   </tr>
  </table>
 
-<h5>3,  (in development) you can see who is currently fasting right now in order to motivate each other during fasting, using Amazon cognito, S3, and Lamda function.
+<h5>3,  (this feature is still in development) you can see who is currently fasting right now in order to motivate each other during fasting, using Amazon cognito, S3, and Lamda function.
 </h5>
 <img src="./src/images/README.PICS/active.jpg" width=295 height=112>
 
