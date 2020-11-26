@@ -42,51 +42,90 @@
 As the lockdown due to the pandemic continues, many people are facing the problem of weight gain. And I believe that one reason is simply 
 because it has been a sedentary time, without much movement, as well as from the stress of sitting at home all the time.
 So, I ended up finding intermittent fasting quite beneficial more than ever as it might be really helpful for a sedentary life style these days. 
+
 <br/>
 <h2>Main functionalities of this project are the following: </h2>
 <br/>
 
-<h5>1,  keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
+<h5>1, keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
 </h5>
-<a>
-<img src="./src/images/README.PIC/gif1.gif" width="300" height="300" >
-</a>
+
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple</td>
+  </tr>
+  <tr>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+  </tr>
+ </table>
+
 <h5>2,  helps people on fasting or planning to fast to come up with a meal plan to break their fast.
 Using spoonacular API, this app covers more than 5000 recipes, including every single ingredients and nutrients for each meal. 
 </h5>
+
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple</td>
+  </tr>
+  <tr>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+  </tr>
+ </table>
+
+
 
 <h5>3,  (in development) you can see who is currently fasting right now in order to motivate each other during fasting. 
 Using Amazon cognito, S3, and Lamda function, you can see other users who are currently fasting. 
 </h5>
 
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple</td>
+  </tr>
+  <tr>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+  </tr>
+ </table>
 
 
-
-## Built with
+## Built with 
  - TypeScript / ReactJS / JavaScript - ES6 / Shell /
- - ReactNative / Expo / Axios / ReactNative AsycnStorage 
+ - ReactNative / Expo / Axios / ReactNative AsycnStorage / TSlint / formik / ReactNative-Community libraries 
  - VScode / Git / Gimp / Movavi 
- - Spoonacular API (for all the recipes' information)
  
+ - Spoonacular API (for all the recipes' information)
+ - envato elements (for all the thumbnails and images)
 
 
 ## Launch
 
-***Android Phone*** 
+***:iphone:Android Phone*** 
 <br/>
   With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
   <img src="QR CODE GOES HERE" alt="Logo" width="100" height="100">
 
-***IOS*** 
+***:iphone:IOS*** 
 <br/>
   After downloading the app "Expo" from AppleStore, with the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to open the project for your mobile device.
   
-***Attention***
+***:warning:Attention***
 The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on the app. 
-You could type random passwords and a mail address that ends with mail formats. (e.g. abc@gmail.com)
+You could type a random passwords and a email address that ends with mail formats. (e.g. abc@gmail.com)
 
 
-## Acknowledgement 
+##Acknowledgement
 https://reactnative.dev/ <br/>
 https://reactnavigation.org/ <br/>
 https://docs.expo.io/<br/>
