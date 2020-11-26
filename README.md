@@ -30,7 +30,7 @@
         <li><a href="#Launch">IOS devices</a></li>
       </ul>
     </li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#References">References</a></li>
   </ol>
 </details>
 
