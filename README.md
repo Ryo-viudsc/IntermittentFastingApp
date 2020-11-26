@@ -24,10 +24,10 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Launch</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">Android Phone</a></li>
+        <li><a href="#installation">IOS devices</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -52,14 +52,14 @@ So, I ended up finding intermittent fasting quite beneficial more than ever as i
 
 <table>
   <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple</td>
+    <td>Introduction</td>
+     <td>Timer Setting</td>
+     <td>Carousel Components</td>
   </tr>
   <tr>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif1-1.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif1-2.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif1-3.gif" width=170 height=380></td>
   </tr>
  </table>
 
@@ -69,35 +69,20 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
 
 <table>
   <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple</td>
+    <td>MealS Idea Page</td>
+     <td>Liked Meals Page</td>
+     <td>Details for liked meals</td>
   </tr>
   <tr>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif2-1.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif2-2.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif2-3.gif" width=170 height=380></td>
   </tr>
  </table>
 
-
-
-<h5>3,  (in development) you can see who is currently fasting right now in order to motivate each other during fasting. 
-Using Amazon cognito, S3, and Lamda function, you can see other users who are currently fasting. 
+<h5>3,  (in development) you can see who is currently fasting right now in order to motivate each other during fasting, using Amazon cognito, S3, and Lamda function.
 </h5>
-
-<table>
-  <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple</td>
-  </tr>
-  <tr>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
-    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
-  </tr>
- </table>
+<img src="./src/images/README.PICS/active.jpg" width=295 height=112>
 
 
 ## Built with 
