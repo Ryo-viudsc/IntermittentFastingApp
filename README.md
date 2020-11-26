@@ -24,14 +24,12 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Launch</a>
+      <a href="Launch">Launch</a>
       <ul>
-        <li><a href="#prerequisites">Android Phone</a></li>
-        <li><a href="#installation">IOS devices</a></li>
+        <li><a href="#Launch">Android Phone</a></li>
+        <li><a href="#Launch">IOS devices</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
@@ -110,7 +108,7 @@ The authentification for sign-in and sign-up is omitted so that you are not requ
 You could type a random passwords and a email address that ends with mail formats. (e.g. abc@gmail.com)
 
 
-##Acknowledgement
+## Acknowledgement
 https://reactnative.dev/ <br/>
 https://reactnavigation.org/ <br/>
 https://docs.expo.io/<br/>
