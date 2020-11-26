@@ -50,18 +50,16 @@ So, I ended up finding intermittent fasting quite beneficial more than ever as i
 <h2>Main functionalities of this project are the following: </h2>
 <br/>
 
-<h3>1,</h3>
-keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
+<h5>1,  keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. </h5>
 <br/>
 
-<h3>2,</h3>
-helps people on fasting or planning to fast to come up with a meal plan to break their fast.
+<h5>2,  helps people on fasting or planning to fast to come up with a meal plan to break their fast.
 Using spoonacular API, this app covers more than 5000 recipes, including every single ingredients and nutrients for each meal. 
-<br/>
+<br/></h5>
 
-<h3>3,</h3>
-(in development), you can see who is currently fasting right now in order to motivate each other during fasting. 
-Using Amazon cognito, S3, and Lamda function, you can see other users who are currently fasting. 
+<h5>3,  (in development) you can see who is currently fasting right now in order to motivate each other during fasting. 
+Using Amazon cognito, S3, and Lamda function, you can see other users who are currently fasting. </h5>
+
 <br/>
 
 
