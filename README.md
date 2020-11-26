@@ -105,7 +105,7 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
   After downloading the app "Expo" from AppleStore, with the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to open the project for your mobile device.
   
 ***:warning:Attention***
-The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on the app. 
+The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on my project. 
 You could type a random password and a email address that ends with mail formats. (e.g. abc@gmail.com)
 
 
