@@ -37,7 +37,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <br/>
-As the lockdown due to the pandemic continues, many people are facing the problem of weight gain. And I believe that one reason is simply 
+As the lockdown continues, many people are facing the problem of weight gain. I believe that one reason is simply 
 because it has been a sedentary time, without much movement, as well as from the stress of sitting at home all the time.
 So, I ended up finding intermittent fasting quite beneficial and decided to build this app for a sedentary life style these days. 
 
@@ -45,7 +45,7 @@ So, I ended up finding intermittent fasting quite beneficial and decided to buil
 <h2>Main functionalities of this project are the following: </h2>
 <br/>
 
-<h5>1, keeps track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
+<h5>1, keep track of your fasting time and inform you about what's happenning in your body as the fasting continues. As your fasting progresses, tap the modal tab at the top of the timer screen to visualize the stages of your fasting. 
 </h5>
 
 <table>
@@ -61,8 +61,8 @@ So, I ended up finding intermittent fasting quite beneficial and decided to buil
   </tr>
  </table>
 
-<h5>2,  helps people on fasting or planning to fast to come up with a meal plan to break their fast.
-Using spoonacular API, this app covers more than 5000 recipes, including every single ingredients and nutrients for each meal. 
+<h5>2,  help people with fasting and coming up with meal plans to break their fast.
+Using spoonacular API, this app covers more than 5000 recipes, including every single ingredient and nutrient for each meal. 
 </h5>
 
 <table>
@@ -109,7 +109,7 @@ The authentification for sign-in and sign-up is omitted so that you are not requ
 You could type a random password and a email address that ends with mail formats. (e.g. abc@gmail.com)
 
 
-## Acknowledgement
+## References
 https://reactnative.dev/ <br/>
 https://reactnavigation.org/ <br/>
 https://docs.expo.io/<br/>
