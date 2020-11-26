@@ -38,8 +38,8 @@
 ## About The Project
 <br/>
 As the lockdown continues, many people are facing the problem of weight gain. I believe that one reason is simply 
-because it has been a sedentary time, without much movement, as well as from the stress of sitting at home all the time.
-So, I ended up finding intermittent fasting quite beneficial and decided to build this app for a sedentary life style these days. 
+because it has been a sedentary time, without much movement.
+So, I ended up finding intermittent fasting quite beneficial and decided to build this app. 
 
 <br/>
 <h2>Main functionalities of this project are the following: </h2>
