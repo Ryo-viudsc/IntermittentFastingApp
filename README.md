@@ -24,10 +24,10 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Launch</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisites">Android Phone</a></li>
+        <li><a href="#installation">IOS devices</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
