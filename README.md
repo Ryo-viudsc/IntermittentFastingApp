@@ -67,7 +67,7 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
 
 <table>
   <tr>
-    <td>MealS Idea Page</td>
+    <td>Meals Idea Page</td>
      <td>Liked Meals Page</td>
      <td>Details for liked meals</td>
   </tr>
