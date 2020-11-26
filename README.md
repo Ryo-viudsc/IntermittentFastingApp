@@ -99,7 +99,7 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
 ***:iphone:Android Phone*** 
 <br/>
   With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
-  <img src="QR CODE GOES HERE" alt="Logo" width="100" height="100">
+  <img src="./src/images/QRcode.jpg" alt="Logo" width="100" height="100">
 
 ***:iphone:IOS*** 
 <br/>
