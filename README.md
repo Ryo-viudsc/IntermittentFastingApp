@@ -49,21 +49,55 @@ So, I ended up finding intermittent fasting quite beneficial more than ever as i
 
 <h5>1, keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
 </h5>
-<ul style="justify-content: space-around;">
-  <li><img src="./src/images/README.PICS/gif4.gif" alt="Logo" width="170" height="380" ></li>
-  <li><img src="./src/images/README.PICS/gif4.gif" alt="Logo" width="170" height="380" ></li>
 
-</ul>
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple</td>
+  </tr>
+  <tr>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+  </tr>
+ </table>
 
 <h5>2,  helps people on fasting or planning to fast to come up with a meal plan to break their fast.
 Using spoonacular API, this app covers more than 5000 recipes, including every single ingredients and nutrients for each meal. 
 </h5>
+
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple</td>
+  </tr>
+  <tr>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+  </tr>
+ </table>
+
 
 
 <h5>3,  (in development) you can see who is currently fasting right now in order to motivate each other during fasting. 
 Using Amazon cognito, S3, and Lamda function, you can see other users who are currently fasting. 
 </h5>
 
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple</td>
+  </tr>
+  <tr>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+    <td><img src="./src/images/README.PICS/gif4.gif" width=170 height=380></td>
+  </tr>
+ </table>
 
 
 ## Built with 
