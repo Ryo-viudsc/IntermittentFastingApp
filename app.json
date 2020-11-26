@@ -8,7 +8,7 @@
     "splash": {
       "image": "./src/images/IFlogo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
