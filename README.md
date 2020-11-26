@@ -45,7 +45,7 @@ So, I ended up finding intermittent fasting quite beneficial and decided to buil
 <h2>Main functionalities of this project are the following: </h2>
 <br/>
 
-<h5>1, keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
+<h5>1, keeps track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
 </h5>
 
 <table>
