@@ -84,7 +84,7 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
 
 
 ## Built with 
- - TypeScript / ReactJS / JavaScript - ES6 / Shell /
+ - TypeScript / ReactJS / JavaScript - ES6 / Shell
  - ReactNative / Expo / Axios / ReactNative AsycnStorage / TSlint / formik / ReactNative-Community libraries 
  - VScode / Git / Gimp / Movavi 
  
