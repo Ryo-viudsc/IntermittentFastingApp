@@ -13,8 +13,6 @@ const ForgotPasswordSchema = Yup.object().shape({
   });
 
 
-
-
 const ForgotPassword = ({ navigation } : AuthNavigationProps<"ForgotPassword">) => {
       
     const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik(
@@ -34,7 +32,6 @@ const ForgotPassword = ({ navigation } : AuthNavigationProps<"ForgotPassword">) 
           onPress={() => Linking.openURL("mailto:ryokihara.cs@gmail.com")}
         />
       );
-  
 
     return (
         <Container pattern={0} {...{ footer }} >

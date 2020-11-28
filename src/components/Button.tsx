@@ -5,14 +5,14 @@ import { useTheme } from '@shopify/restyle';
 import { Theme,  Text  } from './Theme';
 import GradientButton from './GradientButton';
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 const HEIGHT = width * 1.6;
 
 const styles = StyleSheet.create({
     container: {
         borderRadius: 25, 
-        height: 50, 
-        width: 240, 
+        height: height* 0.06, 
+        width: width* 0.6, 
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "Alata", 
@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     }, 
     container2: {
       borderRadius: 10, 
-      height: 50, 
-      width: 210, 
+      height: height* 0.07, 
+      width: width* 0.6, 
       justifyContent: "center",
       alignItems: "center",
       fontFamily: "Alata", 
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
       borderRadius: 25,
       marginTop: 10,  
       marginBottom: 25,
-      height: HEIGHT * 0.08, 
+      height: HEIGHT * 0.06, 
       width: width * 0.6, 
       justifyContent: "center",
       alignItems: "center",
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     }, 
      default: {
       borderRadius: 10, 
-      height: 50, 
-      width: 210, 
+      height: height* 0.06, 
+      width: width* 0.6, 
       justifyContent: "center",
       alignItems: "center",
       fontFamily: "Alata", 

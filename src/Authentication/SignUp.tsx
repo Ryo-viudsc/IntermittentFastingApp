@@ -10,8 +10,6 @@ import * as Yup from 'yup';
 import Footer from "./components/components/Footer";
 
 
-
-
  const SignUpSchema = Yup.object().shape({
    password: Yup.string()
      .min(2, 'Too Short!')
@@ -87,7 +85,6 @@ const SignUp = ({ navigation }: AuthNavigationProps<"SignUp">) => {
                                 onChangeText={handleChange("email")}
                                 onBlur={handleBlur("email")}
                                 error={errors.email}
-
                                 touched={touched.email}
                                 autoCompleteType="email"
                                 autoCapitalize="none" 
