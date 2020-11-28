@@ -24,30 +24,28 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Launch</a>
+      <a href="Launch">Launch</a>
       <ul>
-        <li><a href="#prerequisites">Android Phone</a></li>
-        <li><a href="#installation">IOS devices</a></li>
+        <li><a href="#Launch">Android Phone</a></li>
+        <li><a href="#Launch">IOS devices</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#References">References</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <br/>
-As the lockdown due to the pandemic continues, many people are facing the problem of weight gain. And I believe that one reason is simply 
-because it has been a sedentary time, without much movement, as well as from the stress of sitting at home all the time.
-So, I ended up finding intermittent fasting quite beneficial more than ever as it might be really helpful for a sedentary life style these days. 
+As the lockdown continues, many people are facing the problem of weight gain. I believe that one reason is simply 
+because it has been a sedentary time, without much movement.
+So, I ended up finding intermittent fasting quite beneficial and decided to build this app. 
 
 <br/>
 <h2>Main functionalities of this project are the following: </h2>
 <br/>
 
-<h5>1, keeps a track of your fasting time and informs what's happenning in your body as the fasting continues. As your fasting progresses, by tapping the modal tab on the top of timer screen, this app visualizes the stages of your fasting. 
+<h5>1, keep track of your fasting time and inform you about what's happenning in your body as the fasting continues. As your fasting progresses, tap the modal tab at the top of the timer screen to visualize the stages of your fasting. 
 </h5>
 
 <table>
@@ -63,13 +61,13 @@ So, I ended up finding intermittent fasting quite beneficial more than ever as i
   </tr>
  </table>
 
-<h5>2,  helps people on fasting or planning to fast to come up with a meal plan to break their fast.
-Using spoonacular API, this app covers more than 5000 recipes, including every single ingredients and nutrients for each meal. 
+<h5>2,  help people with fasting and coming up with meal plans to break their fast.
+Using spoonacular API, this app covers more than 5000 recipes, including every single ingredient and nutrient for each meal. 
 </h5>
 
 <table>
   <tr>
-    <td>MealS Idea Page</td>
+    <td>Meals Idea Page</td>
      <td>Liked Meals Page</td>
      <td>Details for liked meals</td>
   </tr>
@@ -80,13 +78,13 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
   </tr>
  </table>
 
-<h5>3,  (in development) you can see who is currently fasting right now in order to motivate each other during fasting, using Amazon cognito, S3, and Lamda function.
+<h5>3,  (this feature is still in development) you can see who is fasting right now in order to motivate each other during fasting, using Amazon cognito, S3, and Lamda function.
 </h5>
 <img src="./src/images/README.PICS/active.jpg" width=295 height=112>
 
 
 ## Built with 
- - TypeScript / ReactJS / JavaScript - ES6 / Shell /
+ - TypeScript / ReactJS / JavaScript - ES6 / Shell
  - ReactNative / Expo / Axios / ReactNative AsycnStorage / TSlint / formik / ReactNative-Community libraries 
  - VScode / Git / Gimp / Movavi 
  
@@ -99,18 +97,25 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
 ***:iphone:Android Phone*** 
 <br/>
   With an Android phone, you can scan this QR code with your Expo mobile app to load this project immediately.
-  <img src="QR CODE GOES HERE" alt="Logo" width="100" height="100">
+<br/>
+  <img src="./src/images/README.PICS/QRcode.jpg" alt="Logo" width="100" height="100">
 
 ***:iphone:IOS*** 
 <br/>
-  After downloading the app "Expo" from AppleStore, with the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number to open the project for your mobile device.
+  1, After downloading the app "Expo" from AppleStore, with the link https://expo.io/@kiharar/projects/intermittentfastingapp, you can request a link with your email or phone number.
+<br/>
+  2, On Expo app, go to Profile and "Sign in your acccount." 
+  Type "iftimer.test@gmail.com" for email and "iftimer" for password (please make sure that they're all small-letters, the first letter can be auto-capitalized sometimes)
+<br/>
+  3, You should be able to load the project from the link while you are logging-in on Expo app.
+
   
 ***:warning:Attention***
-The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on the app. 
-You could type a random passwords and a email address that ends with mail formats. (e.g. abc@gmail.com)
+The authentification for sign-in and sign-up is omitted so that you are not required to put a valid mail address and password on my project. 
+You could type a random password and a email address that ends with mail formats. (e.g. abc@gmail.com)
 
 
-##Acknowledgement
+## References
 https://reactnative.dev/ <br/>
 https://reactnavigation.org/ <br/>
 https://docs.expo.io/<br/>
