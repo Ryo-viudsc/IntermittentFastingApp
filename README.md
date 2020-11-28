@@ -59,7 +59,7 @@ So, I ended up finding intermittent fasting quite beneficial and decided to buil
     <td><img src="./src/images/README.PICS/gif1-2.gif" width=170 height=380></td>
     <td><img src="./src/images/README.PICS/gif1-3.gif" width=170 height=380></td>
   </tr>
- </table>
+</table>
 
 <h5>2,  help people with fasting and coming up with meal plans to break their fast.
 Using spoonacular API, this app covers more than 5000 recipes, including every single ingredient and nutrient for each meal. 
@@ -81,6 +81,11 @@ Using spoonacular API, this app covers more than 5000 recipes, including every s
 <h5>3,  (this feature is still in development) you can see who is fasting right now in order to motivate each other during fasting, using Amazon cognito, S3, and Lamda function.
 </h5>
 <img src="./src/images/README.PICS/active.jpg" width=295 height=112>
+<h5>
+  -  filter function to filter meals idea <br/>
+  -  make the liked meals removable from the liked list <br/>
+</h5>
+
 
 
 ## Built with 
